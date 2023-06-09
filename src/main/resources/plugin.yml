@@ -1,0 +1,7 @@
+name: McTelegramChat
+version: '${project.version}'
+main: org.amirov.mctelegramchat.McTelegramChat
+api-version: 1.19
+authors: [ Daniyar ]
+description: This bot will help you while playing a single-player world in Minecraft
+website: https://github.com/mirroxEkb14
