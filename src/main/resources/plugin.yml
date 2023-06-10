@@ -27,8 +27,14 @@ commands:
     description: Save your spawn point
     usage: /<command>
   spawn:
-    description: Teleports you to your spawn point
+    description: Teleport yourself to your spawn point
     usage: /<command>
+  menu:
+    description: Open an inventory
+    usage: /<command>
+    aliases:
+      - inventory
+      - gear
 permissions:
   commands.god:
     description: Allows god command

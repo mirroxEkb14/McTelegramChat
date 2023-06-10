@@ -2,7 +2,6 @@ package org.amirov.mctelegramchat.commands;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
-import net.kyori.adventure.text.format.NamedTextColor;
 import org.amirov.mctelegramchat.properties.ChatMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -11,6 +10,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
+import java.util.UUID;
+
 /**
  * Kills a certain player if the one who runs the command has the appropriate permission.
  * <p>
@@ -18,6 +20,35 @@ import org.jetbrains.annotations.NotNull;
  */
 public final class KillCommand implements CommandExecutor {
 
+    /**
+     * key -> UUID of the player.
+     * <p>
+     * value -> the epoch time of when the player ran the command.
+     */
+    private final HashMap<UUID, Long> cooldown;
+
+    /**
+     * Cooldown time in milliseconds.
+     */
+    private static final long COOLDOWN_TIME = 10000L;
+
+    public KillCommand() { cooldown = new HashMap<>(); }
+
+    /**
+     * Execution principle:
+     * Checks if this command was run by a player.
+     * <p>
+     * Checks the {@code args} argument:
+     * <ol>
+     * <li> for {@code 0}: sends a message to the player that there should be some command argument typed.
+     * <li> for {@code default}: sends a message that there should be only one word after the command itself.
+     * <li> for {@code 1}: checks if the target player is on-line; then checks if this player is already in the map,
+     * puts him there and kills the target if not, goes to the {@code else} block otherwise; inside the {@code else}
+     * block checks if the time that has already passed equals or is more than the {@code COOLDOWN_TIME} constant,
+     * updates player's time in the map and kills the target if so, sends a message that the time has not yet passed
+     * otherwise.
+     * </ol>
+     */
     @Override
     public boolean onCommand(@NotNull CommandSender sender,
                              @NotNull Command command,
@@ -33,14 +64,39 @@ public final class KillCommand implements CommandExecutor {
                         sendMessagePlayerOffline(player);
                         break;
                     }
-                    target.setHealth(Double.MIN_VALUE);
-                    sendNotificationToPlayer(player, target);
-                    sendExplanationToTarget(target, player);
+
+                    final UUID playerId = player.getUniqueId();
+                    if (!cooldown.containsKey(playerId)) {
+                        cooldown.put(playerId, System.currentTimeMillis());
+                        finishKilling(player, target);
+                    } else {
+                        final long timeElapsed = System.currentTimeMillis() - cooldown.get(playerId);
+                        if (timeElapsed >= COOLDOWN_TIME) {
+                            cooldown.put(playerId, System.currentTimeMillis());
+                            finishKilling(player, target);
+                            return true;
+                        }
+                        final TextComponent cooldownMessage = Component.text(String.format(
+                                ChatMessage.ON_COMMAND_KILL_COOLDOWN.getMessage(), COOLDOWN_TIME - timeElapsed));
+                        player.sendMessage(cooldownMessage);
+                    }
                 }
                 default -> sendMessageWrongCommandArguments(player);
             }
         }
         return true;
+    }
+
+    /**
+     * Kills the target and sends notification to a player who killed and an explanation to the player who was killed.
+     *
+     * @param player Who ran the command and killed.
+     * @param target Who was killed.
+     */
+    private void finishKilling(Player player, @NotNull Player target) {
+        target.setHealth(Double.MIN_VALUE);
+        sendNotificationToPlayer(player, target);
+        sendExplanationToTarget(target, player);
     }
 
     /**

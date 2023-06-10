@@ -2,6 +2,7 @@ package org.amirov.mctelegramchat;
 
 import org.amirov.mctelegramchat.commands.*;
 import org.amirov.mctelegramchat.listeners.ChatListener;
+import org.amirov.mctelegramchat.listeners.MenuListener;
 import org.amirov.mctelegramchat.listeners.PlayerJoinListener;
 import org.amirov.mctelegramchat.listeners.PlayerQuitListener;
 import org.amirov.mctelegramchat.logging.Loggers;
@@ -53,6 +54,7 @@ public final class McTelegramChat extends JavaPlugin {
         final PluginCommand killCommand = getCommand(CommandName.KILL_COMMAND.getName());
         final PluginCommand setspawnCommand = getCommand(CommandName.SETSPAWN_COMMAND.getName());
         final PluginCommand spawnCommand = getCommand(CommandName.SPAWN_COMMAND.getName());
+        final PluginCommand menuCommand = getCommand(CommandName.MENU_COMMAND.getName());
 
         Objects.requireNonNull(dieCommand);
         Objects.requireNonNull(godCommand);
@@ -60,6 +62,7 @@ public final class McTelegramChat extends JavaPlugin {
         Objects.requireNonNull(killCommand);
         Objects.requireNonNull(setspawnCommand);
         Objects.requireNonNull(spawnCommand);
+        Objects.requireNonNull(menuCommand);
 
         dieCommand.setExecutor(new DieCommand());
         godCommand.setExecutor(new GodCommand());
@@ -67,6 +70,7 @@ public final class McTelegramChat extends JavaPlugin {
         killCommand.setExecutor(new KillCommand());
         setspawnCommand.setExecutor(new SetSpawnCommand(this));
         spawnCommand.setExecutor(new SpawnCommand(this));
+        menuCommand.setExecutor(new MenuCommand());
     }
 
     /**
@@ -76,6 +80,7 @@ public final class McTelegramChat extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(this), this);
         Bukkit.getPluginManager().registerEvents(new PlayerQuitListener(), this);
         Bukkit.getPluginManager().registerEvents(new ChatListener(telegramBot), this);
+        Bukkit.getPluginManager().registerEvents(new MenuListener(), this);
     }
 
     /**

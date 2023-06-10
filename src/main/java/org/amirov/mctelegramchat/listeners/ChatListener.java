@@ -16,11 +16,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 /**
  * Monitors the game chat for players' messages.
  */
-public final class ChatListener implements Listener {
-
-    private final SPWBot telegramBot;
-
-    public ChatListener(SPWBot telegramBot) { this.telegramBot = telegramBot; }
+public record ChatListener(SPWBot telegramBot) implements Listener {
 
     /**
      * Called when a player sends a message to the game chat.
@@ -51,12 +47,11 @@ public final class ChatListener implements Listener {
      * HTML entity, so that they should be replaced with the corresponding HTML entities.
      *
      * @param text The text that a player sent to Minecraft chat.
-     *
      * @return The same text but with replaced HTML tags.
-     *
      * @see <a href="https://core.telegram.org/bots/api#formatting-options">Formatting options</a>
      */
-    private @NotNull String getFormattedChatMessageText(@NotNull String text) {
+    private @NotNull
+    String getFormattedChatMessageText(@NotNull String text) {
         return text
                 .replace(Symbol.LEFT_ANGLE_BRACKET.getSymbol(), Symbol.LEFT_ANGLE_TAG_ENTITY.getSymbol())
                 .replace(Symbol.RIGHT_ANGLE_BRACKET.getSymbol(), Symbol.RIGHT_ANGLE_TAG_ENTITY.getSymbol())
@@ -66,7 +61,8 @@ public final class ChatListener implements Listener {
     /**
      * @return MONOSPACED_PLAYER_NAME: PLAYER_MESSAGE.
      */
-    private @NotNull String getFullChatMessage(String messageText, String playerName) {
+    private @NotNull
+    String getFullChatMessage(String messageText, String playerName) {
         return Symbol.MONOSPACE_OPENING_TAG.getSymbol() +
                 playerName +
                 Symbol.MONOSPACE_CLOSING_TAG.getSymbol() +

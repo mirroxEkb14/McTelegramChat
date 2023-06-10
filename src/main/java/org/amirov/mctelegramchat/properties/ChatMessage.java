@@ -13,6 +13,7 @@ public enum ChatMessage {
     ON_COMMAND_KILL_PLAYER_OFFLINE("This player is currently off-line"),
     ON_COMMAND_KILL_NOTIFICATION("Player %s was killed"),
     ON_COMMAND_KILL_EXPLANATION("You were killed by %s"),
+    ON_COMMAND_KILL_COOLDOWN("Cooldown time %d"),
     ON_COMMAND_SETSPAWN("Spawn location set"),
     ON_COMMAND_SPAWN_TELEPORTED("Teleported to spawn point"),
     ON_COMMAND_SPAWN_NOT_SET("No spawn point set");
