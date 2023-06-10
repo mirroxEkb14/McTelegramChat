@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Monitors player's leaving the server.
  */
-public final class PlayerLeaveListener implements Listener {
+public final class PlayerQuitListener implements Listener {
 
     /**
      * Called when a player leaves a server.

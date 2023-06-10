@@ -15,8 +15,11 @@ public final class Loggers {
 
     private static final Consumer<String> SEVERE_LOG = t -> logger.log(Level.SEVERE, t);
     private static final Consumer<String> INFO_LOG = t -> logger.log(Level.INFO, t);
+    private static final Consumer<String> WARNING_LOG = t -> logger.log(Level.WARNING, t);
 
     public static void printSevereLog(String errorMessage) { SEVERE_LOG.accept(errorMessage); }
 
     public static void printInfoLog(String errorMessage) { INFO_LOG.accept(errorMessage); }
+
+    public static void printWarningLog(String errorMessage) { WARNING_LOG.accept(errorMessage); }
 }

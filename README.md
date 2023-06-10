@@ -1,5 +1,5 @@
 ### About
-This bot connects you server in Minecraft and Telegram. With the help of its cross-chat you can both to save 
+This bot connects your server in Minecraft and Telegram. With the help of its cross-chat you can both to save 
 information to the bot and get information from the bot.
 
 ### Usage

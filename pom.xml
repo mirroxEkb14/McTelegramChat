@@ -12,27 +12,36 @@
     <name>McTelegramChat</name>
 
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <compilerplugin.version>3.8.1</compilerplugin.version>
+        <shadeplugin.version>3.2.4</shadeplugin.version>
+        <jarplugin.version>2.4</jarplugin.version>
+        <papermc.version>1.19.4-R0.1-SNAPSHOT</papermc.version>
         <telegram.version>6.5.0</telegram.version>
         <lombok.version>1.18.28</lombok.version>
+        <output.path>C:\Users\user\Projects\servers\mc server\plugins</output.path>
     </properties>
 
     <build>
         <plugins>
+            <!-- Apache Maven Compiler Plugin
+            Compiles the sources of the project -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>${compilerplugin.version}</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                 </configuration>
             </plugin>
+            <!-- Apache Maven Shade Plugin
+            Repackages the project classes together with their dependencies into a single jar -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.4</version>
+                <version>${shadeplugin.version}</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -44,6 +53,16 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <!-- Apache Maven JAR Plugin
+            Compiles the Plugin (jar file) directly into the server plugins folder -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${jarplugin.version}</version>
+                <configuration>
+                    <outputDirectory>${output.path}</outputDirectory>
+                </configuration>
             </plugin>
         </plugins>
         <resources>
@@ -66,13 +85,14 @@
     </repositories>
 
     <dependencies>
+        <!-- PaperMC
+        Launcher for the Paper Minecraft server -->
         <dependency>
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
-            <version>1.19.4-R0.1-SNAPSHOT</version>
+            <version>${papermc.version}</version>
             <scope>provided</scope>
         </dependency>
-
         <!-- TelegramBots
         a library to create Telegram Bots in Java -->
         <dependency>
@@ -80,7 +100,6 @@
             <artifactId>telegrambots</artifactId>
             <version>${telegram.version}</version>
         </dependency>
-
         <!-- Project Lombok
          allows writing getters, setters, constructors, equals, hashcode with one annotation -->
         <dependency>

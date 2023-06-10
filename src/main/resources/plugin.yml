@@ -5,3 +5,25 @@ api-version: 1.19
 authors: [ Daniyar ]
 description: This bot will help you while playing a single-player world in Minecraft
 website: https://github.com/mirroxEkb14
+commands:
+  die:
+    description: Kill yourself instantly
+    usage: /<command>
+    aliases:
+      - perish
+      - passaway
+  god:
+    description: Become invincible
+    usage: /<command>
+    permission: commands.god
+    permission-message: No permission
+  feed:
+    description: Feed yourself
+    usage: /<command>
+  kill:
+    description: Kill a certain player
+    usage: /<command>
+permissions:
+  commands.god:
+    description: Allows god command
+    default: false

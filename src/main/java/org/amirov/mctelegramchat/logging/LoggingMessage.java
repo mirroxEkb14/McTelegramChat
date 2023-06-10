@@ -8,7 +8,9 @@ public enum LoggingMessage {
     REMOVING_OLD_WEBHOOK_ADVISE("Check your bot-token and bot-username"),
     BOT_LAUNCH_FAILED("Bot has failed to launch: %s"),
     BOT_REGISTRATION_SUCCESS("Bot has been successfully registered"),
-    SENDING_MESSAGE_ERROR("Error sending a message to Telegram: %s");
+    SENDING_MESSAGE_ERROR("Error sending a message to Telegram: %s"),
+    COMMAND_DIE_CMD_WARNING("The 'die' command was run through the Command Line"),
+    COMMAND_DIE_COMMAND_BLOCK_WARNING("The 'die' command was run through the Command Block");
 
     private final String message;
 
