@@ -10,7 +10,8 @@ import org.amirov.mctelegramchat.telegrambot.SPWBot;
 public enum ConfigProperty {
     TELEGRAM_BOT_API_KEY("telegram-bot-api-key"),
     TELEGRAM_BOT_USERNAME("telegram-bot-username"),
-    TELEGRAM_BOT_ADMIN_ID("telegram-bot-admin-id");
+    TELEGRAM_BOT_ADMIN_ID("telegram-bot-admin-id"),
+    SPAWN_LOCATION("spawn");
 
     private final String keyName;
 

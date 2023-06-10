@@ -56,7 +56,7 @@ public final class ChatListener implements Listener {
      *
      * @see <a href="https://core.telegram.org/bots/api#formatting-options">Formatting options</a>
      */
-    private String getFormattedChatMessageText(String text) {
+    private @NotNull String getFormattedChatMessageText(@NotNull String text) {
         return text
                 .replace(Symbol.LEFT_ANGLE_BRACKET.getSymbol(), Symbol.LEFT_ANGLE_TAG_ENTITY.getSymbol())
                 .replace(Symbol.RIGHT_ANGLE_BRACKET.getSymbol(), Symbol.RIGHT_ANGLE_TAG_ENTITY.getSymbol())
@@ -66,7 +66,7 @@ public final class ChatListener implements Listener {
     /**
      * @return MONOSPACED_PLAYER_NAME: PLAYER_MESSAGE.
      */
-    private String getFullChatMessage(String messageText, String playerName) {
+    private @NotNull String getFullChatMessage(String messageText, String playerName) {
         return Symbol.MONOSPACE_OPENING_TAG.getSymbol() +
                 playerName +
                 Symbol.MONOSPACE_CLOSING_TAG.getSymbol() +

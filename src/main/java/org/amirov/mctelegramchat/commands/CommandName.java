@@ -7,7 +7,9 @@ public enum CommandName {
     DIE_COMMAND("die"),
     GOD_COMMAND("god"),
     FEED_COMMAND("feed"),
-    KILL_COMMAND("kill");
+    KILL_COMMAND("kill"),
+    SETSPAWN_COMMAND("setspawn"),
+    SPAWN_COMMAND("spawn");
 
     private final String name;
 

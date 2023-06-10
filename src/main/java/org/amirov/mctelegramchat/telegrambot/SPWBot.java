@@ -74,7 +74,7 @@ public final class SPWBot extends TelegramLongPollingBot {
      * @param msgSender An instance of the user who sent a message.
      * @return User's full name in angle brackets with the color changed.
      */
-    private TextComponent getUserNameForServer(User msgSender) {
+    private @NotNull TextComponent getUserNameForServer(User msgSender) {
         final String senderFullName = getUserTelegramFullName(msgSender);
         return Component.text(Symbol.LEFT_ANGLE_BRACKET.getSymbol())
                         .append(Component.text(senderFullName, NamedTextColor.AQUA))
@@ -89,7 +89,7 @@ public final class SPWBot extends TelegramLongPollingBot {
      * @param message An incoming message from a user.
      * @return {@code true} if it's the admin's chat, otherwise {@code false}.
      */
-    private boolean isAdminChat(Message message) {
+    private boolean isAdminChat(@NotNull Message message) {
         return message.getChat().getId().equals(adminId);
     }
 
@@ -102,7 +102,7 @@ public final class SPWBot extends TelegramLongPollingBot {
      * @param user User who writes to the bot.
      * @return User's first name or user's first name + his last name if it presents.
      */
-    private String getUserTelegramFullName(User user) {
+    private @NotNull String getUserTelegramFullName(@NotNull User user) {
         return user.getFirstName() + (user.getLastName() != null ? " " + user.getLastName() : "");
     }
 

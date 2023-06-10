@@ -23,7 +23,7 @@ public final class FeedCommand implements CommandExecutor {
                              @NotNull String[] args) {
         if (sender instanceof Player player) {
             player.setFoodLevel(MAX_FOOD_LEVEL);
-            player.sendMessage(Component.text(ChatMessage.ON_COMMAND_FEED.getMessage(), NamedTextColor.GREEN));
+            player.sendMessage(Component.text(ChatMessage.ON_COMMAND_FEED.getMessage()));
         }
         return true;
     }

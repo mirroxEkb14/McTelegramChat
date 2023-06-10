@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
  * <p>
  * This command runs with the help of targeting players with command arguments.
  */
-public class KillCommand implements CommandExecutor {
+public final class KillCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender,
@@ -49,9 +49,7 @@ public class KillCommand implements CommandExecutor {
      * @param player A player who runs the command.
      */
     private void sendMessageNoName(@NotNull Player player) {
-        final TextComponent message = Component.text(
-                ChatMessage.ON_COMMAND_KILL_NO_NAME.getMessage(),
-                NamedTextColor.GREEN);
+        final TextComponent message = Component.text(ChatMessage.ON_COMMAND_KILL_NO_NAME.getMessage());
         player.sendMessage(message);
     }
 
@@ -61,9 +59,7 @@ public class KillCommand implements CommandExecutor {
      * @param player A player who runs the command.
      */
     private void sendMessageWrongCommandArguments(@NotNull Player player) {
-        final TextComponent explanation = Component.text(
-                ChatMessage.ON_COMMAND_KILL_WRONG_COMMAND_ARGUMENTS.getMessage(),
-                NamedTextColor.GREEN);
+        final TextComponent explanation = Component.text(ChatMessage.ON_COMMAND_KILL_WRONG_COMMAND_ARGUMENTS.getMessage());
         player.sendMessage(explanation);
     }
 
@@ -73,9 +69,7 @@ public class KillCommand implements CommandExecutor {
      * @param player A player who runs the command.
      */
     private void sendMessagePlayerOffline(@NotNull Player player) {
-        final TextComponent message = Component.text(
-                ChatMessage.ON_COMMAND_KILL_PLAYER_OFFLINE.getMessage(),
-                NamedTextColor.GREEN);
+        final TextComponent message = Component.text(ChatMessage.ON_COMMAND_KILL_PLAYER_OFFLINE.getMessage());
         player.sendMessage(message);
     }
 
@@ -88,9 +82,7 @@ public class KillCommand implements CommandExecutor {
      */
     private void sendNotificationToPlayer(@NotNull Player player, @NotNull Player target) {
         final String message = String.format(ChatMessage.ON_COMMAND_KILL_NOTIFICATION.getMessage(), target.getName());
-        final TextComponent notification = Component.text(
-                message,
-                NamedTextColor.GREEN);
+        final TextComponent notification = Component.text(message);
         player.sendMessage(notification);
     }
 
@@ -102,9 +94,7 @@ public class KillCommand implements CommandExecutor {
      */
     private void sendExplanationToTarget(@NotNull Player target, @NotNull Player player) {
         final String message = String.format(ChatMessage.ON_COMMAND_KILL_EXPLANATION.getMessage(), player.getName());
-        final TextComponent explanation = Component.text(
-                message,
-                NamedTextColor.GREEN);
+        final TextComponent explanation = Component.text(message);
         target.sendMessage(explanation);
     }
 }

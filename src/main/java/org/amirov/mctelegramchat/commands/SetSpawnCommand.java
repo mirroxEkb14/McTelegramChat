@@ -1,8 +1,10 @@
 package org.amirov.mctelegramchat.commands;
 
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.NamedTextColor;
+import org.amirov.mctelegramchat.McTelegramChat;
 import org.amirov.mctelegramchat.properties.ChatMessage;
+import org.amirov.mctelegramchat.properties.ConfigProperty;
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -10,11 +12,9 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Makes a player invincible.
- * <p>
- * This command can be run only by a player himself.
+ * Sets the spawn location for a player.
  */
-public final class GodCommand implements CommandExecutor {
+public record SetSpawnCommand(McTelegramChat plugin) implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender,
@@ -22,13 +22,10 @@ public final class GodCommand implements CommandExecutor {
                              @NotNull String label,
                              @NotNull String[] args) {
         if (sender instanceof Player player) {
-            if (player.isInvulnerable()) {
-                player.setInvulnerable(false);
-                player.sendMessage(Component.text(ChatMessage.ON_COMMAND_GOD_OFF.getMessage()));
-            } else {
-                player.setInvulnerable(true);
-                player.sendMessage(Component.text(ChatMessage.ON_COMMAND_GOD_ON.getMessage()));
-            }
+            final Location location = player.getLocation();
+            plugin.getConfig().set(ConfigProperty.SPAWN_LOCATION.getKeyName(), location);
+            plugin.saveConfig();
+            player.sendMessage(Component.text(ChatMessage.ON_COMMAND_SETSPAWN.getMessage()));
         }
         return true;
     }

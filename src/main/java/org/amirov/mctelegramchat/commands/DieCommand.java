@@ -22,7 +22,7 @@ public final class DieCommand implements CommandExecutor {
                              @NotNull String[] args) {
         if (isDieCommand(command) && sender instanceof Player player) {
             player.setHealth(Double.MIN_VALUE);
-            player.sendMessage(Component.text(ChatMessage.ON_COMMAND_DIE.getMessage(), NamedTextColor.GREEN));
+            player.sendMessage(Component.text(ChatMessage.ON_COMMAND_DIE.getMessage()));
         } else if (sender instanceof ConsoleCommandSender) {
             Loggers.printWarningLog(LoggingMessage.COMMAND_DIE_CMD_WARNING.getMessage());
         } else if (sender instanceof BlockCommandSender) {

@@ -51,23 +51,29 @@ public final class McTelegramChat extends JavaPlugin {
         final PluginCommand godCommand = getCommand(CommandName.GOD_COMMAND.getName());
         final PluginCommand feedCommand = getCommand(CommandName.FEED_COMMAND.getName());
         final PluginCommand killCommand = getCommand(CommandName.KILL_COMMAND.getName());
+        final PluginCommand setspawnCommand = getCommand(CommandName.SETSPAWN_COMMAND.getName());
+        final PluginCommand spawnCommand = getCommand(CommandName.SPAWN_COMMAND.getName());
 
         Objects.requireNonNull(dieCommand);
         Objects.requireNonNull(godCommand);
         Objects.requireNonNull(feedCommand);
         Objects.requireNonNull(killCommand);
+        Objects.requireNonNull(setspawnCommand);
+        Objects.requireNonNull(spawnCommand);
 
         dieCommand.setExecutor(new DieCommand());
         godCommand.setExecutor(new GodCommand());
         feedCommand.setExecutor(new FeedCommand());
         killCommand.setExecutor(new KillCommand());
+        setspawnCommand.setExecutor(new SetSpawnCommand(this));
+        spawnCommand.setExecutor(new SpawnCommand(this));
     }
 
     /**
      * Initializes all the event listeners.
      */
     private void initListeners(SPWBot telegramBot) {
-        Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(this), this);
         Bukkit.getPluginManager().registerEvents(new PlayerQuitListener(), this);
         Bukkit.getPluginManager().registerEvents(new ChatListener(telegramBot), this);
     }
