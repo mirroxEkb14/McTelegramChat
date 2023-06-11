@@ -25,7 +25,7 @@ public record SetSpawnCommand(McTelegramChat plugin) implements CommandExecutor 
             final Location location = player.getLocation();
             plugin.getConfig().set(ConfigProperty.SPAWN_LOCATION.getKeyName(), location);
             plugin.saveConfig();
-            player.sendMessage(Component.text(ChatMessage.ON_COMMAND_SETSPAWN.getMessage()));
+            player.sendMessage(Component.text(ChatMessage.ON_COMMAND_SET_SPAWN.getMessage()));
         }
         return true;
     }

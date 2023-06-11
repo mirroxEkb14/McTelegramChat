@@ -8,9 +8,11 @@ public enum CommandName {
     GOD_COMMAND("god"),
     FEED_COMMAND("feed"),
     KILL_COMMAND("kill"),
-    SETSPAWN_COMMAND("setspawn"),
+    SET_SPAWN_COMMAND("setspawn"),
     SPAWN_COMMAND("spawn"),
-    MENU_COMMAND("menu");
+    MENU_COMMAND("menu"),
+    FLY_COMMAND("fly"),
+    GIVE_BOW_COMMAND("givebow");
 
     private final String name;
 

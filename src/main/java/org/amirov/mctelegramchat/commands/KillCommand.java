@@ -115,8 +115,8 @@ public final class KillCommand implements CommandExecutor {
      * @param player A player who runs the command.
      */
     private void sendMessageWrongCommandArguments(@NotNull Player player) {
-        final TextComponent explanation = Component.text(ChatMessage.ON_COMMAND_KILL_WRONG_COMMAND_ARGUMENTS.getMessage());
-        player.sendMessage(explanation);
+        final TextComponent message = Component.text(ChatMessage.ON_COMMAND_KILL_WRONG_COMMAND_ARGUMENTS.getMessage());
+        player.sendMessage(message);
     }
 
     /**

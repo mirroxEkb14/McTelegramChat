@@ -35,6 +35,12 @@ commands:
     aliases:
       - inventory
       - gear
+  fly:
+    description: Fly
+    usage: /<command>
+  givebow:
+    description: Give a teleport bow
+    usage: /<command>
 permissions:
   commands.god:
     description: Allows god command

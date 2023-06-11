@@ -6,12 +6,15 @@ import net.kyori.adventure.title.Title;
 import org.amirov.mctelegramchat.McTelegramChat;
 import org.amirov.mctelegramchat.properties.ConfigProperty;
 import org.amirov.mctelegramchat.properties.DisplayMessage;
+import org.amirov.mctelegramchat.utility.BowUtils;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -33,32 +36,29 @@ public record PlayerJoinListener(McTelegramChat plugin) implements Listener {
         final Title title = getTitle(wasBefore);
 
         teleportToSpawnPoint(joinedPlayer, wasBefore);
+        giveTeleportBow(joinedPlayer);
 
         joinedPlayer.showTitle(title);
     }
 
     /**
-     * Forms a title to show to the player who joins the server.
+     * If this player has permission, then gives him a teleport bow.
      *
-     * @param wasBefore {@code true} if this player has joined the server before, {@code false} otherwise.
-     * @return Title for displaying on the screen.
+     * @param joinedPlayer Player who joined the server.
      */
-    private @NotNull Title getTitle(boolean wasBefore) {
-        return wasBefore ?
-                Title.title(
-                        Component.text(DisplayMessage.ON_JOIN_PLAYED_BEFORE_WELCOME.getTitle(), NamedTextColor.GREEN),
-                        Component.text(DisplayMessage.ON_JOIN_PLAYED_BEFORE_ENJOY.getTitle())) :
-                Title.title(
-                        Component.text(DisplayMessage.ON_JOIN_WELCOME.getTitle(), NamedTextColor.BLUE),
-                        Component.text(DisplayMessage.ON_JOIN_ENJOY.getTitle()));
+    private void giveTeleportBow(@NotNull Player joinedPlayer) {
+        if (plugin.getConfig().getBoolean(ConfigProperty.TELEPORT_BOW_GIVE_BOW.getKeyName())) {
+            joinedPlayer.getInventory().addItem(BowUtils.getTeleportBow());
+            joinedPlayer.getInventory().addItem(new ItemStack(Material.ARROW, BowUtils.getBowAmount()));
+        }
     }
 
     /**
      * Teleports the player who joins the server to his spawn point if such has been specified before.
      *
      * @param joinedPlayer Player who joined the server.
-     * @param wasBefore {@code boolean} parameter that tells us either this player has already joined this server
-     *                  or it's his first time.
+     * @param wasBefore    {@code boolean} parameter that tells us either this player has already joined this server
+     *                     or it's his first time.
      */
     private void teleportToSpawnPoint(Player joinedPlayer, boolean wasBefore) {
         if (wasBefore) {
@@ -86,5 +86,22 @@ public record PlayerJoinListener(McTelegramChat plugin) implements Listener {
         final Location location = getConfigSpawnLocation();
         if (location != null)
             event.setRespawnLocation(location);
+    }
+
+    /**
+     * Forms a title to show to the player who joins the server.
+     *
+     * @param wasBefore {@code true} if this player has joined the server before, {@code false} otherwise.
+     * @return Title for displaying on the screen.
+     */
+    private @NotNull
+    Title getTitle(boolean wasBefore) {
+        return wasBefore ?
+                Title.title(
+                        Component.text(DisplayMessage.ON_JOIN_PLAYED_BEFORE_WELCOME.getTitle(), NamedTextColor.GREEN),
+                        Component.text(DisplayMessage.ON_JOIN_PLAYED_BEFORE_ENJOY.getTitle())) :
+                Title.title(
+                        Component.text(DisplayMessage.ON_JOIN_WELCOME.getTitle(), NamedTextColor.BLUE),
+                        Component.text(DisplayMessage.ON_JOIN_ENJOY.getTitle()));
     }
 }
