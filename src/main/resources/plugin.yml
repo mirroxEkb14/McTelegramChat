@@ -41,6 +41,9 @@ commands:
   givebow:
     description: Give a teleport bow
     usage: /<command>
+  armorstand:
+    description: Create armorstand
+    usage: /<command>
 permissions:
   commands.god:
     description: Allows god command

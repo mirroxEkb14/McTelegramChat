@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 
 /**
- * Create and provides teleport bows.
+ * Creates and provides teleport bows.
  */
 public final class BowUtils {
 

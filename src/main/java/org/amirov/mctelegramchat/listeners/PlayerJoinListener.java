@@ -4,9 +4,11 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.title.Title;
 import org.amirov.mctelegramchat.McTelegramChat;
+import org.amirov.mctelegramchat.logging.Loggers;
 import org.amirov.mctelegramchat.properties.ConfigProperty;
 import org.amirov.mctelegramchat.properties.DisplayMessage;
 import org.amirov.mctelegramchat.utility.BowUtils;
+import org.amirov.mctelegramchat.utility.CrossbowUtils;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -37,6 +39,7 @@ public record PlayerJoinListener(McTelegramChat plugin) implements Listener {
 
         teleportToSpawnPoint(joinedPlayer, wasBefore);
         giveTeleportBow(joinedPlayer);
+        giveLightingCrossbow(joinedPlayer);
 
         joinedPlayer.showTitle(title);
     }
@@ -50,6 +53,18 @@ public record PlayerJoinListener(McTelegramChat plugin) implements Listener {
         if (plugin.getConfig().getBoolean(ConfigProperty.TELEPORT_BOW_GIVE_BOW.getKeyName())) {
             joinedPlayer.getInventory().addItem(BowUtils.getTeleportBow());
             joinedPlayer.getInventory().addItem(new ItemStack(Material.ARROW, BowUtils.getBowAmount()));
+        }
+    }
+
+    /**
+     * If this player has permission, then gives him a lighting crossbow.
+     *
+     * @param joinedPlayer Player who this lighting crossbow will be given to.
+     */
+    private void giveLightingCrossbow(@NotNull Player joinedPlayer) {
+        if (plugin.getConfig().getBoolean(ConfigProperty.LIGHTNING_CROSSBOW_GIVE_CROSSBOW.getKeyName())) {
+            joinedPlayer.getInventory().addItem(CrossbowUtils.getLightningCrossbow());
+            joinedPlayer.getInventory().addItem(new ItemStack(Material.ARROW, CrossbowUtils.getCrossbowAmount()));
         }
     }
 

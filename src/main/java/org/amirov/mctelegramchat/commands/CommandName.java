@@ -12,7 +12,8 @@ public enum CommandName {
     SPAWN_COMMAND("spawn"),
     MENU_COMMAND("menu"),
     FLY_COMMAND("fly"),
-    GIVE_BOW_COMMAND("givebow");
+    GIVE_BOW_COMMAND("givebow"),
+    ARMOR_STAND_COMMAND("armorstand");
 
     private final String name;
 

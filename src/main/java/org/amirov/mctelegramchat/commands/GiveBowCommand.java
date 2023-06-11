@@ -1,6 +1,7 @@
 package org.amirov.mctelegramchat.commands;
 
 import net.kyori.adventure.text.Component;
+import org.amirov.mctelegramchat.McTelegramChat;
 import org.amirov.mctelegramchat.properties.ChatMessage;
 import org.amirov.mctelegramchat.properties.ConfigProperty;
 import org.amirov.mctelegramchat.utility.BowUtils;
@@ -16,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Gives a teleport bow to a player.
  */
-public final class GiveBowCommand implements CommandExecutor {
+public record GiveBowCommand(McTelegramChat plugin) implements CommandExecutor {
 
     private static final int ARROW_AMOUNT = 1;
 
@@ -26,7 +27,7 @@ public final class GiveBowCommand implements CommandExecutor {
                              @NotNull String label,
                              @NotNull String[] args) {
         if (sender instanceof Player player) {
-            if (player.hasPermission(ConfigProperty.TELEPORT_BOW_GIVE_BOW.getKeyName())) {
+            if (plugin.getConfig().getBoolean(ConfigProperty.TELEPORT_BOW_GIVE_BOW.getKeyName())) {
                 switch (args.length) {
                     case 0 -> {
                         finishGiving(player);

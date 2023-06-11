@@ -4,3 +4,4 @@ telegram-bot-username: bot_username_here
 # For your telegram id use https://t.me/getmyid_bot
 telegram-bot-admin-id: admin_id_here
 teleportbow-givebow: true
+lightningcrossbow-givecrossbow: true

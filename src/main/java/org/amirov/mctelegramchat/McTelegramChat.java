@@ -15,7 +15,7 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 import java.util.Objects;
 
 /**
- * Registers the bot and event listeners.
+ * Registers the bot, commands and event listeners.
  *
  * @author zea1ot 6/6/2023
  */
@@ -54,6 +54,7 @@ public final class McTelegramChat extends JavaPlugin {
         final PluginCommand menuCommand = getCommand(CommandName.MENU_COMMAND.getName());
         final PluginCommand flyCommand = getCommand(CommandName.FLY_COMMAND.getName());
         final PluginCommand giveBowCommand = getCommand(CommandName.GIVE_BOW_COMMAND.getName());
+        final PluginCommand armorStandCommand = getCommand(CommandName.ARMOR_STAND_COMMAND.getName());
 
         Objects.requireNonNull(dieCommand);
         Objects.requireNonNull(godCommand);
@@ -64,6 +65,7 @@ public final class McTelegramChat extends JavaPlugin {
         Objects.requireNonNull(menuCommand);
         Objects.requireNonNull(flyCommand);
         Objects.requireNonNull(giveBowCommand);
+        Objects.requireNonNull(armorStandCommand);
 
         dieCommand.setExecutor(new DieCommand());
         godCommand.setExecutor(new GodCommand());
@@ -73,7 +75,8 @@ public final class McTelegramChat extends JavaPlugin {
         spawnCommand.setExecutor(new SpawnCommand(this));
         menuCommand.setExecutor(new MenuCommand());
         flyCommand.setExecutor(new FlyCommand());
-        giveBowCommand.setExecutor(new GiveBowCommand());
+        giveBowCommand.setExecutor(new GiveBowCommand(this));
+        armorStandCommand.setExecutor(new ArmorStandCommand());
     }
 
     /**
@@ -84,7 +87,7 @@ public final class McTelegramChat extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new PlayerQuitListener(), this);
         Bukkit.getPluginManager().registerEvents(new ChatListener(telegramBot), this);
         Bukkit.getPluginManager().registerEvents(new MenuListener(), this);
-        Bukkit.getPluginManager().registerEvents(new BowListener(this), this);
+        Bukkit.getPluginManager().registerEvents(new ArrowListener(this), this);
     }
 
     /**
