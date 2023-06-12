@@ -1,7 +1,7 @@
 package org.amirov.mctelegramchat.commands;
 
-import org.amirov.mctelegramchat.utility.ChestplateUtils;
-import org.amirov.mctelegramchat.utility.NetheriteSword;
+import org.amirov.mctelegramchat.utility.UrsineChestplateUtils;
+import org.amirov.mctelegramchat.utility.SilverSwordUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -49,8 +49,8 @@ public final class ArmorStandCommand implements CommandExecutor {
             final ArmorStand armorStand = (ArmorStand) player.getWorld().spawnEntity(
                     player.getLocation(),
                     EntityType.ARMOR_STAND);
-            final ItemStack chestplate = ChestplateUtils.getChestplate();
-            final ItemStack silverSword = NetheriteSword.getNetheriteSword();
+            final ItemStack chestplate = UrsineChestplateUtils.getChestplate();
+            final ItemStack silverSword = SilverSwordUtils.getNetheriteSword();
 
             armorStand.getEquipment().setChestplate(chestplate);
             armorStand.getEquipment().setItemInMainHand(silverSword);

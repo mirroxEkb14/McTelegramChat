@@ -3,7 +3,7 @@ package org.amirov.mctelegramchat.listeners;
 import net.kyori.adventure.text.Component;
 import org.amirov.mctelegramchat.commands.MenuCommand;
 import org.amirov.mctelegramchat.logging.Loggers;
-import org.amirov.mctelegramchat.utility.IronSwordUtils;
+import org.amirov.mctelegramchat.utility.SteelSwordUtils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -26,7 +26,7 @@ public final class MenuListener implements Listener {
 
             final Component itemComponent = selectedItem.getItemMeta().displayName();
             Objects.requireNonNull(itemComponent);
-            if (itemComponent.equals(IronSwordUtils.getSteelSwordName())) {
+            if (itemComponent.equals(SteelSwordUtils.getSteelSwordName())) {
                 Loggers.printInfoLog("SWORD PICKED UP");
             }
         }

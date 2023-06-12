@@ -4,7 +4,7 @@ package org.amirov.mctelegramchat.commands;
  * Contains the names of some commands.
  */
 public enum CommandName {
-    DIE_COMMAND("die"),
+    GUI_COMMAND("gui"),
     GOD_COMMAND("god"),
     FEED_COMMAND("feed"),
     KILL_COMMAND("kill"),

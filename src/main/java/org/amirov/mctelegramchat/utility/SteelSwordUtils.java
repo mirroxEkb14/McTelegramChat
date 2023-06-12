@@ -16,7 +16,7 @@ import java.util.Objects;
 /**
  * Creates and provides a custom iron sword.
  */
-public final class IronSwordUtils {
+public final class SteelSwordUtils {
 
 //<editor-fold default-state="collapsed" desc="Private Constants">
     private static final int STEEL_SWORD_AMOUNT = 1;

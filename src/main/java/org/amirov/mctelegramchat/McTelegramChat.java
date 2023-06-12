@@ -45,7 +45,7 @@ public final class McTelegramChat extends JavaPlugin {
     }
 
     private void initCommands() {
-        final PluginCommand dieCommand = getCommand(CommandName.DIE_COMMAND.getName());
+        final PluginCommand guiCommand = getCommand(CommandName.GUI_COMMAND.getName());
         final PluginCommand godCommand = getCommand(CommandName.GOD_COMMAND.getName());
         final PluginCommand feedCommand = getCommand(CommandName.FEED_COMMAND.getName());
         final PluginCommand killCommand = getCommand(CommandName.KILL_COMMAND.getName());
@@ -56,7 +56,7 @@ public final class McTelegramChat extends JavaPlugin {
         final PluginCommand giveBowCommand = getCommand(CommandName.GIVE_BOW_COMMAND.getName());
         final PluginCommand armorStandCommand = getCommand(CommandName.ARMOR_STAND_COMMAND.getName());
 
-        Objects.requireNonNull(dieCommand);
+        Objects.requireNonNull(guiCommand);
         Objects.requireNonNull(godCommand);
         Objects.requireNonNull(feedCommand);
         Objects.requireNonNull(killCommand);
@@ -67,7 +67,7 @@ public final class McTelegramChat extends JavaPlugin {
         Objects.requireNonNull(giveBowCommand);
         Objects.requireNonNull(armorStandCommand);
 
-        dieCommand.setExecutor(new DieCommand());
+        guiCommand.setExecutor(new GUICommand());
         godCommand.setExecutor(new GodCommand());
         feedCommand.setExecutor(new FeedCommand());
         killCommand.setExecutor(new KillCommand());
@@ -88,6 +88,7 @@ public final class McTelegramChat extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new ChatListener(telegramBot), this);
         Bukkit.getPluginManager().registerEvents(new MenuListener(), this);
         Bukkit.getPluginManager().registerEvents(new ArrowListener(this), this);
+        Bukkit.getPluginManager().registerEvents(new GUIListener(), this);
     }
 
     /**

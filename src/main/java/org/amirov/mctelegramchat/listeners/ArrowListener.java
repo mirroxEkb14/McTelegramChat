@@ -4,8 +4,8 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.amirov.mctelegramchat.McTelegramChat;
 import org.amirov.mctelegramchat.properties.ChatMessage;
-import org.amirov.mctelegramchat.utility.BowUtils;
-import org.amirov.mctelegramchat.utility.CrossbowUtils;
+import org.amirov.mctelegramchat.utility.TeleportBowUtils;
+import org.amirov.mctelegramchat.utility.UrsineCrossbowUtils;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.EntityType;
@@ -97,7 +97,7 @@ public record ArrowListener(McTelegramChat plugin) implements Listener {
     private boolean isTeleportBow(@NotNull ItemStack i) {
         final Component itemComponent = i.getItemMeta().displayName();
         Objects.requireNonNull(itemComponent);
-        return itemComponent.equals(BowUtils.getBowName());
+        return itemComponent.equals(TeleportBowUtils.getBowName());
     }
 
     /**
@@ -109,6 +109,6 @@ public record ArrowListener(McTelegramChat plugin) implements Listener {
     private boolean isLightingCrossbow(@NotNull ItemStack i) {
         final Component itemComponent = i.getItemMeta().displayName();
         Objects.requireNonNull(itemComponent);
-        return itemComponent.equals(CrossbowUtils.getCrossbowName());
+        return itemComponent.equals(UrsineCrossbowUtils.getCrossbowName());
     }
 }

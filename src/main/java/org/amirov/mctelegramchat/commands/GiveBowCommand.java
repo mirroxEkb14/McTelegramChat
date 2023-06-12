@@ -4,7 +4,7 @@ import net.kyori.adventure.text.Component;
 import org.amirov.mctelegramchat.McTelegramChat;
 import org.amirov.mctelegramchat.properties.ChatMessage;
 import org.amirov.mctelegramchat.properties.ConfigProperty;
-import org.amirov.mctelegramchat.utility.BowUtils;
+import org.amirov.mctelegramchat.utility.TeleportBowUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -59,7 +59,7 @@ public record GiveBowCommand(McTelegramChat plugin) implements CommandExecutor {
      * @param playerToGive Player that will get a bow and an arrow.
      */
     private void finishGiving(@NotNull Player playerToGive) {
-        final ItemStack bow = BowUtils.getTeleportBow();
+        final ItemStack bow = TeleportBowUtils.getTeleportBow();
         final ItemStack arrow = new ItemStack(Material.ARROW, ARROW_AMOUNT);
         playerToGive.getInventory().addItem(bow);
         playerToGive.getInventory().addItem(arrow);

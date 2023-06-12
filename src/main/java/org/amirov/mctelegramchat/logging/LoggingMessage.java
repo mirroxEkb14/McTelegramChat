@@ -10,7 +10,8 @@ public enum LoggingMessage {
     BOT_REGISTRATION_SUCCESS("Bot has been successfully registered"),
     SENDING_MESSAGE_ERROR("Error sending a message to Telegram: %s"),
     COMMAND_DIE_CMD_WARNING("The 'die' command was run through the Command Line"),
-    COMMAND_DIE_COMMAND_BLOCK_WARNING("The 'die' command was run through the Command Block");
+    COMMAND_DIE_COMMAND_BLOCK_WARNING("The 'die' command was run through the Command Block"),
+    COMMAND_GUI_WRONG_ITEM_SELECTED("Item that is not in GUI command");
 
     private final String message;
 

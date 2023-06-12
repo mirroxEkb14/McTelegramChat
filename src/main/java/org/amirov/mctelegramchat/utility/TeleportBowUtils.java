@@ -14,7 +14,7 @@ import java.util.ArrayList;
 /**
  * Creates and provides teleport bows.
  */
-public final class BowUtils {
+public final class TeleportBowUtils {
 
 //<editor-fold default-state="collapsed" desc="Private Constants">
     private static final int BOW_AMOUNT = 1;

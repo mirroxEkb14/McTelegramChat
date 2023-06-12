@@ -14,7 +14,7 @@ import java.util.ArrayList;
 /**
  * Creates and provides a unique armor.
  */
-public final class ChestplateUtils {
+public final class UrsineChestplateUtils {
 
 //<editor-fold default-state="collapsed" desc="Private Constants">
     private static final int CHESTPLATE_AMOUNT = 1;

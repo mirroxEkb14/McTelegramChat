@@ -6,12 +6,9 @@ authors: [ Daniyar ]
 description: This bot will help you while playing a single-player world in Minecraft
 website: https://github.com/mirroxEkb14
 commands:
-  die:
-    description: Kill yourself instantly
+  gui:
+    description: Open GUI
     usage: /<command>
-    aliases:
-      - perish
-      - passaway
   god:
     description: Become invincible
     usage: /<command>

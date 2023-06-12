@@ -4,11 +4,10 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.title.Title;
 import org.amirov.mctelegramchat.McTelegramChat;
-import org.amirov.mctelegramchat.logging.Loggers;
 import org.amirov.mctelegramchat.properties.ConfigProperty;
 import org.amirov.mctelegramchat.properties.DisplayMessage;
-import org.amirov.mctelegramchat.utility.BowUtils;
-import org.amirov.mctelegramchat.utility.CrossbowUtils;
+import org.amirov.mctelegramchat.utility.TeleportBowUtils;
+import org.amirov.mctelegramchat.utility.UrsineCrossbowUtils;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -51,8 +50,8 @@ public record PlayerJoinListener(McTelegramChat plugin) implements Listener {
      */
     private void giveTeleportBow(@NotNull Player joinedPlayer) {
         if (plugin.getConfig().getBoolean(ConfigProperty.TELEPORT_BOW_GIVE_BOW.getKeyName())) {
-            joinedPlayer.getInventory().addItem(BowUtils.getTeleportBow());
-            joinedPlayer.getInventory().addItem(new ItemStack(Material.ARROW, BowUtils.getBowAmount()));
+            joinedPlayer.getInventory().addItem(TeleportBowUtils.getTeleportBow());
+            joinedPlayer.getInventory().addItem(new ItemStack(Material.ARROW, TeleportBowUtils.getBowAmount()));
         }
     }
 
@@ -63,8 +62,8 @@ public record PlayerJoinListener(McTelegramChat plugin) implements Listener {
      */
     private void giveLightingCrossbow(@NotNull Player joinedPlayer) {
         if (plugin.getConfig().getBoolean(ConfigProperty.LIGHTNING_CROSSBOW_GIVE_CROSSBOW.getKeyName())) {
-            joinedPlayer.getInventory().addItem(CrossbowUtils.getLightningCrossbow());
-            joinedPlayer.getInventory().addItem(new ItemStack(Material.ARROW, CrossbowUtils.getCrossbowAmount()));
+            joinedPlayer.getInventory().addItem(UrsineCrossbowUtils.getLightningCrossbow());
+            joinedPlayer.getInventory().addItem(new ItemStack(Material.ARROW, UrsineCrossbowUtils.getCrossbowAmount()));
         }
     }
 

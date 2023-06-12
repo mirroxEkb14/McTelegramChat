@@ -18,7 +18,11 @@ public enum UtilityProperty {
     CHESTPLATE_NAME("Mastercrafted Legendary Ursine Armor"),
     CHESTPLATE_DESCRIPTION("Heavy armor that is part of the Bear School Gear"),
     SILVER_SWORD_NAME("Ursine silver sword"),
-    SILVER_SWORD_DESCRIPTION("This sword is part of the Bear School Gear");
+    SILVER_SWORD_DESCRIPTION("This sword is part of the Bear School Gear"),
+    LETHAL_TNT_NAME("Suicide"),
+    LETHAL_TNT_DESCRIPTION("Kill yourself instantly"),
+    CLOSE_BUTTON_NAME("Close"),
+    CLOSE_BUTTON_DESCRIPTION("Exit this menu");
 
     private final String value;
 

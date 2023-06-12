@@ -14,7 +14,7 @@ import java.util.ArrayList;
 /**
  * Creates and provides a unique silver sword.
  */
-public final class NetheriteSword {
+public final class SilverSwordUtils {
 
 //<editor-fold default-state="collapsed" desc="Private Constants">
     private static final int SILVER_SWORD_AMOUNT = 1;

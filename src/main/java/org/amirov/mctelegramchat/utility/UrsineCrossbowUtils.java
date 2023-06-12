@@ -14,7 +14,7 @@ import java.util.ArrayList;
 /**
  * Creates and provides a crossbow that shots with a lightning.
  */
-public final class CrossbowUtils {
+public final class UrsineCrossbowUtils {
 
 //<editor-fold default-state="collapsed" desc="Private Constants">
     private static final int CROSSBOW_AMOUNT = 1;
