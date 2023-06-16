@@ -25,7 +25,9 @@ public enum ChatMessage {
     ON_COMMAND_GIVE_BOW_EXPLANATION("Teleported bow given by %s"),
     ON_COMMAND_GIVE_BOW_WRONG_COMMAND_ARGUMENTS("Unknown player's name"),
     ON_ARROW_LANDING_TELEPORT("Teleported to arrow point"),
-    ON_ARROW_LANDING_LIGHTNING("Lighting hit");
+    ON_ARROW_LANDING_LIGHTNING("Lighting hit"),
+    ON_COMMAND_LOCATION_SAVED("Location point saved"),
+    ON_COMMAND_LOCATION_WRONG_COMMAND_ARGUMENTS("Only one word for point name");
 
     private final String message;
 

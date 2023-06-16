@@ -5,7 +5,7 @@ import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.title.Title;
 import org.amirov.mctelegramchat.McTelegramChat;
 import org.amirov.mctelegramchat.properties.ConfigProperty;
-import org.amirov.mctelegramchat.properties.DisplayMessage;
+import org.amirov.mctelegramchat.listeners.properties.DisplayMessage;
 import org.amirov.mctelegramchat.utility.TeleportBowUtils;
 import org.amirov.mctelegramchat.utility.UrsineCrossbowUtils;
 import org.bukkit.Location;

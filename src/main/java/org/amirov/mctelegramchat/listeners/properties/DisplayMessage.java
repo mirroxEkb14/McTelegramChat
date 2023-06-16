@@ -1,9 +1,7 @@
-package org.amirov.mctelegramchat.properties;
+package org.amirov.mctelegramchat.listeners.properties;
 
 /**
  * Contains the texts for the titles that are showed to a player on the whole screen.
- * <p>
- * The show of these titles are triggered by certain events.
  */
 public enum DisplayMessage {
     ON_JOIN_WELCOME("WELCOME!"),

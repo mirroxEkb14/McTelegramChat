@@ -1,6 +1,8 @@
 package org.amirov.mctelegramchat;
 
 import org.amirov.mctelegramchat.commands.*;
+import org.amirov.mctelegramchat.commands.files.ConfigManager;
+import org.amirov.mctelegramchat.commands.properties.CommandName;
 import org.amirov.mctelegramchat.listeners.*;
 import org.amirov.mctelegramchat.logging.Loggers;
 import org.amirov.mctelegramchat.logging.LoggingMessage;
@@ -27,6 +29,7 @@ public final class McTelegramChat extends JavaPlugin {
     @Override
     public void onEnable() {
         saveDefaultConfig();
+        ConfigManager.setupConfigFiles();
 
         final SPWBot telegramBot = new SPWBot(this);
         try {
@@ -46,37 +49,29 @@ public final class McTelegramChat extends JavaPlugin {
 
     private void initCommands() {
         final PluginCommand guiCommand = getCommand(CommandName.GUI_COMMAND.getName());
+        Objects.requireNonNull(guiCommand).setExecutor(new GUICommand());
         final PluginCommand godCommand = getCommand(CommandName.GOD_COMMAND.getName());
+        Objects.requireNonNull(godCommand).setExecutor(new GodCommand());
         final PluginCommand feedCommand = getCommand(CommandName.FEED_COMMAND.getName());
+        Objects.requireNonNull(feedCommand).setExecutor(new FeedCommand());
         final PluginCommand killCommand = getCommand(CommandName.KILL_COMMAND.getName());
+        Objects.requireNonNull(killCommand).setExecutor(new KillCommand());
         final PluginCommand setSpawnCommand = getCommand(CommandName.SET_SPAWN_COMMAND.getName());
+        Objects.requireNonNull(setSpawnCommand).setExecutor(new SetSpawnCommand(this));
         final PluginCommand spawnCommand = getCommand(CommandName.SPAWN_COMMAND.getName());
+        Objects.requireNonNull(spawnCommand).setExecutor(new SpawnCommand(this));
         final PluginCommand menuCommand = getCommand(CommandName.MENU_COMMAND.getName());
+        Objects.requireNonNull(menuCommand).setExecutor(new MenuCommand());
         final PluginCommand flyCommand = getCommand(CommandName.FLY_COMMAND.getName());
+        Objects.requireNonNull(flyCommand).setExecutor(new FlyCommand());
         final PluginCommand giveBowCommand = getCommand(CommandName.GIVE_BOW_COMMAND.getName());
+        Objects.requireNonNull(giveBowCommand).setExecutor(new GiveBowCommand(this));
         final PluginCommand armorStandCommand = getCommand(CommandName.ARMOR_STAND_COMMAND.getName());
-
-        Objects.requireNonNull(guiCommand);
-        Objects.requireNonNull(godCommand);
-        Objects.requireNonNull(feedCommand);
-        Objects.requireNonNull(killCommand);
-        Objects.requireNonNull(setSpawnCommand);
-        Objects.requireNonNull(spawnCommand);
-        Objects.requireNonNull(menuCommand);
-        Objects.requireNonNull(flyCommand);
-        Objects.requireNonNull(giveBowCommand);
-        Objects.requireNonNull(armorStandCommand);
-
-        guiCommand.setExecutor(new GUICommand());
-        godCommand.setExecutor(new GodCommand());
-        feedCommand.setExecutor(new FeedCommand());
-        killCommand.setExecutor(new KillCommand());
-        setSpawnCommand.setExecutor(new SetSpawnCommand(this));
-        spawnCommand.setExecutor(new SpawnCommand(this));
-        menuCommand.setExecutor(new MenuCommand());
-        flyCommand.setExecutor(new FlyCommand());
-        giveBowCommand.setExecutor(new GiveBowCommand(this));
-        armorStandCommand.setExecutor(new ArmorStandCommand());
+        Objects.requireNonNull(armorStandCommand).setExecutor(new ArmorStandCommand());
+        final PluginCommand hologramCommand = getCommand(CommandName.HOLOGRAM_COMMAND.getName());
+        Objects.requireNonNull(hologramCommand).setExecutor(new HologramCommand());
+        final PluginCommand saveLocCommand = getCommand(CommandName.SAVE_LOCATION_COMMAND.getName());
+        Objects.requireNonNull(saveLocCommand).setExecutor(new SaveLocCommand());
     }
 
     /**

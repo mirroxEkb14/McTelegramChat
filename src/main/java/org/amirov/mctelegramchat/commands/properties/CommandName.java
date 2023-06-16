@@ -1,4 +1,4 @@
-package org.amirov.mctelegramchat.commands;
+package org.amirov.mctelegramchat.commands.properties;
 
 /**
  * Contains the names of some commands.
@@ -13,7 +13,9 @@ public enum CommandName {
     MENU_COMMAND("menu"),
     FLY_COMMAND("fly"),
     GIVE_BOW_COMMAND("givebow"),
-    ARMOR_STAND_COMMAND("armorstand");
+    ARMOR_STAND_COMMAND("armorstand"),
+    HOLOGRAM_COMMAND("hologram"),
+    SAVE_LOCATION_COMMAND("saveloc");
 
     private final String name;
 

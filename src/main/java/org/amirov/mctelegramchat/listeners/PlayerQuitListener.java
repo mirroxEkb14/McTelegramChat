@@ -2,7 +2,7 @@ package org.amirov.mctelegramchat.listeners;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
-import org.amirov.mctelegramchat.properties.DisplayMessage;
+import org.amirov.mctelegramchat.listeners.properties.DisplayMessage;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

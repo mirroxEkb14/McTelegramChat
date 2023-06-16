@@ -41,6 +41,12 @@ commands:
   armorstand:
     description: Create armorstand
     usage: /<command>
+  hologram:
+    description: Create a hologram
+    usage: /<command>
+  saveloc:
+    description: Saves current location point
+    usage: /<command>
 permissions:
   commands.god:
     description: Allows god command
