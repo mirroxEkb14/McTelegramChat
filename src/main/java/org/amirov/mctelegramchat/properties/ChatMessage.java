@@ -27,7 +27,10 @@ public enum ChatMessage {
     ON_ARROW_LANDING_TELEPORT("Teleported to arrow point"),
     ON_ARROW_LANDING_LIGHTNING("Lighting hit"),
     ON_COMMAND_LOCATION_SAVED("Location point saved"),
-    ON_COMMAND_LOCATION_WRONG_COMMAND_ARGUMENTS("Only one word for point name");
+    ON_COMMAND_LOCATION_WRONG_COMMAND_ARGUMENTS("Only one word for point name"),
+    COMMAND_SPAWN_SIGN_WRONG_COMMAND_ARGUMENTS_FIRST("Number of command arguments is wrong"),
+    COMMAND_SPAWN_SIGN_WRONG_COMMAND_ARGUMENTS_SECOND("/sign {row number} {text}"),
+    COMMAND_SPAWN_SIGN_INDEX_ERROR("Row number must be a number 1-4");
 
     private final String message;
 

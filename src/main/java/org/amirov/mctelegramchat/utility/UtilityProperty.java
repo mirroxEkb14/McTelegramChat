@@ -22,7 +22,9 @@ public enum UtilityProperty {
     LETHAL_TNT_NAME("Suicide"),
     LETHAL_TNT_DESCRIPTION("Kill yourself instantly"),
     CLOSE_BUTTON_NAME("Close"),
-    CLOSE_BUTTON_DESCRIPTION("Exit this menu");
+    CLOSE_BUTTON_DESCRIPTION("Exit this menu"),
+    PLAYER_HEAD_LORE_HEALTH("Health: "),
+    PLAYER_HEAD_LORE_EXP("EXP: ");
 
     private final String value;
 

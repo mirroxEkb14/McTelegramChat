@@ -15,7 +15,9 @@ public enum CommandName {
     GIVE_BOW_COMMAND("givebow"),
     ARMOR_STAND_COMMAND("armorstand"),
     HOLOGRAM_COMMAND("hologram"),
-    SAVE_LOCATION_COMMAND("saveloc");
+    SAVE_LOCATION_COMMAND("saveloc"),
+    SPAWN_SIGN_COMMAND("spawnsign"),
+    BAN_GUI_COMMAND("bangui");
 
     private final String name;
 

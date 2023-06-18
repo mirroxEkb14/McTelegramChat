@@ -45,7 +45,13 @@ commands:
     description: Create a hologram
     usage: /<command>
   saveloc:
-    description: Saves current location point
+    description: Save current location point
+    usage: /<command>
+  spawnsign:
+    description: Spawn a sign with a text
+    usage: /<command>
+  bangui:
+    description: Open ban list
     usage: /<command>
 permissions:
   commands.god:

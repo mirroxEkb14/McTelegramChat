@@ -72,6 +72,10 @@ public final class McTelegramChat extends JavaPlugin {
         Objects.requireNonNull(hologramCommand).setExecutor(new HologramCommand());
         final PluginCommand saveLocCommand = getCommand(CommandName.SAVE_LOCATION_COMMAND.getName());
         Objects.requireNonNull(saveLocCommand).setExecutor(new SaveLocCommand());
+        final PluginCommand spawnSignCommand = getCommand(CommandName.SPAWN_SIGN_COMMAND.getName());
+        Objects.requireNonNull(spawnSignCommand).setExecutor(new SpawnSignCommand());
+        final PluginCommand banGUICommand = getCommand(CommandName.BAN_GUI_COMMAND.getName());
+        Objects.requireNonNull(banGUICommand).setExecutor(new BanGUICommand());
     }
 
     /**
@@ -84,6 +88,7 @@ public final class McTelegramChat extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new MenuListener(), this);
         Bukkit.getPluginManager().registerEvents(new ArrowListener(this), this);
         Bukkit.getPluginManager().registerEvents(new GUIListener(), this);
+        Bukkit.getPluginManager().registerEvents(new SignListener(), this);
     }
 
     /**
