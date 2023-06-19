@@ -12,41 +12,48 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 
 /**
- * Creates and provides a crossbow that shots with a lightning.
+ * Creates and provides a unique crossbow.
  */
 public final class UrsineCrossbowUtils {
 
 //<editor-fold default-state="collapsed" desc="Private Constants">
     private static final int CROSSBOW_AMOUNT = 1;
-    private static final int MAX_MULTISHOT_LEVEL = 1;
+    private static final int MAX_PIERCING_LEVEL = 4;
+    private static final int MAX_QUICK_CHARGE_LEVEL = 3;
     private static final TextComponent CROSSBOW_NAME = Component.text(
-            UtilityProperty.CROSSBOW_NAME.getValue(), NamedTextColor.BLUE);
+            "Ursine crossbow", NamedTextColor.GREEN);
     private static final ArrayList<TextComponent> loreList = new ArrayList<>();
 //</editor-fold>
 
 //<editor-fold default-state="collapsed" desc="Static Initializer Block">
-    static { loreList.add(Component.text(UtilityProperty.CROSSBOW_DESCRIPTION.getValue(), NamedTextColor.GOLD)); }
+    static { loreList.add(Component.text(
+            "This crossbow is part of the Bear School Gear", NamedTextColor.GOLD)); }
 //</editor-fold>
 
     /**
-     * @return Created lighting crossbow.
+     * Getter. Returns the item as a {@link ItemStack} object.
+     *
+     * @return Created ursine crossbow.
      */
-    public static @NotNull ItemStack getLightningCrossbow() {
-        final ItemStack lightningCrossbow = new ItemStack(Material.CROSSBOW, CROSSBOW_AMOUNT);
-        final ItemMeta lightningCrossbowMeta = getLightningCrossbowMeta(lightningCrossbow);
-        lightningCrossbow.setItemMeta(lightningCrossbowMeta);
-        return lightningCrossbow;
+    public static @NotNull ItemStack getUrsineCrossbow() {
+        final ItemStack ursineCrossbow = new ItemStack(Material.CROSSBOW, CROSSBOW_AMOUNT);
+        final ItemMeta ursineCrossbowMeta = getUrsineCrossbowMeta(ursineCrossbow);
+        ursineCrossbow.setItemMeta(ursineCrossbowMeta);
+        return ursineCrossbow;
     }
 
-    private static @NotNull ItemMeta getLightningCrossbowMeta(@NotNull ItemStack lightningCrossbow) {
-        final ItemMeta lightningCrossbowMeta = lightningCrossbow.getItemMeta();
-        lightningCrossbowMeta.displayName(CROSSBOW_NAME);
-        lightningCrossbowMeta.lore(loreList);
-        lightningCrossbowMeta.addEnchant(Enchantment.MULTISHOT, MAX_MULTISHOT_LEVEL, false);
-        return lightningCrossbowMeta;
+    /**
+     * Sets the metadata of the item and returns it as a {@link ItemMeta} object.
+     *
+     * @param ursineCrossbow Item itself.
+     * @return {@link ItemMeta} object with the set data.
+     */
+    private static @NotNull ItemMeta getUrsineCrossbowMeta(@NotNull ItemStack ursineCrossbow) {
+        final ItemMeta ursineCrossbowMeta = ursineCrossbow.getItemMeta();
+        ursineCrossbowMeta.displayName(CROSSBOW_NAME);
+        ursineCrossbowMeta.lore(loreList);
+        ursineCrossbowMeta.addEnchant(Enchantment.PIERCING, MAX_PIERCING_LEVEL, false);
+        ursineCrossbowMeta.addEnchant(Enchantment.QUICK_CHARGE, MAX_QUICK_CHARGE_LEVEL, false);
+        return ursineCrossbowMeta;
     }
-
-    public static TextComponent getCrossbowName() { return CROSSBOW_NAME; }
-
-    public static int getCrossbowAmount() { return CROSSBOW_AMOUNT; }
 }

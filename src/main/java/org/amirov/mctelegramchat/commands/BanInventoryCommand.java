@@ -18,7 +18,7 @@ import java.util.ArrayList;
 /**
  * Opens an inventory with the heads of the players on the server currently online.
  */
-public class BanGUICommand implements CommandExecutor {
+public final class BanInventoryCommand implements CommandExecutor {
 
 //<editor-fold default-state="collapsed" desc="Private Constants">
     private static final int INVENTORY_SIZE = 45;
@@ -32,16 +32,18 @@ public class BanGUICommand implements CommandExecutor {
                              @NotNull String[] args) {
         if (sender instanceof Player player) {
             final ArrayList<Player> playerList = new ArrayList<>(player.getServer().getOnlinePlayers());
-            final Inventory banGui = Bukkit.createInventory(player, INVENTORY_SIZE, INVENTORY_NAME);
+            final Inventory banInventory = Bukkit.createInventory(player, INVENTORY_SIZE, INVENTORY_NAME);
 
             for (Player currentPlayer : playerList) {
                 final ItemStack playerHead = PlayerHeadUtils.getPlayerHead(currentPlayer);
-                banGui.addItem(playerHead);
+                banInventory.addItem(playerHead);
             }
-            player.openInventory(banGui);
+            player.openInventory(banInventory);
         }
         return true;
     }
 
-    public static TextComponent getInventoryName() { return INVENTORY_NAME; }
+//<editor-fold default-state="collapsed" desc="Getters">
+    public static TextComponent getBanInventoryName() { return INVENTORY_NAME; }
+//</editor-fold>
 }

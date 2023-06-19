@@ -11,8 +11,7 @@ public enum ConfigProperty {
     TELEGRAM_BOT_API_KEY("telegram-bot-api-key"),
     TELEGRAM_BOT_USERNAME("telegram-bot-username"),
     TELEGRAM_BOT_ADMIN_ID("telegram-bot-admin-id"),
-    TELEPORT_BOW_GIVE_BOW("teleportbow-givebow"),
-    LIGHTNING_CROSSBOW_GIVE_CROSSBOW("lightningcrossbow-givecrossbow"),
+    PLAYER_KILL("player-kill"),
     SPAWN_LOCATION("spawn");
 
     private final String keyName;

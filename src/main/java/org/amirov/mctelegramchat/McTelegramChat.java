@@ -47,35 +47,24 @@ public final class McTelegramChat extends JavaPlugin {
         }
     }
 
+    /**
+     * Initializes all the commands.
+     */
     private void initCommands() {
-        final PluginCommand guiCommand = getCommand(CommandName.GUI_COMMAND.getName());
-        Objects.requireNonNull(guiCommand).setExecutor(new GUICommand());
-        final PluginCommand godCommand = getCommand(CommandName.GOD_COMMAND.getName());
-        Objects.requireNonNull(godCommand).setExecutor(new GodCommand());
-        final PluginCommand feedCommand = getCommand(CommandName.FEED_COMMAND.getName());
-        Objects.requireNonNull(feedCommand).setExecutor(new FeedCommand());
+        final PluginCommand menuCommand = getCommand(CommandName.MENU_COMMAND.getName());
+        Objects.requireNonNull(menuCommand).setExecutor(new MenuInventoryCommand());
         final PluginCommand killCommand = getCommand(CommandName.KILL_COMMAND.getName());
-        Objects.requireNonNull(killCommand).setExecutor(new KillCommand());
+        Objects.requireNonNull(killCommand).setExecutor(new KillCommand(this));
         final PluginCommand setSpawnCommand = getCommand(CommandName.SET_SPAWN_COMMAND.getName());
         Objects.requireNonNull(setSpawnCommand).setExecutor(new SetSpawnCommand(this));
         final PluginCommand spawnCommand = getCommand(CommandName.SPAWN_COMMAND.getName());
         Objects.requireNonNull(spawnCommand).setExecutor(new SpawnCommand(this));
-        final PluginCommand menuCommand = getCommand(CommandName.MENU_COMMAND.getName());
-        Objects.requireNonNull(menuCommand).setExecutor(new MenuCommand());
-        final PluginCommand flyCommand = getCommand(CommandName.FLY_COMMAND.getName());
-        Objects.requireNonNull(flyCommand).setExecutor(new FlyCommand());
-        final PluginCommand giveBowCommand = getCommand(CommandName.GIVE_BOW_COMMAND.getName());
-        Objects.requireNonNull(giveBowCommand).setExecutor(new GiveBowCommand(this));
-        final PluginCommand armorStandCommand = getCommand(CommandName.ARMOR_STAND_COMMAND.getName());
-        Objects.requireNonNull(armorStandCommand).setExecutor(new ArmorStandCommand());
-        final PluginCommand hologramCommand = getCommand(CommandName.HOLOGRAM_COMMAND.getName());
-        Objects.requireNonNull(hologramCommand).setExecutor(new HologramCommand());
         final PluginCommand saveLocCommand = getCommand(CommandName.SAVE_LOCATION_COMMAND.getName());
         Objects.requireNonNull(saveLocCommand).setExecutor(new SaveLocCommand());
         final PluginCommand spawnSignCommand = getCommand(CommandName.SPAWN_SIGN_COMMAND.getName());
         Objects.requireNonNull(spawnSignCommand).setExecutor(new SpawnSignCommand());
-        final PluginCommand banGUICommand = getCommand(CommandName.BAN_GUI_COMMAND.getName());
-        Objects.requireNonNull(banGUICommand).setExecutor(new BanGUICommand());
+        final PluginCommand banCommand = getCommand(CommandName.BAN_COMMAND.getName());
+        Objects.requireNonNull(banCommand).setExecutor(new BanInventoryCommand());
     }
 
     /**
@@ -85,9 +74,8 @@ public final class McTelegramChat extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(this), this);
         Bukkit.getPluginManager().registerEvents(new PlayerQuitListener(), this);
         Bukkit.getPluginManager().registerEvents(new ChatListener(telegramBot), this);
-        Bukkit.getPluginManager().registerEvents(new MenuListener(), this);
         Bukkit.getPluginManager().registerEvents(new ArrowListener(this), this);
-        Bukkit.getPluginManager().registerEvents(new GUIListener(), this);
+        Bukkit.getPluginManager().registerEvents(new InventoryClickListener(), this);
         Bukkit.getPluginManager().registerEvents(new SignListener(), this);
     }
 

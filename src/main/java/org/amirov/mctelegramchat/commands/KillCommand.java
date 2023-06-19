@@ -2,7 +2,9 @@ package org.amirov.mctelegramchat.commands;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
+import org.amirov.mctelegramchat.McTelegramChat;
 import org.amirov.mctelegramchat.properties.ChatMessage;
+import org.amirov.mctelegramchat.properties.ConfigProperty;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -18,25 +20,23 @@ import java.util.UUID;
  * <p>
  * This command runs with the help of targeting players with command arguments.
  */
-public final class KillCommand implements CommandExecutor {
+public record KillCommand(McTelegramChat plugin) implements CommandExecutor {
 
     /**
      * key -> UUID of the player.
      * <p>
      * value -> the epoch time of when the player ran the command.
      */
-    private final HashMap<UUID, Long> cooldown;
+    private static final HashMap<UUID, Long> cooldown = new HashMap<>();
 
     /**
      * Cooldown time in milliseconds.
      */
     private static final long COOLDOWN_TIME = 10000L;
 
-    public KillCommand() { cooldown = new HashMap<>(); }
-
     /**
      * Execution principle:
-     * Checks if this command was run by a player.
+     * Checks if this command was run by a player and if the player has permission.
      * <p>
      * Checks the {@code args} argument:
      * <ol>
@@ -55,34 +55,38 @@ public final class KillCommand implements CommandExecutor {
                              @NotNull String label,
                              @NotNull String[] args) {
         if (sender instanceof Player player) {
-            switch (args.length) {
-                case 0 -> sendMessageNoName(player);
-                case 1 -> {
-                    final String playerName = args[0];
-                    final Player target = Bukkit.getServer().getPlayerExact(playerName);
-                    if (target == null) {
-                        sendMessagePlayerOffline(player);
-                        break;
-                    }
+            if (plugin.getConfig().getBoolean(ConfigProperty.PLAYER_KILL.getKeyName())) {
+                switch (args.length) {
+                    case 0 -> sendMessageNoName(player);
+                    case 1 -> {
+                        final String playerName = args[0];
+                        final Player target = Bukkit.getServer().getPlayerExact(playerName);
+                        if (target == null) {
+                            sendMessagePlayerOffline(player);
+                            break;
+                        }
 
-                    final UUID playerId = player.getUniqueId();
-                    if (!cooldown.containsKey(playerId)) {
-                        cooldown.put(playerId, System.currentTimeMillis());
-                        finishKilling(player, target);
-                    } else {
-                        final long timeElapsed = System.currentTimeMillis() - cooldown.get(playerId);
-                        if (timeElapsed >= COOLDOWN_TIME) {
+                        final UUID playerId = player.getUniqueId();
+                        if (!cooldown.containsKey(playerId)) {
                             cooldown.put(playerId, System.currentTimeMillis());
                             finishKilling(player, target);
-                            return true;
+                        } else {
+                            final long timeElapsed = System.currentTimeMillis() - cooldown.get(playerId);
+                            if (timeElapsed >= COOLDOWN_TIME) {
+                                cooldown.put(playerId, System.currentTimeMillis());
+                                finishKilling(player, target);
+                                return true;
+                            }
+                            final TextComponent cooldownMessage = Component.text(String.format(
+                                    ChatMessage.ON_COMMAND_KILL_COOLDOWN.getMessage(), COOLDOWN_TIME - timeElapsed));
+                            player.sendMessage(cooldownMessage);
                         }
-                        final TextComponent cooldownMessage = Component.text(String.format(
-                                ChatMessage.ON_COMMAND_KILL_COOLDOWN.getMessage(), COOLDOWN_TIME - timeElapsed));
-                        player.sendMessage(cooldownMessage);
                     }
+                    default -> sendMessageWrongCommandArguments(player);
                 }
-                default -> sendMessageWrongCommandArguments(player);
+                return true;
             }
+            player.sendMessage(ChatMessage.ON_COMMAND_KILL_NO_PERMISSION.getMessage());
         }
         return true;
     }

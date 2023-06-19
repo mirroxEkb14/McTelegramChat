@@ -6,16 +6,12 @@ import net.kyori.adventure.title.Title;
 import org.amirov.mctelegramchat.McTelegramChat;
 import org.amirov.mctelegramchat.properties.ConfigProperty;
 import org.amirov.mctelegramchat.listeners.properties.DisplayMessage;
-import org.amirov.mctelegramchat.utility.TeleportBowUtils;
-import org.amirov.mctelegramchat.utility.UrsineCrossbowUtils;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
-import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -37,34 +33,8 @@ public record PlayerJoinListener(McTelegramChat plugin) implements Listener {
         final Title title = getTitle(wasBefore);
 
         teleportToSpawnPoint(joinedPlayer, wasBefore);
-        giveTeleportBow(joinedPlayer);
-        giveLightingCrossbow(joinedPlayer);
 
         joinedPlayer.showTitle(title);
-    }
-
-    /**
-     * If this player has permission, then gives him a teleport bow.
-     *
-     * @param joinedPlayer Player who joined the server.
-     */
-    private void giveTeleportBow(@NotNull Player joinedPlayer) {
-        if (plugin.getConfig().getBoolean(ConfigProperty.TELEPORT_BOW_GIVE_BOW.getKeyName())) {
-            joinedPlayer.getInventory().addItem(TeleportBowUtils.getTeleportBow());
-            joinedPlayer.getInventory().addItem(new ItemStack(Material.ARROW, TeleportBowUtils.getBowAmount()));
-        }
-    }
-
-    /**
-     * If this player has permission, then gives him a lighting crossbow.
-     *
-     * @param joinedPlayer Player who this lighting crossbow will be given to.
-     */
-    private void giveLightingCrossbow(@NotNull Player joinedPlayer) {
-        if (plugin.getConfig().getBoolean(ConfigProperty.LIGHTNING_CROSSBOW_GIVE_CROSSBOW.getKeyName())) {
-            joinedPlayer.getInventory().addItem(UrsineCrossbowUtils.getLightningCrossbow());
-            joinedPlayer.getInventory().addItem(new ItemStack(Material.ARROW, UrsineCrossbowUtils.getCrossbowAmount()));
-        }
     }
 
     /**

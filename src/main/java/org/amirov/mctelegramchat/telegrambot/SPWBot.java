@@ -18,9 +18,12 @@ import org.telegram.telegrambots.meta.api.objects.User;
  */
 public final class SPWBot extends TelegramLongPollingBot {
 
+//<editor-fold default-state="collapsed" desc="Private Constants">
     private final Plugin mcTelegramChat;
     private final long adminId;
+//</editor-fold>
 
+//<editor-fold default-state="collapsed" desc="Constructor">
     public SPWBot(Plugin mcTelegramChat) {
         super(getBotApiKeyName(mcTelegramChat));
 
@@ -28,6 +31,7 @@ public final class SPWBot extends TelegramLongPollingBot {
         this.mcTelegramChat = mcTelegramChat;
         this.adminId = mcTelegramChat.getConfig().getLong(adminId);
     }
+//</editor-fold>
 
     /**
      * Gets the bot-api-key value from the "config.yml" file that is used to pass it as an argument to the parent class.
@@ -115,5 +119,7 @@ public final class SPWBot extends TelegramLongPollingBot {
         return mcTelegramChat.getConfig().getString(configKeyName);
     }
 
+//<editor-fold default-state="collapsed" desc="Private Constants">
     public long getAdminId() { return adminId; }
+//</editor-fold>
 }

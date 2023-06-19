@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 
 /**
- * Creates and provides teleport bows.
+ * Creates and provides a teleport bow.
  */
 public final class TeleportBowUtils {
 
@@ -20,16 +20,18 @@ public final class TeleportBowUtils {
     private static final int BOW_AMOUNT = 1;
     private static final int MAX_ARROW_INFINITE_LEVEL = 1;
     private static final TextComponent BOW_NAME = Component.text(
-            UtilityProperty.BOW_NAME.getValue(), NamedTextColor.GREEN);
+            "Teleport Bow", NamedTextColor.BLUE);
     private static final ArrayList<TextComponent> loreList = new ArrayList<>();
 //</editor-fold>
 
 //<editor-fold default-state="collapsed" desc="Static Initializer Block">
-    static { loreList.add(Component.text(UtilityProperty.BOW_DESCRIPTION.getValue())); }
+    static { loreList.add(Component.text("Teleport to arrow location")); }
 //</editor-fold>
 
     /**
-     * @return Created a teleport bow.
+     * Getter. Sets up the {@link ItemStack} object and returns it.
+     *
+     * @return Created teleport bow.
      */
     public static @NotNull ItemStack getTeleportBow() {
         final ItemStack teleportBow = new ItemStack(Material.BOW, BOW_AMOUNT);
@@ -38,6 +40,12 @@ public final class TeleportBowUtils {
         return teleportBow;
     }
 
+    /**
+     * Sets the {@link ItemMeta} object and returns it.
+     *
+     * @param teleportBow Item itself.
+     * @return Set {@link ItemMeta} object with a custom name and description.
+     */
     private static @NotNull ItemMeta getTeleportBowMeta(@NotNull ItemStack teleportBow) {
         final ItemMeta teleportBowMeta = teleportBow.getItemMeta();
         teleportBowMeta.displayName(BOW_NAME);
@@ -46,7 +54,7 @@ public final class TeleportBowUtils {
         return teleportBowMeta;
     }
 
+//<editor-fold default-state="collapsed" desc="Getters">
     public static TextComponent getBowName() { return BOW_NAME; }
-
-    public static int getBowAmount() { return BOW_AMOUNT; }
+//</editor-fold>
 }

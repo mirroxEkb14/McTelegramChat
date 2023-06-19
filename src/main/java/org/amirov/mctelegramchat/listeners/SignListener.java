@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Monitors the changes of text of a sign. When a player enters some text, a diamond block is spawn instead of a sign.
  */
-public class SignListener implements Listener {
+public final class SignListener implements Listener {
 
     @EventHandler
     public void onSignChanged(@NotNull SignChangeEvent event) {

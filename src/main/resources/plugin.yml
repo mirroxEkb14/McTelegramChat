@@ -6,54 +6,36 @@ authors: [ Daniyar ]
 description: This bot will help you while playing a single-player world in Minecraft
 website: https://github.com/mirroxEkb14
 commands:
-  gui:
-    description: Open GUI
+  menu:
+    description: Open menu
     usage: /<command>
-  god:
-    description: Become invincible
-    usage: /<command>
-    permission: commands.god
-    permission-message: No permission
-  feed:
-    description: Feed yourself
-    usage: /<command>
+    aliases:
+      - m
   kill:
     description: Kill a certain player
     usage: /<command>
+    aliases:
+      - k
   setspawn:
     description: Save your spawn point
     usage: /<command>
   spawn:
     description: Teleport yourself to your spawn point
     usage: /<command>
-  menu:
-    description: Open an inventory
-    usage: /<command>
     aliases:
-      - inventory
-      - gear
-  fly:
-    description: Fly
-    usage: /<command>
-  givebow:
-    description: Give a teleport bow
-    usage: /<command>
-  armorstand:
-    description: Create armorstand
-    usage: /<command>
-  hologram:
-    description: Create a hologram
-    usage: /<command>
+      - s
   saveloc:
     description: Save current location point
     usage: /<command>
+    aliases:
+      - sl
   spawnsign:
     description: Spawn a sign with a text
     usage: /<command>
-  bangui:
+    aliases:
+      - ss
+  ban:
     description: Open ban list
     usage: /<command>
-permissions:
-  commands.god:
-    description: Allows god command
-    default: false
+    aliases:
+      - b

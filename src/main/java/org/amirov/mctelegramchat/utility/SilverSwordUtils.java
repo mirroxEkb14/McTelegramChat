@@ -20,18 +20,20 @@ public final class SilverSwordUtils {
     private static final int SILVER_SWORD_AMOUNT = 1;
     private static final int MAX_LOOTING_LEVEL = 3;
     private static final TextComponent SILVER_SWORD_NAME = Component.text(
-            UtilityProperty.SILVER_SWORD_NAME.getValue(), NamedTextColor.GREEN);
+            "Ursine silver sword", NamedTextColor.GREEN);
     private static final ArrayList<TextComponent> loreList = new ArrayList<>();
 //</editor-fold>
 
 //<editor-fold default-state="collapsed" desc="Static Initializer Block">
     static { loreList.add(Component.text(
-            UtilityProperty.SILVER_SWORD_DESCRIPTION.getValue(),
+        "This sword is part of the Bear School Gear",
             NamedTextColor.BLUE)); }
 //</editor-fold>
 
     /**
-     * @return Created a unique silver sword.
+     * Works as a getter. Sets up the item and returns it.
+     *
+     * @return Created unique silver sword.
      */
     public static @NotNull ItemStack getNetheriteSword() {
         final ItemStack netheriteSword = new ItemStack(Material.NETHERITE_SWORD, SILVER_SWORD_AMOUNT);
@@ -40,6 +42,12 @@ public final class SilverSwordUtils {
         return netheriteSword;
     }
 
+    /**
+     * Sets the {@link ItemStack} object for the item and returns it.
+     *
+     * @param netheriteSword Item itself.
+     * @return Set name and description of the item wrapped into the {@link ItemStack} object.
+     */
     private static @NotNull ItemMeta getNetheriteSwordMeta(@NotNull ItemStack netheriteSword) {
         final ItemMeta netheriteSwordMeta = netheriteSword.getItemMeta();
         netheriteSwordMeta.displayName(SILVER_SWORD_NAME);

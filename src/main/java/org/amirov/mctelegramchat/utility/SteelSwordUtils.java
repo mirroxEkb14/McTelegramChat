@@ -14,7 +14,7 @@ import java.util.Collections;
 import java.util.Objects;
 
 /**
- * Creates and provides a custom iron sword.
+ * Creates and provides a custom steel sword.
  */
 public final class SteelSwordUtils {
 
@@ -22,22 +22,24 @@ public final class SteelSwordUtils {
     private static final int STEEL_SWORD_AMOUNT = 1;
     private static final int MAX_SHARPNESS_ENCHANT_LEVEL = 5;
     private static final TextComponent STEEL_SWORD_NAME = Component.text(
-            UtilityProperty.STEEL_SWORD_NAME.getValue(), NamedTextColor.GREEN);
+            "Teigr", NamedTextColor.GREEN);
     private static final ArrayList<TextComponent> loreList = new ArrayList<>();
 //</editor-fold>
 
 //<editor-fold default-state="collapsed" desc="Static Initializer Block">
     static {
         Collections.addAll(loreList,
-                Component.text(UtilityProperty.STEEL_SWORD_DESC_TIER.getValue(), NamedTextColor.AQUA),
-                Component.text(UtilityProperty.STEEL_SWORD_DESC_TYPE.getValue(), NamedTextColor.AQUA),
-                Component.text(UtilityProperty.STEEL_SWORD_DESC_WEIGHT.getValue(), NamedTextColor.AQUA),
-                Component.text(UtilityProperty.STEEL_SWORD_DESC_ID.getValue(), NamedTextColor.AQUA));
+                Component.text("Tier - Witcher Item", NamedTextColor.AQUA),
+                Component.text("Type - Steel sword", NamedTextColor.AQUA),
+                Component.text("Weight - 1.61", NamedTextColor.AQUA),
+                Component.text("Item ID - mq1058_cat_school_sword", NamedTextColor.AQUA));
     }
 //</editor-fold>
 
     /**
-     * @return Newly created iron sword of the type of {@code ItemStack}.
+     * Works as a getter. Sets the metadata of the object and returns it.
+     *
+     * @return Newly created iron sword of the type of {@link ItemStack}.
      */
     public static @NotNull ItemStack getIronSword() {
         final ItemStack steelSword = new ItemStack(Material.IRON_SWORD, STEEL_SWORD_AMOUNT);
@@ -64,5 +66,7 @@ public final class SteelSwordUtils {
         return steelSwordMeta;
     }
 
+//<editor-fold default-state="collapsed" desc="Getters">
     public static TextComponent getSteelSwordName() { return STEEL_SWORD_NAME; }
+//</editor-fold>
 }

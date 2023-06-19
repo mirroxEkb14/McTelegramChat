@@ -1,23 +1,16 @@
 package org.amirov.mctelegramchat.commands.properties;
 
 /**
- * Contains the names of some commands.
+ * Contains the names of all the commands.
  */
 public enum CommandName {
-    GUI_COMMAND("gui"),
-    GOD_COMMAND("god"),
-    FEED_COMMAND("feed"),
+    MENU_COMMAND("menu"),
     KILL_COMMAND("kill"),
     SET_SPAWN_COMMAND("setspawn"),
     SPAWN_COMMAND("spawn"),
-    MENU_COMMAND("menu"),
-    FLY_COMMAND("fly"),
-    GIVE_BOW_COMMAND("givebow"),
-    ARMOR_STAND_COMMAND("armorstand"),
-    HOLOGRAM_COMMAND("hologram"),
     SAVE_LOCATION_COMMAND("saveloc"),
     SPAWN_SIGN_COMMAND("spawnsign"),
-    BAN_GUI_COMMAND("bangui");
+    BAN_COMMAND("ban");
 
     private final String name;
 

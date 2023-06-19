@@ -15,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Spawns a sign on the block where the player is currently standing.
  */
-public class SpawnSignCommand implements CommandExecutor {
+public final class SpawnSignCommand implements CommandExecutor {
 
 //<editor-fold default-state="collapsed" desc="Private Constants">
     /**

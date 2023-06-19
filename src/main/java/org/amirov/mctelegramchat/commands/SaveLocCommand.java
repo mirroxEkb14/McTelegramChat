@@ -18,9 +18,11 @@ import java.util.UUID;
 /**
  * Saves the current player's location to a custom configuration file.
  */
-public class SaveLocCommand implements CommandExecutor {
+public final class SaveLocCommand implements CommandExecutor {
 
+//<editor-fold default-state="collapsed" desc="Private Constants">
     private static final int NAME_WORD_LENGTH = 1;
+//</editor-fold>
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender,

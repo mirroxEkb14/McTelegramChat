@@ -4,8 +4,8 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.amirov.mctelegramchat.McTelegramChat;
 import org.amirov.mctelegramchat.properties.ChatMessage;
+import org.amirov.mctelegramchat.utility.LightningCrossbowUtils;
 import org.amirov.mctelegramchat.utility.TeleportBowUtils;
-import org.amirov.mctelegramchat.utility.UrsineCrossbowUtils;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.EntityType;
@@ -14,6 +14,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
 import org.bukkit.entity.Entity;
 
@@ -24,8 +25,10 @@ import java.util.Objects;
  */
 public record ArrowListener(McTelegramChat plugin) implements Listener {
 
+//<editor-fold default-state="collapsed" desc="Private Constants">
     private static final float soundVolume = 1.0f;
     private static final float soundPitch = 1.0f;
+//</editor-fold>
 
     @EventHandler
     public void onArrowLand(ProjectileHitEvent event) {
@@ -95,7 +98,10 @@ public record ArrowListener(McTelegramChat plugin) implements Listener {
      * @return {@code true} if it is a teleport bow, {@code false} otherwise.
      */
     private boolean isTeleportBow(@NotNull ItemStack i) {
-        final Component itemComponent = i.getItemMeta().displayName();
+        final ItemMeta itemMeta = i.getItemMeta();
+        if (itemMeta == null) return false;
+
+        final Component itemComponent = itemMeta.displayName();
         Objects.requireNonNull(itemComponent);
         return itemComponent.equals(TeleportBowUtils.getBowName());
     }
@@ -107,8 +113,11 @@ public record ArrowListener(McTelegramChat plugin) implements Listener {
      * @return {@code true} if it is a lighting crossbow, {@code false} otherwise.
      */
     private boolean isLightingCrossbow(@NotNull ItemStack i) {
-        final Component itemComponent = i.getItemMeta().displayName();
+        final ItemMeta itemMeta = i.getItemMeta();
+        if (itemMeta == null) return false;
+
+        final Component itemComponent = itemMeta.displayName();
         Objects.requireNonNull(itemComponent);
-        return itemComponent.equals(UrsineCrossbowUtils.getCrossbowName());
+        return itemComponent.equals(LightningCrossbowUtils.getLightningCrossbowName());
     }
 }
