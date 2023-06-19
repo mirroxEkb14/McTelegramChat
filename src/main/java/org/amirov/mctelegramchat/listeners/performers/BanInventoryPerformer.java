@@ -31,6 +31,10 @@ public final class BanInventoryPerformer {
             "Ban Confirm", NamedTextColor.RED);
 //</editor-fold>
 
+//<editor-fold default-state="collapsed" desc="Mutable Static Variables">
+    private static String currentPlayerToBanName;
+//</editor-fold>
+
     /**
      * Creates a ban confirmation inventory and opens it.
      *
@@ -38,7 +42,9 @@ public final class BanInventoryPerformer {
      * @param player Player who made the click.
      * @param currentItem Item the player clicked on.
      */
-    public static void performBanInventoryClick(InventoryClickEvent event, Player player, @NotNull ItemStack currentItem) {
+    public static void performBanInventoryClick(@NotNull InventoryClickEvent event,
+                                                @NotNull Player player,
+                                                @NotNull ItemStack currentItem) {
         if (currentItem.getType() == Material.PLAYER_HEAD) {
             final Player playerToBan = getPlayerToBan(event, player);
             final Inventory emptyConfirmBanMenu = Bukkit.createInventory(
@@ -58,7 +64,8 @@ public final class BanInventoryPerformer {
      *
      * @return Set ban confirmation menu.
      */
-    private static @NotNull Inventory getConfirmBanMenu(@NotNull Inventory confirmBanMenu, Player playerToBan) {
+    private static @NotNull Inventory getConfirmBanMenu(@NotNull Inventory confirmBanMenu,
+                                                        @NotNull Player playerToBan) throws NullPointerException {
         final ItemStack banItem = BanWoodenAxeButton.getBanWoodenAxe();
         confirmBanMenu.setItem(BAN_ITEM_INDEX, banItem);
 
@@ -79,11 +86,20 @@ public final class BanInventoryPerformer {
      *
      * @return Player who will be banned.
      */
-    private static Player getPlayerToBan(@NotNull InventoryClickEvent event, @NotNull Player player) {
+    private static @NotNull Player getPlayerToBan(@NotNull InventoryClickEvent event, @NotNull Player player) {
         final ItemStack currentItem = event.getCurrentItem();
         Objects.requireNonNull(currentItem);
-        final Component playerToBanName = currentItem.getItemMeta().displayName();
-        Objects.requireNonNull(playerToBanName);
-        return player.getServer().getPlayerExact(playerToBanName.toString());
+        final TextComponent playerToBanNameComponent = (TextComponent) currentItem.getItemMeta().displayName();
+        Objects.requireNonNull(playerToBanNameComponent);
+        currentPlayerToBanName = playerToBanNameComponent.content();
+        final Player playerToBan = player.getServer().getPlayerExact(currentPlayerToBanName);
+        Objects.requireNonNull(playerToBan);
+        return playerToBan;
     }
+
+//<editor-fold default-state="collapsed" desc="Getters">
+    public static TextComponent getBanInventoryTitle() { return INVENTORY_TITLE; }
+
+    public static String getCurrentPlayerToBanName() { return currentPlayerToBanName; }
+//</editor-fold>
 }

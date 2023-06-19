@@ -13,7 +13,8 @@ public enum LoggingMessage {
     MENU_INVENTORY_COMMAND_BLOCK_WARNING("The 'menu' command was run through the Command Block"),
     COMMAND_MENU_WRONG_ITEM_SELECTED("Item that is not in GUI command"),
     CREATING_CONFIG_FILE_ERROR("Error while creating a config file"),
-    SAVING_CONFIG_FILE_ERROR("Config files were not setup before saving");
+    SAVING_CONFIG_FILE_ERROR("Config files were not setup before saving"),
+    BAN_CONFIRMATION_INVENTORY_WRONG_ITEM("This item should not be moved");
 
     private final String message;
 

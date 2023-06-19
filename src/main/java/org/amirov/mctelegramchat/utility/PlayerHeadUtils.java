@@ -47,6 +47,7 @@ public final class PlayerHeadUtils {
         playerHeadMeta.displayName(currentPlayer.displayName());
         initHeadLore(currentPlayer.getHealth(), currentPlayer.getExp());
         playerHeadMeta.lore(PLAYER_HEAD_LORE);
+        resetHeadLore();
         return playerHeadMeta;
     }
 
@@ -71,4 +72,9 @@ public final class PlayerHeadUtils {
                 exp, NamedTextColor.AQUA);
         PLAYER_HEAD_LORE.add(expTitle.append(expComponent));
     }
+
+    /**
+     * Clears all the contents in the player's head lore.
+     */
+    private static void resetHeadLore() { PLAYER_HEAD_LORE.clear(); }
 }

@@ -17,6 +17,8 @@ import java.util.ArrayList;
 
 /**
  * Opens an inventory with the heads of the players on the server currently online.
+ * <p>
+ * Singleton class.
  */
 public final class BanInventoryCommand implements CommandExecutor {
 
@@ -25,11 +27,35 @@ public final class BanInventoryCommand implements CommandExecutor {
     private static final TextComponent INVENTORY_NAME = Component.text("Player list", NamedTextColor.BLUE);
 //</editor-fold>
 
+    private static BanInventoryCommand instance;
+
+//<editor-fold default-state="collapsed" desc="Constructor">
+    public static BanInventoryCommand getInstance() {
+        if (instance == null)
+            return new BanInventoryCommand();
+
+        return instance;
+    }
+//</editor-fold>
+
     @Override
     public boolean onCommand(@NotNull CommandSender sender,
                              @NotNull Command command,
                              @NotNull String label,
                              @NotNull String[] args) {
+        onCommand(sender);
+        return true;
+    }
+
+    /**
+     * Performs the command of opening the ban list of players who are currently online.
+     * <p>
+     * The logic was taken out of the main method {@code onCommand()} to be able to call this command from other parts
+     * of the program.
+     *
+     * @param sender Player who performed the click.
+     */
+    public void onCommand(@NotNull CommandSender sender) {
         if (sender instanceof Player player) {
             final ArrayList<Player> playerList = new ArrayList<>(player.getServer().getOnlinePlayers());
             final Inventory banInventory = Bukkit.createInventory(player, INVENTORY_SIZE, INVENTORY_NAME);
@@ -40,7 +66,6 @@ public final class BanInventoryCommand implements CommandExecutor {
             }
             player.openInventory(banInventory);
         }
-        return true;
     }
 
 //<editor-fold default-state="collapsed" desc="Getters">
