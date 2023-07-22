@@ -65,6 +65,8 @@ public final class McTelegramChat extends JavaPlugin {
         Objects.requireNonNull(spawnSignCommand).setExecutor(new SpawnSignCommand());
         final PluginCommand banCommand = getCommand(CommandName.BAN_COMMAND.getName());
         Objects.requireNonNull(banCommand).setExecutor(new BanInventoryCommand());
+        final PluginCommand randomTPCommand = getCommand(CommandName.RANDOM_TP_COMMAND.getName());
+        Objects.requireNonNull(randomTPCommand).setExecutor(new RandomTPCommand(this));
     }
 
     /**

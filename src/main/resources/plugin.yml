@@ -14,28 +14,21 @@ commands:
   kill:
     description: Kill a certain player
     usage: /<command>
-    aliases:
-      - k
   setspawn:
     description: Save your spawn point
     usage: /<command>
   spawn:
     description: Teleport yourself to your spawn point
     usage: /<command>
-    aliases:
-      - s
   saveloc:
     description: Save current location point
     usage: /<command>
-    aliases:
-      - sl
   spawnsign:
     description: Spawn a sign with a text
     usage: /<command>
-    aliases:
-      - ss
   ban:
     description: Open ban list
     usage: /<command>
-    aliases:
-      - b
+  rtp:
+    description: Random tp
+    usage: /<command>

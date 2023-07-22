@@ -12,7 +12,9 @@ public enum ConfigProperty {
     TELEGRAM_BOT_USERNAME("telegram-bot-username"),
     TELEGRAM_BOT_ADMIN_ID("telegram-bot-admin-id"),
     PLAYER_KILL("player-kill"),
-    SPAWN_LOCATION("spawn");
+    SPAWN_LOCATION("spawn"),
+    WORLD_BORDER("world-border"),
+    BORDER("border");
 
     private final String keyName;
 

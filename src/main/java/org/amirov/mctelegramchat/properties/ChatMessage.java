@@ -26,7 +26,8 @@ public enum ChatMessage {
     ON_COMMAND_LOCATION_WRONG_COMMAND_ARGUMENTS("Only one word for point name"),
     COMMAND_SPAWN_SIGN_WRONG_COMMAND_ARGUMENTS_FIRST("Number of command arguments is wrong"),
     COMMAND_SPAWN_SIGN_WRONG_COMMAND_ARGUMENTS_SECOND("/sign {row number} {text}"),
-    COMMAND_SPAWN_SIGN_INDEX_ERROR("Row number must be a number 1-4");
+    COMMAND_SPAWN_SIGN_INDEX_ERROR("Row number must be a number 1-4"),
+    ON_COMMAND_RTP("Teleported to: ");
 
     private final String message;
 
