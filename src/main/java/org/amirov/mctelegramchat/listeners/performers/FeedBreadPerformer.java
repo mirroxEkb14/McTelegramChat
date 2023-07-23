@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Feeds the player who triggered the event.
  */
-public class FeedBreadPerformer {
+public final class FeedBreadPerformer {
 
     private static final int MAX_FOOD_LEVEL = 20;
 

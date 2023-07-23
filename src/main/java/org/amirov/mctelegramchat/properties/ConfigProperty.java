@@ -14,7 +14,12 @@ public enum ConfigProperty {
     PLAYER_KILL("player-kill"),
     SPAWN_LOCATION("spawn"),
     WORLD_BORDER("world-border"),
-    BORDER("border");
+    BORDER("border"),
+    LOBBY_WORLD("lobby-world"),
+    MOTD_ENABLED("motd"),
+    MOTD_MESSAGE("motd-message"),
+    STAFFHOME_ENABLE("staffhome-enable"),
+    SAVED_LOCATIONS("savedlocations");
 
     private final String keyName;
 

@@ -32,3 +32,14 @@ commands:
   rtp:
     description: Random tp
     usage: /<command>
+  vanish:
+    description: Become visible/invisible
+    usage: /<command>
+  staffhome:
+    description: Staffhome setting
+    usage: /<command>
+  scoreboard:
+    description: Opens a score board
+    usage: /<command>
+    aliases:
+      - sb

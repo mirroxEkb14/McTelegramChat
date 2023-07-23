@@ -17,7 +17,7 @@ import java.util.Date;
 /**
  * Opens an inventory where the player has to confirm if he wants to ban the chosen player or not.
  */
-public class BanConfirmationInventoryPerformer {
+public final class BanConfirmationInventoryPerformer {
 
     /**
      * The variable represents time in milliseconds for which a player will be banned.

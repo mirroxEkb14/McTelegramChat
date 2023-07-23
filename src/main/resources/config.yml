@@ -8,3 +8,18 @@ player-kill: true
 # True if you want to limit how far players teleport using the 'rtp' command
 world-border: true
 border: 2000
+# World name used to get world data
+lobby-world: 'world'
+# enable motd message
+motd: true
+# add and remove lines as needed for motd message
+motd-message:
+  - '&d&o-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-'
+  - ''
+  - '&aWelcome to the &c&lServer'
+  - ''
+  - '&d&o-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-'
+# enable staffhome teleportation
+staffhome-enable: true
+# this section holds all the locations of Temporary Homes
+savedlocations:

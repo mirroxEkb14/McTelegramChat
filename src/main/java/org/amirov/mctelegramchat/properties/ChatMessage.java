@@ -27,7 +27,18 @@ public enum ChatMessage {
     COMMAND_SPAWN_SIGN_WRONG_COMMAND_ARGUMENTS_FIRST("Number of command arguments is wrong"),
     COMMAND_SPAWN_SIGN_WRONG_COMMAND_ARGUMENTS_SECOND("/sign {row number} {text}"),
     COMMAND_SPAWN_SIGN_INDEX_ERROR("Row number must be a number 1-4"),
-    ON_COMMAND_RTP("Teleported to: ");
+    ON_COMMAND_RTP("Teleported to: "),
+    ON_COMMAND_VANISH_REMOVE("Now visible to others"),
+    ON_COMMAND_VANISH_ADD("Now invisible to others"),
+    ON_COMMAND_STAFFHOME_SET("Temporary Home at: "),
+    ON_COMMAND_STAFFHOME_RESET("Overriding Temporary Home at: "),
+    ON_COMMAND_STAFFHOME_RETURN_NO_SAVED_LOCATION("No Temporary Home set"),
+    ON_COMMAND_STAFFHOME_RETURNED_HOME("At Temporary Home now"),
+    ON_COMMAND_STAFFHOME_RELOAD("Staffhome configuration reloaded"),
+    ON_COMMAND_STAFFHOME_TO_PLAYER_HOME_NO_HOME("No Temporary Home for this player"),
+    ON_COMMAND_STAFFHOME_TO_PLAYER_HOME("Teleported to Temporary Home of %s to: "),
+    ON_COMMAND_STAFFHOME_LORE("&7==&a&lStaff&eHome&7==\n&6&o/staffhome set &7- &9Set a Temporary Home\n&6&o/staffhome return &7- &9Return to Temporary Home and remove it\n&6&o/staffhome <name> &7- &9Teleport to a Temporary Home\n&6&o/staffhome reload &7- &9Reload the configuration\n&7========================="),
+    ON_ENTITY_HIT("Made your victim glow and bleed");
 
     private final String message;
 

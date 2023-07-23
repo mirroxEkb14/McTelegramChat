@@ -11,7 +11,10 @@ public enum CommandName {
     SAVE_LOCATION_COMMAND("saveloc"),
     SPAWN_SIGN_COMMAND("spawnsign"),
     BAN_COMMAND("ban"),
-    RANDOM_TP_COMMAND("rtp");
+    RANDOM_TP_COMMAND("rtp"),
+    VANISH_COMMAND("vanish"),
+    STAFF_HOME_COMMAND("staffhome"),
+    SCORE_BOARD_COMMAND("scoreboard");
 
     private final String name;
 
