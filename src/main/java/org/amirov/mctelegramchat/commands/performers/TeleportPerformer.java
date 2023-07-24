@@ -15,7 +15,7 @@ import java.util.Random;
  * This class contains static methods that are used when executing the random teleportation command. It does the whole
  * logic of creating a random point in the world to teleport to.
  */
-public class TeleportPerformer {
+public final class TeleportPerformer {
 
 //<editor-fold default-state="collapsed" desc="Private Constants">
     private static final int X_BOUND = 25000;

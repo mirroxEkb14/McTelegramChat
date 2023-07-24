@@ -1,5 +1,9 @@
 package org.amirov.mctelegramchat;
 
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import org.amirov.mctelegramchat.commands.*;
 import org.amirov.mctelegramchat.commands.files.ConfigManager;
 import org.amirov.mctelegramchat.commands.properties.CommandName;
@@ -8,15 +12,17 @@ import org.amirov.mctelegramchat.enchantments.HemorrhageEnchantment;
 import org.amirov.mctelegramchat.listeners.*;
 import org.amirov.mctelegramchat.logging.Loggers;
 import org.amirov.mctelegramchat.logging.LoggingMessage;
+import org.amirov.mctelegramchat.properties.ConfigProperty;
 import org.amirov.mctelegramchat.tasks.DayKeeperTask;
 import org.amirov.mctelegramchat.telegrambot.SPWBot;
+import org.bson.Document;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
+import org.bukkit.block.Block;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitTask;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
@@ -38,8 +44,18 @@ public final class McTelegramChat extends JavaPlugin {
      * This list contains players who triggered the {@code /vanish} command.
      */
     private final ArrayList<Player> INVISIBLE_LIST = new ArrayList<>();
+//</editor-fold>
 
+//<editor-fold default-state="collapsed" desc="Private Static Constants">
+    private static final HashMap<Player, Block> createdLocks = new HashMap<>();
+//</editor-fold>
+
+//<editor-fold default-state="collapsed" desc="Private Static Instance Variables">
     private static McTelegramChat plugin;
+
+    private static MongoClient mongoClient;
+    private static MongoDatabase mongoDatabase;
+    private static MongoCollection<Document> mongoCollection;
 //</editor-fold>
 
     /**
@@ -60,6 +76,7 @@ public final class McTelegramChat extends JavaPlugin {
             initCommands();
             initTasks();
             initEnchantments();
+            connectToMongoDB();
 
             Loggers.printInfoLog(LoggingMessage.BOT_REGISTRATION_SUCCESS.getMessage());
         } catch (TelegramApiException e) {
@@ -96,6 +113,8 @@ public final class McTelegramChat extends JavaPlugin {
         Objects.requireNonNull(staffHomeCommand).setExecutor(new StaffHomeCommand(this));
         final PluginCommand scoreBoardCommand = getCommand(CommandName.SCORE_BOARD_COMMAND.getName());
         Objects.requireNonNull(scoreBoardCommand).setExecutor(new ScoreBoardCommand());
+        final PluginCommand lockCommand = getCommand(CommandName.LOCK_COMMAND.getName());
+        Objects.requireNonNull(lockCommand).setExecutor(new LockCommand());
     }
 
     /**
@@ -112,6 +131,7 @@ public final class McTelegramChat extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new SpawnerBreakListener(), this);
         Bukkit.getPluginManager().registerEvents(new GoodWeatherListener(), this);
         Bukkit.getPluginManager().registerEvents(new EntityHitListener(this), this);
+        Bukkit.getPluginManager().registerEvents(new OpenChestListener(), this);
     }
 
     /**
@@ -181,6 +201,22 @@ public final class McTelegramChat extends JavaPlugin {
     }
 
     /**
+     * Connects to the MongoDB in a cloud.
+     *
+     * @see <a href="https://www.mongodb.com/products/platform/cloud">MongoDB Cloud Services</a>
+     */
+    private void connectToMongoDB() {
+        final String connectionString = getConfig().getString(ConfigProperty.MONGODB_CONNECTION_STRING.getKeyName());
+        Objects.requireNonNull(connectionString);
+
+        mongoClient = MongoClients.create(connectionString);
+        mongoDatabase = mongoClient.getDatabase(
+                ConfigProperty.MONGODB_DATABASE_NAME.getKeyName());
+        mongoCollection = mongoDatabase.getCollection(
+                ConfigProperty.MONGODB_COLLECTION_NAME.getKeyName());
+    }
+
+    /**
      * Called when the program is disabled.
      */
     @Override
@@ -193,5 +229,13 @@ public final class McTelegramChat extends JavaPlugin {
     public ArrayList<Player> getInvisibleList() { return INVISIBLE_LIST; }
 
     public static McTelegramChat getPlugin() { return plugin; }
+
+    public static MongoClient getMongoClient() { return mongoClient; }
+
+    public static MongoDatabase getMongoDatabase() { return mongoDatabase; }
+
+    public static MongoCollection<Document> getMongoCollection() { return mongoCollection; }
+
+    public static HashMap<Player, Block> getCreatedLocks() { return createdLocks; }
 //</editor-fold>
 }

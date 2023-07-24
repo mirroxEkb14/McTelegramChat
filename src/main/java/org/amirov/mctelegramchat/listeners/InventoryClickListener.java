@@ -3,10 +3,8 @@ package org.amirov.mctelegramchat.listeners;
 import net.kyori.adventure.text.Component;
 import org.amirov.mctelegramchat.commands.BanInventoryCommand;
 import org.amirov.mctelegramchat.commands.MenuInventoryCommand;
-import org.amirov.mctelegramchat.listeners.performers.ArmoryInventoryPerformer;
-import org.amirov.mctelegramchat.listeners.performers.BanConfirmationInventoryPerformer;
-import org.amirov.mctelegramchat.listeners.performers.BanInventoryPerformer;
-import org.amirov.mctelegramchat.listeners.performers.MenuInventoryPerformer;
+import org.amirov.mctelegramchat.commands.performers.LockConformationGUI;
+import org.amirov.mctelegramchat.listeners.performers.*;
 import org.amirov.mctelegramchat.utility.buttons.BackWoolButton;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -28,6 +26,7 @@ public final class InventoryClickListener implements Listener {
     private static final Component armoryInventoryName = ArmoryInventoryPerformer.getArmoryInventoryName();
     private static final Component banInventoryName = BanInventoryCommand.getBanInventoryName();
     private static final Component banConfirmationInventoryName = BanInventoryPerformer.getBanInventoryTitle();
+    private static final Component lockConfirmationInventoryName = LockConformationGUI.getInventoryTitle();
 //</editor-fold>
 
     /**
@@ -62,6 +61,8 @@ public final class InventoryClickListener implements Listener {
             BanInventoryPerformer.performBanInventoryClick(event, player, currentItem);
         } else if (currentInventoryTitle.equals(banConfirmationInventoryName)) {
             BanConfirmationInventoryPerformer.performBanConfirmationInventoryClick(event, player, currentItem);
+        } else if (currentInventoryTitle.equals(lockConfirmationInventoryName)) {
+            LockConfirmationInventoryPerformer.performLockConfirmationInventoryClick(event, player, currentItem);
         }
     }
 }

@@ -14,7 +14,8 @@ public enum LoggingMessage {
     COMMAND_MENU_WRONG_ITEM_SELECTED("Item that is not in GUI command"),
     CREATING_CONFIG_FILE_ERROR("Error while creating a config file"),
     SAVING_CONFIG_FILE_ERROR("Config files were not setup before saving"),
-    BAN_CONFIRMATION_INVENTORY_WRONG_ITEM("This item should not be moved");
+    BAN_CONFIRMATION_INVENTORY_WRONG_ITEM("This item should not be moved"),
+    LOCK_CONFORMATION_INVENTORY_WRONG_ITEM("This item should not be moved");
 
     private final String message;
 

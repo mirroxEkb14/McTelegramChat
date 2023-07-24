@@ -19,7 +19,10 @@ public enum ConfigProperty {
     MOTD_ENABLED("motd"),
     MOTD_MESSAGE("motd-message"),
     STAFFHOME_ENABLE("staffhome-enable"),
-    SAVED_LOCATIONS("savedlocations");
+    SAVED_LOCATIONS("savedlocations"),
+    MONGODB_CONNECTION_STRING("mongodb-connection-string"),
+    MONGODB_DATABASE_NAME("mongodb-database-name"),
+    MONGODB_COLLECTION_NAME("mongodb-collection-name");
 
     private final String keyName;
 

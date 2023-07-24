@@ -14,7 +14,8 @@ public enum CommandName {
     RANDOM_TP_COMMAND("rtp"),
     VANISH_COMMAND("vanish"),
     STAFF_HOME_COMMAND("staffhome"),
-    SCORE_BOARD_COMMAND("scoreboard");
+    SCORE_BOARD_COMMAND("scoreboard"),
+    LOCK_COMMAND("lock");
 
     private final String name;
 

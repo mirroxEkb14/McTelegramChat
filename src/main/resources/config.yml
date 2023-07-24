@@ -19,6 +19,10 @@ motd-message:
   - '&aWelcome to the &c&lServer'
   - ''
   - '&d&o-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-'
+# db-related constants for connection
+mongodb-connection-string: connection_string_here
+mongodb-database-name: quartermaster
+mongodb-collection-name: locks
 # enable staffhome teleportation
 staffhome-enable: true
 # this section holds all the locations of Temporary Homes

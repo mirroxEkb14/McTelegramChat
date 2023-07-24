@@ -38,7 +38,10 @@ public enum ChatMessage {
     ON_COMMAND_STAFFHOME_TO_PLAYER_HOME_NO_HOME("No Temporary Home for this player"),
     ON_COMMAND_STAFFHOME_TO_PLAYER_HOME("Teleported to Temporary Home of %s to: "),
     ON_COMMAND_STAFFHOME_LORE("&7==&a&lStaff&eHome&7==\n&6&o/staffhome set &7- &9Set a Temporary Home\n&6&o/staffhome return &7- &9Return to Temporary Home and remove it\n&6&o/staffhome <name> &7- &9Teleport to a Temporary Home\n&6&o/staffhome reload &7- &9Reload the configuration\n&7========================="),
-    ON_ENTITY_HIT("Made your victim glow and bleed");
+    ON_ENTITY_HIT("Made your victim glow and bleed"),
+    ON_COMMAND_LOCK_SUCCESS("Chest been Locked"),
+    TRIED_TO_OPEN_LOCKED_CHEST_OWNER("You own Chest"),
+    TRIED_TO_OPEN_LOCKED_CHEST_THIEF("Chest locked by ");
 
     private final String message;
 

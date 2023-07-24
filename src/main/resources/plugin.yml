@@ -43,3 +43,6 @@ commands:
     usage: /<command>
     aliases:
       - sb
+  lock:
+    description: Locks a chest a player looking at
+    usage: /<command>
