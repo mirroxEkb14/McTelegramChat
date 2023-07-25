@@ -46,3 +46,6 @@ commands:
   lock:
     description: Locks a chest a player looking at
     usage: /<command>
+  locklist:
+    description: Opens gui with player's locks
+    usage: /<usage>

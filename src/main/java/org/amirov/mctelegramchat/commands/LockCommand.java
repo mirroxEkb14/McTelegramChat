@@ -1,7 +1,12 @@
 package org.amirov.mctelegramchat.commands;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.amirov.mctelegramchat.McTelegramChat;
 import org.amirov.mctelegramchat.commands.performers.LockConformationGUI;
+import org.amirov.mctelegramchat.commands.performers.LockPerformer;
+import org.amirov.mctelegramchat.properties.ChatMessage;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
@@ -32,22 +37,43 @@ public final class LockCommand implements CommandExecutor {
             final Block target = player.getTargetBlockExact(MAX_VIEW_RANGE);
             Objects.requireNonNull(target);
             if (isChest(target)) {
-                LockConformationGUI.openLockConfirmationGUI(player);
-                McTelegramChat.getCreatedLocks().put(player, target);
+                if (LockPerformer.isChestLocked(target)) {
+                    final Player chestOwnerPlayer = LockPerformer.getPlayerWhoLocked(target);
+                    if (chestOwnerPlayer.equals(player))
+                        notifyOwnerAboutLock(player);
+                    else
+                        notifyThiefAboutLock(player, chestOwnerPlayer.getName());
+                } else {
+                    LockConformationGUI.openLockConfirmationGUI(player);
+                    McTelegramChat.getCreatedLocks().put(player, target);
+                }
             }
         }
         return true;
     }
 
     /**
-     * Asks the player for a confirmation if he wants to lock this chest or not.
+     * Sends a message to a player who tries to open this locked chest that this chest has an owner.
      *
-     * @param player Player who triggered the command.
-     *
-     * @return {@code true} if the player wishes to lock the chest, {@code false} otherwise.
+     * @param thief Player who tries to open this chest.
+     * @param ownerName Name of the chest owner.
      */
-    private boolean isToBeLocked(@NotNull Player player) {
-        return false;
+    private void notifyThiefAboutLock(@NotNull Player thief, String ownerName) {
+        final TextComponent thiefWarning = Component.text(
+                ChatMessage.ON_COMMAND_LOCK_THIEF_ALREADY_LOCKED.getMessage(), NamedTextColor.DARK_RED);
+        final TextComponent fullMessage = thiefWarning
+                .append(Component.text(ownerName, NamedTextColor.GRAY));
+        thief.sendMessage(fullMessage);
+    }
+
+    /**
+     * Sends a message to the chest owner that he already owns this chest, no need in the locking command again.
+     *
+     * @param owner Owner of this chest.
+     */
+    private void notifyOwnerAboutLock(@NotNull Player owner) {
+        owner.sendMessage(Component.text(
+                ChatMessage.ON_COMMAND_LOCK_OWNER_ALREADY_LOCKED.getMessage(), NamedTextColor.BLUE));
     }
 
     /**

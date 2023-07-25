@@ -115,6 +115,8 @@ public final class McTelegramChat extends JavaPlugin {
         Objects.requireNonNull(scoreBoardCommand).setExecutor(new ScoreBoardCommand());
         final PluginCommand lockCommand = getCommand(CommandName.LOCK_COMMAND.getName());
         Objects.requireNonNull(lockCommand).setExecutor(new LockCommand());
+        final PluginCommand lockListCommand = getCommand(CommandName.LOCK_LIST_COMMAND.getName());
+        Objects.requireNonNull(lockListCommand).setExecutor(new LockListCommand());
     }
 
     /**
@@ -131,7 +133,7 @@ public final class McTelegramChat extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new SpawnerBreakListener(), this);
         Bukkit.getPluginManager().registerEvents(new GoodWeatherListener(), this);
         Bukkit.getPluginManager().registerEvents(new EntityHitListener(this), this);
-        Bukkit.getPluginManager().registerEvents(new OpenChestListener(), this);
+        Bukkit.getPluginManager().registerEvents(new ChestListener(), this);
     }
 
     /**

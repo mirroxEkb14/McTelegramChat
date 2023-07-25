@@ -4,6 +4,7 @@ import net.kyori.adventure.text.Component;
 import org.amirov.mctelegramchat.commands.BanInventoryCommand;
 import org.amirov.mctelegramchat.commands.MenuInventoryCommand;
 import org.amirov.mctelegramchat.commands.performers.LockConformationGUI;
+import org.amirov.mctelegramchat.commands.performers.LockListGUI;
 import org.amirov.mctelegramchat.listeners.performers.*;
 import org.amirov.mctelegramchat.utility.buttons.BackWoolButton;
 import org.bukkit.entity.Player;
@@ -27,6 +28,7 @@ public final class InventoryClickListener implements Listener {
     private static final Component banInventoryName = BanInventoryCommand.getBanInventoryName();
     private static final Component banConfirmationInventoryName = BanInventoryPerformer.getBanInventoryTitle();
     private static final Component lockConfirmationInventoryName = LockConformationGUI.getInventoryTitle();
+    private static final Component lockListInventoryName = LockListGUI.getInventoryTitle();
 //</editor-fold>
 
     /**
@@ -63,6 +65,8 @@ public final class InventoryClickListener implements Listener {
             BanConfirmationInventoryPerformer.performBanConfirmationInventoryClick(event, player, currentItem);
         } else if (currentInventoryTitle.equals(lockConfirmationInventoryName)) {
             LockConfirmationInventoryPerformer.performLockConfirmationInventoryClick(event, player, currentItem);
+        } else if (currentInventoryTitle.equals(lockListInventoryName)) {
+            LockListInventoryPerformer.performLockListInventoryClick(event, player, currentItem);
         }
     }
 }

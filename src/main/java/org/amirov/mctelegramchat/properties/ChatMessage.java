@@ -40,8 +40,12 @@ public enum ChatMessage {
     ON_COMMAND_STAFFHOME_LORE("&7==&a&lStaff&eHome&7==\n&6&o/staffhome set &7- &9Set a Temporary Home\n&6&o/staffhome return &7- &9Return to Temporary Home and remove it\n&6&o/staffhome <name> &7- &9Teleport to a Temporary Home\n&6&o/staffhome reload &7- &9Reload the configuration\n&7========================="),
     ON_ENTITY_HIT("Made your victim glow and bleed"),
     ON_COMMAND_LOCK_SUCCESS("Chest been Locked"),
+    ON_COMMAND_LOCK_OWNER_ALREADY_LOCKED("You already own Chest"),
+    ON_COMMAND_LOCK_THIEF_ALREADY_LOCKED("Chest is locked by "),
     TRIED_TO_OPEN_LOCKED_CHEST_OWNER("You own Chest"),
-    TRIED_TO_OPEN_LOCKED_CHEST_THIEF("Chest locked by ");
+    TRIED_TO_OPEN_LOCKED_CHEST_THIEF("Chest locked by "),
+    TRIED_TO_BREAK_LOCKED_CHEST_THIEF("Cannot be broken due to locking"),
+    ON_COMMAND_LOCK_DELETE("Lock been deleted");
 
     private final String message;
 

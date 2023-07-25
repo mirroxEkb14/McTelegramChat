@@ -19,6 +19,15 @@ import org.jetbrains.annotations.NotNull;
  */
 public final class LockConfirmationInventoryPerformer {
 
+    /**
+     * If the player selected {@code yes}, a lock on this chest is created and now it can be opened only by its owner;
+     * if the {@code no} was selected, the conformation menu closes. A player can also try to move another items in the
+     * menu, then the logs are printed to the console.
+     *
+     * @param event Event of a player clicking on some item in the menu.
+     * @param player Player who triggered the event.
+     * @param currentItem Item was this player clicked on.
+     */
     public static void performLockConfirmationInventoryClick(@NotNull InventoryClickEvent event,
                                                              @NotNull Player player,
                                                              @NotNull ItemStack currentItem) {
