@@ -3,7 +3,6 @@ package org.amirov.mctelegramchat.commands.performers;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
-import org.amirov.mctelegramchat.logging.Loggers;
 import org.bson.Document;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -201,4 +200,16 @@ public final class LockManagerGUI {
         Matcher matcher = pattern.matcher(textComponentImpl);
         return matcher.group();
     }
+
+//<editor-fold default-state="collapsed" desc="Getters">
+    public static TextComponent getInventoryTitle() { return INVENTORY_TITLE; }
+
+    public static Material getManageAccessName() { return MANAGE_ACCESS_BUTTON_MATERIAL; }
+
+    public static Material getDeleteLockButtonMaterial() { return DELETE_LOCK_BUTTON_MATERIAL; }
+
+    public static Material getInfoButtonMaterial() { return INFO_BUTTON_MATERIAL; }
+
+    public static Material getCloseButtonMaterial() { return CLOSE_BUTTON_MATERIAL; }
+//</editor-fold>
 }

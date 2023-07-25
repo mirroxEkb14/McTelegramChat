@@ -5,6 +5,7 @@ import org.amirov.mctelegramchat.commands.BanInventoryCommand;
 import org.amirov.mctelegramchat.commands.MenuInventoryCommand;
 import org.amirov.mctelegramchat.commands.performers.LockConformationGUI;
 import org.amirov.mctelegramchat.commands.performers.LockListGUI;
+import org.amirov.mctelegramchat.commands.performers.LockManagerGUI;
 import org.amirov.mctelegramchat.listeners.performers.*;
 import org.amirov.mctelegramchat.utility.buttons.BackWoolButton;
 import org.bukkit.entity.Player;
@@ -22,13 +23,14 @@ import org.jetbrains.annotations.NotNull;
  */
 public final class InventoryClickListener implements Listener {
 
-//<editor-fold default-state="collapsed" desc="Private Constants">
+//<editor-fold default-state="collapsed" desc="Private Static Constants">
     private static final Component menuInventoryName = MenuInventoryCommand.getMenuInventoryName();
     private static final Component armoryInventoryName = ArmoryInventoryPerformer.getArmoryInventoryName();
     private static final Component banInventoryName = BanInventoryCommand.getBanInventoryName();
     private static final Component banConfirmationInventoryName = BanInventoryPerformer.getBanInventoryTitle();
     private static final Component lockConfirmationInventoryName = LockConformationGUI.getInventoryTitle();
     private static final Component lockListInventoryName = LockListGUI.getInventoryTitle();
+    private static final Component lockManagerInventoryName = LockManagerGUI.getInventoryTitle();
 //</editor-fold>
 
     /**
@@ -67,6 +69,8 @@ public final class InventoryClickListener implements Listener {
             LockConfirmationInventoryPerformer.performLockConfirmationInventoryClick(event, player, currentItem);
         } else if (currentInventoryTitle.equals(lockListInventoryName)) {
             LockListInventoryPerformer.performLockListInventoryClick(event, player, currentItem);
+        } else if (currentInventoryTitle.equals(lockManagerInventoryName)) {
+            LockManagerInventoryPerformer.performLockManagerInventoryClick(event, player, currentItem);
         }
     }
 }
