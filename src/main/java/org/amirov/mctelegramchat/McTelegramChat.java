@@ -7,6 +7,7 @@ import com.mongodb.client.MongoDatabase;
 import org.amirov.mctelegramchat.commands.*;
 import org.amirov.mctelegramchat.commands.files.ConfigManager;
 import org.amirov.mctelegramchat.commands.properties.CommandName;
+import org.amirov.mctelegramchat.commands.subcommands.management.PrankCommandManager;
 import org.amirov.mctelegramchat.enchantments.GlowEnchantment;
 import org.amirov.mctelegramchat.enchantments.HemorrhageEnchantment;
 import org.amirov.mctelegramchat.listeners.*;
@@ -117,6 +118,8 @@ public final class McTelegramChat extends JavaPlugin {
         Objects.requireNonNull(lockCommand).setExecutor(new LockCommand());
         final PluginCommand lockListCommand = getCommand(CommandName.LOCK_LIST_COMMAND.getName());
         Objects.requireNonNull(lockListCommand).setExecutor(new LockListCommand());
+        final PluginCommand prankCommand = getCommand(CommandName.PRANK_COMMAND.getName());
+        Objects.requireNonNull(prankCommand).setExecutor(new PrankCommandManager());
     }
 
     /**

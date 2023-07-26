@@ -16,7 +16,8 @@ public enum CommandName {
     STAFF_HOME_COMMAND("staffhome"),
     SCORE_BOARD_COMMAND("scoreboard"),
     LOCK_COMMAND("lock"),
-    LOCK_LIST_COMMAND("locklist");
+    LOCK_LIST_COMMAND("locklist"),
+    PRANK_COMMAND("prank");
 
     private final String name;
 

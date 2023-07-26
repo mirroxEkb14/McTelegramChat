@@ -48,4 +48,7 @@ commands:
     usage: /<command>
   locklist:
     description: Opens gui with player's locks
-    usage: /<usage>
+    usage: /<command>
+  prank:
+    description: Contains subcommands with different ways to prank a player
+    usage: /<command>
