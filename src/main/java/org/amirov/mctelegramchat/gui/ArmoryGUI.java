@@ -1,4 +1,4 @@
-package org.amirov.mctelegramchat.listeners.performers;
+package org.amirov.mctelegramchat.gui;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Performs the opening of the armory inventory.
  */
-public final class ArmoryInventoryPerformer {
+public final class ArmoryGUI {
 
 //<editor-fold default-state="collapsed" desc="Private Constants">
     private static final int INVENTORY_SIZE = 36;

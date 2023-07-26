@@ -1,4 +1,4 @@
-package org.amirov.mctelegramchat.commands.performers;
+package org.amirov.mctelegramchat.gui;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
@@ -16,10 +16,9 @@ import org.jetbrains.annotations.NotNull;
  * <p>
  * Opens a conformation gui where a player decides if he really wants to lock the chest or not.
  */
-public final class LockConformationGUI {
+public final class LockConfirmationGUI {
 
 //<editor-fold default-state="collapsed" desc="Private Static Constants">
-    private static final int INVENTORY_SIZE = 9;
     private static final TextComponent INVENTORY_TITLE = Component.text(
             "Lock Chest?", NamedTextColor.DARK_AQUA);
 
@@ -30,34 +29,26 @@ public final class LockConformationGUI {
             "Yes", NamedTextColor.GREEN);
     private static final TextComponent NO_NAME = Component.text(
             "No", NamedTextColor.DARK_RED);
-
-    private static final int BUTTON_AMOUNT = 1;
-
-    private static final int YES_ITEM_SLOT_INDEX = 3;
-    private static final int NO_ITEM_SLOT_INDEX = 5;
 //</editor-fold>
 
-    private static Inventory lockConfirmationGUI;
-
+    /**
+     * Opens an inventory with a confirmation menu, either a player wants to lock the chest or not.
+     *
+     * @param player Player who triggered the event.
+     */
     public static void openLockConfirmationGUI(@NotNull Player player) {
-        lockConfirmationGUI = Bukkit.createInventory(player, INVENTORY_SIZE, INVENTORY_TITLE);
+        Inventory lockConfirmationGUI = Bukkit.createInventory(
+                player,
+                ConfirmationGUIConstants.INVENTORY_SIZE.getValue(),
+                INVENTORY_TITLE);
         final ItemStack yes = getYesButton();
         final ItemStack no = getNoButton();
-        lockConfirmationGUI.setItem(YES_ITEM_SLOT_INDEX, yes);
-        lockConfirmationGUI.setItem(NO_ITEM_SLOT_INDEX, no);
-        fillEmptySlots();
+        lockConfirmationGUI.setItem(ConfirmationGUIConstants.YES_ITEM_SLOT_INDEX.getValue(), yes);
+        lockConfirmationGUI.setItem(ConfirmationGUIConstants.NO_ITEM_SLOT_INDEX.getValue(), no);
+
+        ConfirmationGUIConstants.fillEmptySlots(lockConfirmationGUI);
 
         player.openInventory(lockConfirmationGUI);
-    }
-
-    /**
-     * Fills all the empty slots in this inventory for this conformation gui to look more filled in.
-     */
-    private static void fillEmptySlots() {
-        for (int i = 0; i < INVENTORY_SIZE; i++) {
-            if (lockConfirmationGUI.getItem(i) == null)
-                lockConfirmationGUI.setItem(i, new ItemStack(Material.GRAY_STAINED_GLASS_PANE));
-        }
     }
 
     /**
@@ -68,7 +59,7 @@ public final class LockConformationGUI {
      * @return Item representing player's confirmation.
      */
     private static @NotNull ItemStack getNoButton() {
-        final ItemStack no = new ItemStack(NO_BUTTON_MATERIAL, BUTTON_AMOUNT);
+        final ItemStack no = new ItemStack(NO_BUTTON_MATERIAL, ConfirmationGUIConstants.BUTTON_AMOUNT.getValue());
         final ItemMeta noMeta = no.getItemMeta();
         noMeta.displayName(NO_NAME);
         no.setItemMeta(noMeta);
@@ -83,7 +74,7 @@ public final class LockConformationGUI {
      * @return Item representing player's confirmation.
      */
     private static @NotNull ItemStack getYesButton() {
-        final ItemStack yes = new ItemStack(YES_BUTTON_MATERIAL, BUTTON_AMOUNT);
+        final ItemStack yes = new ItemStack(YES_BUTTON_MATERIAL, ConfirmationGUIConstants.BUTTON_AMOUNT.getValue());
         final ItemMeta yesMeta = yes.getItemMeta();
         yesMeta.displayName(YES_NAME);
         yes.setItemMeta(yesMeta);

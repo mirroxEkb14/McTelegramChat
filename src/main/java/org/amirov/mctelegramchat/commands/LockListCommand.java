@@ -1,6 +1,6 @@
 package org.amirov.mctelegramchat.commands;
 
-import org.amirov.mctelegramchat.commands.performers.LockListGUI;
+import org.amirov.mctelegramchat.gui.LockListGUI;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

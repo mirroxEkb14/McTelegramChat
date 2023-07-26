@@ -4,7 +4,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.amirov.mctelegramchat.McTelegramChat;
-import org.amirov.mctelegramchat.commands.performers.LockConformationGUI;
+import org.amirov.mctelegramchat.gui.LockConfirmationGUI;
 import org.amirov.mctelegramchat.commands.performers.LockPerformer;
 import org.amirov.mctelegramchat.properties.ChatMessage;
 import org.bukkit.Material;
@@ -44,7 +44,7 @@ public final class LockCommand implements CommandExecutor {
                     else
                         notifyThiefAboutLock(player, chestOwnerPlayer.getName());
                 } else {
-                    LockConformationGUI.openLockConfirmationGUI(player);
+                    LockConfirmationGUI.openLockConfirmationGUI(player);
                     McTelegramChat.getCreatedLocks().put(player, target);
                 }
             }

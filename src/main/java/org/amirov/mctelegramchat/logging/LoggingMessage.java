@@ -15,7 +15,10 @@ public enum LoggingMessage {
     CREATING_CONFIG_FILE_ERROR("Error while creating a config file"),
     SAVING_CONFIG_FILE_ERROR("Config files were not setup before saving"),
     BAN_CONFIRMATION_INVENTORY_WRONG_ITEM("This item should not be moved"),
-    LOCK_CONFORMATION_INVENTORY_WRONG_ITEM("This item should not be moved");
+    LOCK_CONFORMATION_INVENTORY_WRONG_ITEM("This item should not be moved"),
+    LOCK_ID_NOT_FOUND("Lock id not found"),
+    LOCK_ACCESS_MANAGER_INFO_BUTTON_CLICKED("Info Button inside the Access Manager Was Clicked"),
+    LOCK_ACCESS_MANAGER_OTHER_BUTTON_CLICKED("This Button Should Not Be Clicked inside the Access Manager"),;
 
     private final String message;
 

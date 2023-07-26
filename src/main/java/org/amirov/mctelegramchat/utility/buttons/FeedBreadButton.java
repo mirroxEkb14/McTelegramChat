@@ -3,6 +3,7 @@ package org.amirov.mctelegramchat.utility.buttons;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
+import org.amirov.mctelegramchat.gui.ConfirmationGUIConstants;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -16,7 +17,6 @@ import java.util.ArrayList;
 public final class FeedBreadButton {
 
 //<editor-fold default-state="collapsed" desc="Private Constants">
-    private static final int ITEM_AMOUNT = 1;
     private static final TextComponent ITEM_TITLE = Component.text(
             "Feed", NamedTextColor.DARK_GREEN);
     private static final ArrayList<TextComponent> loreList = new ArrayList<>();
@@ -35,7 +35,7 @@ public final class FeedBreadButton {
      * @return Custom bread item.
      */
     public static @NotNull ItemStack getFeedBread() {
-        final ItemStack item = new ItemStack(Material.BREAD, ITEM_AMOUNT);
+        final ItemStack item = new ItemStack(Material.BREAD, ConfirmationGUIConstants.BUTTON_AMOUNT.getValue());
         final ItemMeta itemMeta = getHungerBreadMeta(item);
         item.setItemMeta(itemMeta);
         return item;

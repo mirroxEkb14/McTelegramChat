@@ -9,6 +9,7 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 import java.util.UUID;
@@ -37,7 +38,8 @@ public final class LockPerformer {
         final Document lock = new Document(LockCommandDBProperties.PLAYER_UUID_KEY_NAME.getKey(), player.getUniqueId().toString())
                 .append(LockCommandDBProperties.BLOCK_TYPE_KEY_NAME.getKey(), LockCommandDBProperties.BLOCK_TYPE_VALUE_NAME.getKey())
                 .append(LockCommandDBProperties.BLOCK_LOCATION_KEY_NAME.getKey(), getBlockLocationAsDocument(block))
-                .append(LockCommandDBProperties.CREATION_DATE_KEY_NAME.getKey(), new Date());
+                .append(LockCommandDBProperties.CREATION_DATE_KEY_NAME.getKey(), new Date())
+                .append(LockCommandDBProperties.ACCESS_KEY_NAME.getKey(), new ArrayList<String>());
         McTelegramChat.getMongoCollection().insertOne(lock);
 
         McTelegramChat.getCreatedLocks().remove(player);
@@ -52,6 +54,17 @@ public final class LockPerformer {
     public static void deleteLock(@NotNull Block chest) {
         final Document filter = getFilter(chest);
         McTelegramChat.getMongoCollection().deleteOne(filter);
+    }
+
+
+    /**
+     * Delete selected lock from the DB by its id.
+     *
+     * @param lockId Lock id.
+     */
+    public static void deleteLock(String lockId) {
+        final Document lock = getLockById(lockId);
+        McTelegramChat.getMongoCollection().deleteOne(lock);
     }
 
     /**
@@ -82,6 +95,33 @@ public final class LockPerformer {
     public static Document getLockById(String id) {
         final Document filter = new Document(new Document(LOCK_UNIQUE_ID_NAME, new ObjectId(id)));
         return McTelegramChat.getMongoCollection().find(filter).first();
+    }
+
+    /**
+     * Adds a new player to the "access" section and updates the collection in the DB.
+     *
+     * @param lockId Id of the lock.
+     * @param playerToAdd Player who should be added.
+     */
+    public static void addOrRemovePlayerToLock(String lockId,
+                                               @NotNull Player playerToAdd,
+                                               boolean toAdd) {
+        final Document lock = getLockById(lockId);
+
+        final ArrayList<String> accessList = (ArrayList<String>)
+                lock.get(LockCommandDBProperties.ACCESS_KEY_NAME.getKey());
+
+        final String uniqueIdString = playerToAdd.getUniqueId().toString();
+        if (toAdd) accessList.add(uniqueIdString);
+        else accessList.remove(uniqueIdString);
+
+        final Document newDoc = new Document(LockCommandDBProperties.ACCESS_KEY_NAME.getKey(), accessList);
+        final Document newDoc2 = new Document(LockCommandDBProperties.getSaveCommand(), newDoc);
+
+        final Document filter = new Document(new Document(
+                LOCK_UNIQUE_ID_NAME,
+                new ObjectId(String.valueOf(lock.getObjectId(LOCK_UNIQUE_ID_NAME)))));
+        McTelegramChat.getMongoCollection().updateOne(filter, newDoc2);
     }
 
     /**

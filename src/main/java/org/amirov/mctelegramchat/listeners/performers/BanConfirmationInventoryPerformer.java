@@ -1,6 +1,8 @@
 package org.amirov.mctelegramchat.listeners.performers;
 
 import org.amirov.mctelegramchat.commands.BanInventoryCommand;
+import org.amirov.mctelegramchat.gui.BanInventoryGUI;
+import org.amirov.mctelegramchat.gui.ConfirmationGUIConstants;
 import org.amirov.mctelegramchat.listeners.properties.BanReason;
 import org.amirov.mctelegramchat.logging.Loggers;
 import org.amirov.mctelegramchat.logging.LoggingMessage;
@@ -15,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Date;
 
 /**
- * Opens an inventory where the player has to confirm if he wants to ban the chosen player or not.
+ * Processes the player's choice in the ban confirmation menu, either he wants to ban the chosen player or not.
  */
 public final class BanConfirmationInventoryPerformer {
 
@@ -31,12 +33,11 @@ public final class BanConfirmationInventoryPerformer {
                                                             @NotNull ItemStack currentItem) {
         event.setCancelled(true);
 
-        final Material itemClicked = currentItem.getType();
         final Material banWoodenAxe = BanWoodenAxeButton.getBanWoodenAxe().getType();
 
-        if (itemClicked == banWoodenAxe)
+        if (currentItem.getType() == banWoodenAxe)
             performBan(player);
-        else if (itemClicked == Material.BARRIER)
+        else if (ConfirmationGUIConstants.isCloseButton(currentItem))
             BanInventoryCommand.getInstance().onCommand(player);
         else
             Loggers.printSevereLog(LoggingMessage.BAN_CONFIRMATION_INVENTORY_WRONG_ITEM.getMessage());
@@ -51,7 +52,7 @@ public final class BanConfirmationInventoryPerformer {
      * @param player Player who is to be banned.
      */
     private static void performBan(final @NotNull Player player) {
-        final String playerToBanName = BanInventoryPerformer.getCurrentPlayerToBanName();
+        final String playerToBanName = BanInventoryGUI.getCurrentPlayerToBanName();
         final Date expires = new Date();
         expires.setTime(new Date().getTime() + EXPIRES_TIME);
 

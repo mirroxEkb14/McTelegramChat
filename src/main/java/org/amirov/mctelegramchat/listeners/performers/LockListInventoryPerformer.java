@@ -1,7 +1,6 @@
 package org.amirov.mctelegramchat.listeners.performers;
 
-import org.amirov.mctelegramchat.commands.performers.LockManagerGUI;
-import org.amirov.mctelegramchat.commands.performers.LockPerformer;
+import org.amirov.mctelegramchat.gui.LockManagerGUI;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -27,9 +26,8 @@ public final class LockListInventoryPerformer {
         event.setCancelled(true);
         if (currentItem.getType().equals(Material.CHEST)) {
             final int itemSlotIndex = event.getSlot();
-            LockManagerGUI.openLockManagerGUI(
-                    player,
-                    LockPerformer.getLockById(LockManagerGUI.getLockId(itemSlotIndex)));
+            LockManagerGUI.setCurrentLockId(LockManagerGUI.getLockId(itemSlotIndex));
+            LockManagerGUI.openLockManagerGUI(player);
         }
     }
 }

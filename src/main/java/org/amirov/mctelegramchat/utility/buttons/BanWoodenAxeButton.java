@@ -4,6 +4,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.amirov.mctelegramchat.commands.BanInventoryCommand;
+import org.amirov.mctelegramchat.gui.ConfirmationGUIConstants;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -17,7 +18,6 @@ import java.util.ArrayList;
 public final class BanWoodenAxeButton {
 
 //<editor-fold default-state="collapsed" desc="Private Constants">
-    private static final int ITEM_AMOUNT = 1;
     private static final TextComponent ITEM_TITLE = Component.text(
             "Ban", NamedTextColor.DARK_GREEN);
     private static final ArrayList<TextComponent> loreList = new ArrayList<>();
@@ -35,7 +35,7 @@ public final class BanWoodenAxeButton {
      * @return Custom wooden axe item.
      */
     public static @NotNull ItemStack getBanWoodenAxe() {
-        final ItemStack item = new ItemStack(Material.WOODEN_AXE, ITEM_AMOUNT);
+        final ItemStack item = new ItemStack(Material.WOODEN_AXE, ConfirmationGUIConstants.BUTTON_AMOUNT.getValue());
         final ItemMeta itemMeta = getBanWoodenAxeMeta(item);
         item.setItemMeta(itemMeta);
         return item;

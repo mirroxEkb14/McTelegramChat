@@ -1,6 +1,8 @@
 package org.amirov.mctelegramchat.listeners.performers;
 
-import org.amirov.mctelegramchat.commands.performers.LockManagerGUI;
+import org.amirov.mctelegramchat.gui.*;
+import org.amirov.mctelegramchat.logging.Loggers;
+import org.amirov.mctelegramchat.logging.LoggingMessage;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
@@ -24,15 +26,15 @@ public final class LockManagerInventoryPerformer {
                                                         @NotNull ItemStack currentItem) {
         event.setCancelled(true);
         if (isManageAccessBtn(currentItem)) {
-
+            LockAccessManagerGUI.openLockAccessManagerGUI(player);
         } else if (isDeleteBtn(currentItem)) {
-
+            LockDeleteConfirmationGUI.openLockDeleteConfirmationGUI(player);
         } else if (isInfoBtn(currentItem)) {
-
-        } else if (isCloseBtn(currentItem)) {
-
+            Loggers.printInfoLog(LoggingMessage.LOCK_ACCESS_MANAGER_INFO_BUTTON_CLICKED.getMessage());
+        } else if (ConfirmationGUIConstants.isCloseButton(currentItem)) {
+            LockListGUI.openLockListGUI(player);
         } else {
-
+            Loggers.printInfoLog(LoggingMessage.LOCK_ACCESS_MANAGER_OTHER_BUTTON_CLICKED.getMessage());
         }
     }
 
@@ -68,16 +70,5 @@ public final class LockManagerInventoryPerformer {
      */
     private static boolean isInfoBtn(@NotNull ItemStack item) {
         return item.getType().equals(LockManagerGUI.getInfoButtonMaterial());
-    }
-
-    /**
-     * Checks either the item a player clicked on was a "close" button.
-     *
-     * @param item Item that was clicked on inside the menu.
-     *
-     * @return {@code true} if that was the case, {@code false} otherwise.
-     */
-    private static boolean isCloseBtn(@NotNull ItemStack item) {
-        return item.getType().equals(LockManagerGUI.getCloseButtonMaterial());
     }
 }

@@ -1,9 +1,10 @@
-package org.amirov.mctelegramchat.commands.performers;
+package org.amirov.mctelegramchat.gui;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.amirov.mctelegramchat.McTelegramChat;
+import org.amirov.mctelegramchat.commands.performers.LockPerformer;
 import org.amirov.mctelegramchat.properties.LockCommandDBProperties;
 import org.bson.Document;
 import org.bukkit.Bukkit;

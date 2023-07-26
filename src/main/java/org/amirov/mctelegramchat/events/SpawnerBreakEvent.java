@@ -1,4 +1,4 @@
-package org.amirov.mctelegramchat.listeners.performers;
+package org.amirov.mctelegramchat.events;
 
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;

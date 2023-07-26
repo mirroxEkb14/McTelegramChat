@@ -1,6 +1,7 @@
 package org.amirov.mctelegramchat.listeners.performers;
 
 import net.kyori.adventure.text.Component;
+import org.amirov.mctelegramchat.gui.ArmoryGUI;
 import org.amirov.mctelegramchat.logging.Loggers;
 import org.amirov.mctelegramchat.logging.LoggingMessage;
 import org.amirov.mctelegramchat.properties.ChatMessage;
@@ -14,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public final class MenuInventoryPerformer {
 
-//<editor-fold default-state="collapsed" desc="Private Constants">
+//<editor-fold default-state="collapsed" desc="Private Static Constants">
     private static boolean isCurrentPlayerFlies = false;
 //</editor-fold>
 
@@ -35,7 +36,7 @@ public final class MenuInventoryPerformer {
             case BREAD -> FeedBreadPerformer.feedPlayer(player);
             case ELYTRA -> makeHimFly(player);
             case SHIELD -> {
-                ArmoryInventoryPerformer.openArmoryInventory(player);
+                ArmoryGUI.openArmoryInventory(player);
                 return;
             }
             case TOTEM_OF_UNDYING -> makeHimGod(player);

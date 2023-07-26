@@ -4,7 +4,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.amirov.mctelegramchat.McTelegramChat;
 import org.amirov.mctelegramchat.commands.LockCommand;
-import org.amirov.mctelegramchat.commands.performers.LockConformationGUI;
+import org.amirov.mctelegramchat.gui.LockConfirmationGUI;
 import org.amirov.mctelegramchat.commands.performers.LockPerformer;
 import org.amirov.mctelegramchat.logging.Loggers;
 import org.amirov.mctelegramchat.logging.LoggingMessage;
@@ -48,7 +48,7 @@ public final class LockConfirmationInventoryPerformer {
      * @return {@code true} if it was a "no" button, {@code false} otherwise.
      */
     private static boolean isNoClicked(@NotNull ItemStack item) {
-        return item.getType().equals(LockConformationGUI.getNoButtonMaterial());
+        return item.getType().equals(LockConfirmationGUI.getNoButtonMaterial());
     }
 
     /**
@@ -57,6 +57,6 @@ public final class LockConfirmationInventoryPerformer {
      * @return {@code true} if it was a "yes" button, {@code false} otherwise.
      */
     private static boolean isYesClicked(@NotNull ItemStack item) {
-        return item.getType().equals(LockConformationGUI.getYesButtonMaterial());
+        return item.getType().equals(LockConfirmationGUI.getYesButtonMaterial());
     }
 }

@@ -3,9 +3,7 @@ package org.amirov.mctelegramchat.listeners;
 import net.kyori.adventure.text.Component;
 import org.amirov.mctelegramchat.commands.BanInventoryCommand;
 import org.amirov.mctelegramchat.commands.MenuInventoryCommand;
-import org.amirov.mctelegramchat.commands.performers.LockConformationGUI;
-import org.amirov.mctelegramchat.commands.performers.LockListGUI;
-import org.amirov.mctelegramchat.commands.performers.LockManagerGUI;
+import org.amirov.mctelegramchat.gui.*;
 import org.amirov.mctelegramchat.listeners.performers.*;
 import org.amirov.mctelegramchat.utility.buttons.BackWoolButton;
 import org.bukkit.entity.Player;
@@ -25,12 +23,17 @@ public final class InventoryClickListener implements Listener {
 
 //<editor-fold default-state="collapsed" desc="Private Static Constants">
     private static final Component menuInventoryName = MenuInventoryCommand.getMenuInventoryName();
-    private static final Component armoryInventoryName = ArmoryInventoryPerformer.getArmoryInventoryName();
+    private static final Component armoryInventoryName = ArmoryGUI.getArmoryInventoryName();
     private static final Component banInventoryName = BanInventoryCommand.getBanInventoryName();
-    private static final Component banConfirmationInventoryName = BanInventoryPerformer.getBanInventoryTitle();
-    private static final Component lockConfirmationInventoryName = LockConformationGUI.getInventoryTitle();
+    private static final Component banConfirmationInventoryName = BanInventoryGUI.getBanInventoryTitle();
+    private static final Component lockConfirmationInventoryName = LockConfirmationGUI.getInventoryTitle();
     private static final Component lockListInventoryName = LockListGUI.getInventoryTitle();
     private static final Component lockManagerInventoryName = LockManagerGUI.getInventoryTitle();
+    private static final Component lockDeleteConfirmationInventoryName = LockDeleteConfirmationGUI.getInventoryName();
+    private static final Component lockAccessManagerInventoryName = LockAccessManagerGUI.getInventoryName();
+    private static final Component lockAccessManagerAddInventoryName = PlayersOnlineGUI.getInventoryAddName();
+    private static final Component lockAccessManagerViewInventoryName = ApprovedPlayerListGUI.getInventoryName();
+    private static final Component lockAccessManagerRemoveInventoryName = PlayersOnlineGUI.getInventoryRemoveName();
 //</editor-fold>
 
     /**
@@ -62,7 +65,7 @@ public final class InventoryClickListener implements Listener {
         if (currentInventoryTitle.equals(menuInventoryName)) {
             MenuInventoryPerformer.performMenuInventoryClick(event, currentItem, player);
         } else if (currentInventoryTitle.equals(banInventoryName)) {
-            BanInventoryPerformer.performBanInventoryClick(event, player, currentItem);
+            BanInventoryGUI.performBanInventoryClick(event, player, currentItem);
         } else if (currentInventoryTitle.equals(banConfirmationInventoryName)) {
             BanConfirmationInventoryPerformer.performBanConfirmationInventoryClick(event, player, currentItem);
         } else if (currentInventoryTitle.equals(lockConfirmationInventoryName)) {
@@ -71,6 +74,16 @@ public final class InventoryClickListener implements Listener {
             LockListInventoryPerformer.performLockListInventoryClick(event, player, currentItem);
         } else if (currentInventoryTitle.equals(lockManagerInventoryName)) {
             LockManagerInventoryPerformer.performLockManagerInventoryClick(event, player, currentItem);
+        } else if (currentInventoryTitle.equals(lockDeleteConfirmationInventoryName)) {
+            LockDeleteConfirmationPerformer.performLockDeleteConfirmationClick(event, player, currentItem);
+        } else if (currentInventoryTitle.equals(lockAccessManagerInventoryName)) {
+            LockAccessManagerPerformer.performLockAccessManagerClick(event, player, currentItem);
+        } else if (currentInventoryTitle.equals(lockAccessManagerAddInventoryName)) {
+            LockAccessManagerAddPerformer.performLockAccessManagerAddClick(event, player, currentItem);
+        } else if (currentInventoryTitle.equals(lockAccessManagerViewInventoryName)) {
+            LockAccessManagerViewPerformer.performLockAccessManagerViewClick(event, player, currentItem);
+        } else if (currentInventoryTitle.equals(lockAccessManagerRemoveInventoryName)) {
+            LockAccessManagerDeletePerformer.performLockAccessManagerDeleteClick(event, player, currentItem);
         }
     }
 }

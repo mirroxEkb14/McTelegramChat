@@ -1,9 +1,8 @@
-package org.amirov.mctelegramchat.listeners.performers;
+package org.amirov.mctelegramchat.gui;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
-import org.amirov.mctelegramchat.listeners.InventoryClickListener;
 import org.amirov.mctelegramchat.utility.buttons.BanBarrierButton;
 import org.amirov.mctelegramchat.utility.buttons.BanWoodenAxeButton;
 import org.amirov.mctelegramchat.utility.PlayerHeadUtils;
@@ -18,9 +17,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 /**
- * The methods of this performer class process an inventory click caught by {@link InventoryClickListener}.
+ * Opens a ban menu.
  */
-public final class BanInventoryPerformer {
+public final class BanInventoryGUI {
 
 //<editor-fold default-state="collapsed" desc="Private Constants">
     private static final int INVENTORY_SIZE = 9;

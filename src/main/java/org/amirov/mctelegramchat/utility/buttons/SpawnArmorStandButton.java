@@ -3,6 +3,7 @@ package org.amirov.mctelegramchat.utility.buttons;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
+import org.amirov.mctelegramchat.gui.ConfirmationGUIConstants;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -16,7 +17,6 @@ import java.util.ArrayList;
 public final class SpawnArmorStandButton {
 
 //<editor-fold default-state="collapsed" desc="Private Constants">
-    private static final int ITEM_AMOUNT = 1;
     private static final TextComponent ITEM_TITLE = Component.text(
             "Armor Stand", NamedTextColor.WHITE);
     private static final ArrayList<TextComponent> loreList = new ArrayList<>();
@@ -35,7 +35,7 @@ public final class SpawnArmorStandButton {
      * @return Custom armor stand item.
      */
     public static @NotNull ItemStack getSpawnArmorStand() {
-        final ItemStack item = new ItemStack(Material.ARMOR_STAND, ITEM_AMOUNT);
+        final ItemStack item = new ItemStack(Material.ARMOR_STAND, ConfirmationGUIConstants.BUTTON_AMOUNT.getValue());
         final ItemMeta itemMeta = getCustomArmorStandMeta(item);
         item.setItemMeta(itemMeta);
         return item;

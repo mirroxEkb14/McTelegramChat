@@ -1,6 +1,6 @@
 package org.amirov.mctelegramchat.listeners;
 
-import org.amirov.mctelegramchat.listeners.performers.SpawnerBreakEvent;
+import org.amirov.mctelegramchat.events.SpawnerBreakEvent;
 import org.bukkit.Material;
 import org.bukkit.block.CreatureSpawner;
 import org.bukkit.event.EventHandler;

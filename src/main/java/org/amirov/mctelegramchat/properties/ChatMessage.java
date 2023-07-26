@@ -45,7 +45,13 @@ public enum ChatMessage {
     TRIED_TO_OPEN_LOCKED_CHEST_OWNER("You own Chest"),
     TRIED_TO_OPEN_LOCKED_CHEST_THIEF("Chest locked by "),
     TRIED_TO_BREAK_LOCKED_CHEST_THIEF("Cannot be broken due to locking"),
-    ON_COMMAND_LOCK_DELETE("Lock been deleted");
+    ON_COMMAND_LOCK_DELETE("Lock been deleted"),
+    ON_LOCK_DELETED("You Deleted The Lock"),
+    ON_LOCK_VIEW_PLAYERS_NO_PLAYERS("You Didn't Add Players"),
+    ON_LOCK_ADD_PLAYER_YOU_ADDED_TO_LOCK(" Was Added To The Lock"),
+    ON_LOCK_ADD_PLAYER_YOU_WERE_ADDED_TO_LOCK(" Granted You Access To The Lock"),
+    ON_LOCK_ADD_PLAYER_YOU_DELETED_FROM_LOCK(" Was Deleted From The Lock"),
+    ON_LOCK_ADD_PLAYER_YOU_WERE_DELETED_FROM_LOCK(" Deleted You From The Lock");
 
     private final String message;
 
