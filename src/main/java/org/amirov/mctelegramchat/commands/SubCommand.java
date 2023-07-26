@@ -1,4 +1,4 @@
-package org.amirov.mctelegramchat.commands.subcommands.management;
+package org.amirov.mctelegramchat.commands;
 
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;

@@ -1,55 +1,74 @@
-package org.amirov.mctelegramchat.commands;
+package org.amirov.mctelegramchat.commands.cmdquartermaster;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.amirov.mctelegramchat.McTelegramChat;
+import org.amirov.mctelegramchat.commands.SubCommand;
 import org.amirov.mctelegramchat.gui.LockConfirmationGUI;
 import org.amirov.mctelegramchat.commands.performers.LockPerformer;
 import org.amirov.mctelegramchat.properties.ChatMessage;
+import org.amirov.mctelegramchat.properties.ConfigProperty;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
  * If a player looking at a chest does {@code /lock} it should bring him an interface asking the player if he wants
  * to lock that chest.
  */
-public final class LockCommand implements CommandExecutor {
+public final class LockCommand extends SubCommand {
 
 //<editor-fold default-state="collapsed" desc="Private Static Constants">
+    private static final String LOCK_COMMAND_NAME = "lock";
+    private static final String LOCK_COMMAND_DESC = "Locks a Chest";
+    private static final String LOCK_COMMAND_SYNTAX = "/qm lock";
+
     private static final int MAX_VIEW_RANGE = 5;
 //</editor-fold>
 
     @Override
-    public boolean onCommand(@NotNull CommandSender sender,
-                             @NotNull Command command,
-                             @NotNull String label,
-                             @NotNull String[] args) {
-        if (sender instanceof Player player) {
-            if (isBlockAtCertainRangeNull(player)) { return true; }
-            final Block target = player.getTargetBlockExact(MAX_VIEW_RANGE);
-            Objects.requireNonNull(target);
-            if (isChest(target)) {
+    public @NotNull String getName() { return LOCK_COMMAND_NAME; }
+
+    @Override
+    public @NotNull String getDescription() { return LOCK_COMMAND_DESC; }
+
+    @Override
+    public @NotNull String getSyntax() { return LOCK_COMMAND_SYNTAX; }
+
+    @Override
+    public void perform(@NotNull Player performer, String[] args) {
+        if (isBlockAtCertainRangeNull(performer)) {
+            performer.sendMessage(Component.text(
+                    ChatMessage.ON_COMMAND_LOCK_WRONG_DISTANCE.getMessage(), NamedTextColor.GRAY));
+            return;
+        }
+        final Block target = performer.getTargetBlockExact(MAX_VIEW_RANGE);
+        Objects.requireNonNull(target);
+
+        final List<String> lockableBlocks =
+                McTelegramChat.getPlugin().getConfig().getStringList(ConfigProperty.LOCKABLE_BLOCKS.getKeyName());
+        for (String lockableBlock : lockableBlocks) {
+            if (isLockableBlock(target, lockableBlock)) {
                 if (LockPerformer.isChestLocked(target)) {
                     final Player chestOwnerPlayer = LockPerformer.getPlayerWhoLocked(target);
-                    if (chestOwnerPlayer.equals(player))
-                        notifyOwnerAboutLock(player);
+                    if (chestOwnerPlayer.equals(performer))
+                        notifyOwnerAboutLock(performer);
                     else
-                        notifyThiefAboutLock(player, chestOwnerPlayer.getName());
+                        notifyThiefAboutLock(performer, chestOwnerPlayer.getName());
                 } else {
-                    LockConfirmationGUI.openLockConfirmationGUI(player);
-                    McTelegramChat.getCreatedLocks().put(player, target);
+                    LockConfirmationGUI.openLockConfirmationGUI(performer);
+                    McTelegramChat.getCreatedLocks().put(performer, target);
                 }
+            } else {
+                performer.sendMessage(Component.text(
+                        ChatMessage.ON_COMMAND_LOCK_WRONG_BLOCK.getMessage(), NamedTextColor.GRAY));
             }
         }
-        return true;
     }
 
     /**
@@ -77,14 +96,15 @@ public final class LockCommand implements CommandExecutor {
     }
 
     /**
-     * Checks if the block passed as a parameter is a chest or not.
+     * Checks if the block passed as a parameter is a block from the "lockable-blocks" list (chest).
      *
-     * @param block Block that is to be checked.
+     * @param targetBlock Block that is to be checked.
+     * @param lockableBlock Block from the list of "lockable-blocks".
      *
      * @return {@code true} if this block is a type of chest, {@code false} otherwise.
      */
-    private boolean isChest(@NotNull Block block) {
-        return block.getType().equals(Material.CHEST);
+    private boolean isLockableBlock(@NotNull Block targetBlock, String lockableBlock) {
+        return targetBlock.getType().equals(Material.valueOf(lockableBlock));
     }
 
     /**

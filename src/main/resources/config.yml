@@ -10,9 +10,9 @@ world-border: true
 border: 2000
 # World name used to get world data
 lobby-world: 'world'
-# enable motd message
+# Enable motd message
 motd: true
-# add and remove lines as needed for motd message
+# Add and remove lines as needed for motd message
 motd-message:
   - '&d&o-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-'
   - ''
@@ -23,7 +23,10 @@ motd-message:
 mongodb-connection-string: connection_string_here
 mongodb-database-name: quartermaster
 mongodb-collection-name: locks
-# enable staffhome teleportation
+# Enable staffhome teleportation
 staffhome-enable: true
-# this section holds all the locations of Temporary Homes
+# Provide a material name for the blocks to be lockable: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
+lockable-blocks:
+  - 'CHEST'
+# This section holds all the locations of Temporary Homes
 savedlocations:

@@ -52,3 +52,6 @@ commands:
   prank:
     description: Contains subcommands with different ways to prank a player
     usage: /<command>
+  quartermaster:
+    description: Manage And Use QuarterMaster Plugin
+    aliases: [qm]

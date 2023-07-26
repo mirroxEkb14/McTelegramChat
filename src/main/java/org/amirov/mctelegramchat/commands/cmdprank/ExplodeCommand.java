@@ -1,10 +1,10 @@
-package org.amirov.mctelegramchat.commands.subcommands;
+package org.amirov.mctelegramchat.commands.cmdprank;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
-import org.amirov.mctelegramchat.commands.subcommands.management.PrankCommandManager;
-import org.amirov.mctelegramchat.commands.subcommands.management.SubCommand;
+import org.amirov.mctelegramchat.commands.CommandUtils;
+import org.amirov.mctelegramchat.commands.SubCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -20,7 +20,7 @@ public final class ExplodeCommand extends SubCommand {
 
 //<editor-fold default-state="collapsed" desc="Private Static Constants">
     private static final String EXPLODE_COMMAND_NAME = "explode";
-    private static final String EXPLODE_COMMAND_DESC = "Explode a player into smithereens";
+    private static final String EXPLODE_COMMAND_DESC = "Explode a Player Into Smithereens";
     private static final String EXPLODE_COMMAND_SYNTAX = "/prank explode <player name>";
 
     private static final int SUBCOMMAND_ARGUMENT_OF_PLAYER_NAME = 1;
@@ -95,7 +95,7 @@ public final class ExplodeCommand extends SubCommand {
     private void sendNotificationToPerformer(@NotNull Player performer) {
         final TextComponent firstMsgPart = Component.text(TO_PERFORMER_NO_NAME_MESSAGE, NamedTextColor.DARK_RED);
         performer.sendMessage(firstMsgPart
-                .append(Component.text(PrankCommandManager.MESSAGE_LINE_DELIMITER))
+                .append(Component.text(CommandUtils.MESSAGE_LINE_DELIMITER))
                 .append(Component.text(getSyntax(), NamedTextColor.LIGHT_PURPLE)));
     }
 

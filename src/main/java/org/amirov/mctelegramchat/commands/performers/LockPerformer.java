@@ -36,7 +36,7 @@ public final class LockPerformer {
      */
     public static void createNewLock(@NotNull Player player, @NotNull Block block) {
         final Document lock = new Document(LockCommandDBProperties.PLAYER_UUID_KEY_NAME.getKey(), player.getUniqueId().toString())
-                .append(LockCommandDBProperties.BLOCK_TYPE_KEY_NAME.getKey(), LockCommandDBProperties.BLOCK_TYPE_VALUE_NAME.getKey())
+                .append(LockCommandDBProperties.BLOCK_TYPE_KEY_NAME.getKey(), block.getType().toString()) // chest
                 .append(LockCommandDBProperties.BLOCK_LOCATION_KEY_NAME.getKey(), getBlockLocationAsDocument(block))
                 .append(LockCommandDBProperties.CREATION_DATE_KEY_NAME.getKey(), new Date())
                 .append(LockCommandDBProperties.ACCESS_KEY_NAME.getKey(), new ArrayList<String>());

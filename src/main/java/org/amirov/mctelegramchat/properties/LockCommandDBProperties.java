@@ -6,7 +6,6 @@ package org.amirov.mctelegramchat.properties;
 public enum LockCommandDBProperties {
     PLAYER_UUID_KEY_NAME("uuid"),
     BLOCK_TYPE_KEY_NAME("type"),
-    BLOCK_TYPE_VALUE_NAME("chest"),
     BLOCK_LOCATION_KEY_NAME("location"),
     CREATION_DATE_KEY_NAME("creation-date"),
     ACCESS_KEY_NAME("access"),

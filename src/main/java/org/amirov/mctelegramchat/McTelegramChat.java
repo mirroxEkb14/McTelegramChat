@@ -5,9 +5,10 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.amirov.mctelegramchat.commands.*;
+import org.amirov.mctelegramchat.commands.cmdquartermaster.management.QuartermasterCommandManager;
 import org.amirov.mctelegramchat.commands.files.ConfigManager;
 import org.amirov.mctelegramchat.commands.properties.CommandName;
-import org.amirov.mctelegramchat.commands.subcommands.management.PrankCommandManager;
+import org.amirov.mctelegramchat.commands.cmdprank.management.PrankCommandManager;
 import org.amirov.mctelegramchat.enchantments.GlowEnchantment;
 import org.amirov.mctelegramchat.enchantments.HemorrhageEnchantment;
 import org.amirov.mctelegramchat.listeners.*;
@@ -114,12 +115,10 @@ public final class McTelegramChat extends JavaPlugin {
         Objects.requireNonNull(staffHomeCommand).setExecutor(new StaffHomeCommand(this));
         final PluginCommand scoreBoardCommand = getCommand(CommandName.SCORE_BOARD_COMMAND.getName());
         Objects.requireNonNull(scoreBoardCommand).setExecutor(new ScoreBoardCommand());
-        final PluginCommand lockCommand = getCommand(CommandName.LOCK_COMMAND.getName());
-        Objects.requireNonNull(lockCommand).setExecutor(new LockCommand());
-        final PluginCommand lockListCommand = getCommand(CommandName.LOCK_LIST_COMMAND.getName());
-        Objects.requireNonNull(lockListCommand).setExecutor(new LockListCommand());
         final PluginCommand prankCommand = getCommand(CommandName.PRANK_COMMAND.getName());
         Objects.requireNonNull(prankCommand).setExecutor(new PrankCommandManager());
+        final PluginCommand quartermasterCommand = getCommand(CommandName.QUARTERMASTER_COMMAND.getName());
+        Objects.requireNonNull(quartermasterCommand).setExecutor(new QuartermasterCommandManager());
     }
 
     /**
@@ -162,18 +161,15 @@ public final class McTelegramChat extends JavaPlugin {
      * @see <a href="https://www.spigotmc.org/threads/custom-enchantments-1-13.346538">Custom Enchantments 1.13+</a>
      */
     private static void registerEnchantment(Enchantment enchantment) {
-        boolean registered = true;
+        final String fieldName = "acceptingNew";
         try {
-            Field f = Enchantment.class.getDeclaredField("acceptingNew");
+            Field f = Enchantment.class.getDeclaredField(fieldName);
             f.setAccessible(true);
             f.set(null, true);
             Enchantment.registerEnchantment(enchantment);
         } catch (Exception e) {
-            registered = false;
+            Loggers.printSevereLog(LoggingMessage.ENCHANTMENT_REGISTRATION_ERROR.getMessage());
             e.printStackTrace();
-        }
-        if(registered){
-            // It's been registered!
         }
     }
 
@@ -183,20 +179,23 @@ public final class McTelegramChat extends JavaPlugin {
      * @see <a href="https://www.spigotmc.org/threads/custom-enchantments-1-13.346538">Custom Enchantments 1.13+</a>
      */
     private static void unregisterEnchantment(Enchantment enchant) {
+        final String keyFieldName = "byKey";
+        final String nameFieldName = "byName";
+        final String uncheckedWarning = "unchecked";
         try {
-            Field keyField = Enchantment.class.getDeclaredField("byKey");
+            Field keyField = Enchantment.class.getDeclaredField(keyFieldName);
 
             keyField.setAccessible(true);
-            @SuppressWarnings("unchecked")
+            @SuppressWarnings(uncheckedWarning)
             HashMap<NamespacedKey, Enchantment> byKey = (HashMap<NamespacedKey, Enchantment>) keyField.get(null);
 
             if(byKey.containsKey(enchant.getKey())) {
                 byKey.remove(enchant.getKey());
             }
-            Field nameField = Enchantment.class.getDeclaredField("byName");
+            Field nameField = Enchantment.class.getDeclaredField(nameFieldName);
 
             nameField.setAccessible(true);
-            @SuppressWarnings("unchecked")
+            @SuppressWarnings(uncheckedWarning)
             HashMap<String, Enchantment> byName = (HashMap<String, Enchantment>) nameField.get(null);
 
             if(byName.containsKey(enchant.getName())) {
@@ -212,8 +211,10 @@ public final class McTelegramChat extends JavaPlugin {
      */
     private void connectToMongoDB() {
         final String connectionString = getConfig().getString(ConfigProperty.MONGODB_CONNECTION_STRING.getKeyName());
-        Objects.requireNonNull(connectionString);
-
+        if (connectionString == null || connectionString.isEmpty()) {
+            Loggers.printSevereLog(LoggingMessage.MONGODB_CONNECTION_STRING_EMPTY.getMessage());
+            return;
+        }
         mongoClient = MongoClients.create(connectionString);
         mongoDatabase = mongoClient.getDatabase(
                 ConfigProperty.MONGODB_DATABASE_NAME.getKeyName());
@@ -234,10 +235,6 @@ public final class McTelegramChat extends JavaPlugin {
     public ArrayList<Player> getInvisibleList() { return INVISIBLE_LIST; }
 
     public static McTelegramChat getPlugin() { return plugin; }
-
-    public static MongoClient getMongoClient() { return mongoClient; }
-
-    public static MongoDatabase getMongoDatabase() { return mongoDatabase; }
 
     public static MongoCollection<Document> getMongoCollection() { return mongoCollection; }
 

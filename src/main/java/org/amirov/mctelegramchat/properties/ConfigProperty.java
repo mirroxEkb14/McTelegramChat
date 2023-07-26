@@ -22,7 +22,8 @@ public enum ConfigProperty {
     SAVED_LOCATIONS("savedlocations"),
     MONGODB_CONNECTION_STRING("mongodb-connection-string"),
     MONGODB_DATABASE_NAME("mongodb-database-name"),
-    MONGODB_COLLECTION_NAME("mongodb-collection-name");
+    MONGODB_COLLECTION_NAME("mongodb-collection-name"),
+    LOCKABLE_BLOCKS("lockable-blocks");
 
     private final String keyName;
 

@@ -28,8 +28,8 @@ public final class LockListGUI {
             "Your locks", NamedTextColor.DARK_RED);
 
     private static final int LOCKED_CHEST_AMOUNT = 1;
-    private static final TextComponent LOCKED_CHEST_NAME = Component.text(
-            "Chest lock", NamedTextColor.GREEN);
+    private static final String LOCK_NAME_DOCUMENT_KEY = "type";
+    private static final String LOCK_NAME_ADDITIONAL_WORD = " Lock";
 
     private static final String DELIMITER_REPRESENTATIVE = "---------------";
     private static final String LOCATION_REPRESENTATIVE = "Location:";
@@ -77,9 +77,12 @@ public final class LockListGUI {
      * @return Chest with the information about the lock.
      */
     private static @NotNull ItemStack getLockItem(@NotNull Document document) {
-        final ItemStack lock = new ItemStack(Material.CHEST, LOCKED_CHEST_AMOUNT);
+        final ItemStack lock = new ItemStack(
+                Material.valueOf(document.getString(LOCK_NAME_DOCUMENT_KEY)),
+                LOCKED_CHEST_AMOUNT);
         ItemMeta lockMeta = lock.getItemMeta();
-        lockMeta.displayName(LOCKED_CHEST_NAME);
+        lockMeta.displayName(Component.text(
+                document.getString(LOCK_NAME_DOCUMENT_KEY) + LOCK_NAME_ADDITIONAL_WORD, NamedTextColor.GREEN));
         final ArrayList<TextComponent> lockLore = getLockLore(document);
         lockMeta.lore(lockLore);
         lock.setItemMeta(lockMeta);
