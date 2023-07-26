@@ -59,6 +59,11 @@ public record ChatListener(SPWBot telegramBot) implements Listener {
     }
 
     /**
+     * Forms and returns a full message to send it to telegram bot.
+     *
+     * @param messageText Formatted message from the game chat.
+     * @param playerName Name of the message sender.
+     *
      * @return MONOSPACED_PLAYER_NAME: PLAYER_MESSAGE.
      */
     private @NotNull

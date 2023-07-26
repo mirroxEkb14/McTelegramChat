@@ -16,8 +16,7 @@ import java.util.ArrayList;
  */
 public final class HemorrhageSword {
 
-//<editor-fold default-state="collapsed" desc="Private Constants">
-    private static final int SWORD_AMOUNT = 1;
+//<editor-fold default-state="collapsed" desc="Private Static Constants">
     private static final TextComponent SWORD_NAME = Component.text(
             "Hemorrhage Sword", NamedTextColor.YELLOW);
     private static final ArrayList<TextComponent> loreList = new ArrayList<>();
@@ -35,7 +34,9 @@ public final class HemorrhageSword {
      * @return Created sword with a custom enchantment of hemorrhage.
      */
     public static @NotNull ItemStack getHemorrhageSword() {
-        final ItemStack hemorrhageSword = new ItemStack(Material.IRON_SWORD, SWORD_AMOUNT);
+        final ItemStack hemorrhageSword = new ItemStack(
+                Material.IRON_SWORD,
+                CustomItemConstants.CUSTOM_ITEM_AMOUNT.getValue());
         hemorrhageSword.addUnsafeEnchantment(
                 HemorrhageEnchantment.getInstance(),
                 HemorrhageEnchantment.getInstance().getMaxLevel());

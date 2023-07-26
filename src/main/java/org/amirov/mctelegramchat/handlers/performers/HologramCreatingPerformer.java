@@ -1,4 +1,4 @@
-package org.amirov.mctelegramchat.listeners.performers;
+package org.amirov.mctelegramchat.handlers.performers;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -12,9 +12,9 @@ import org.jetbrains.annotations.NotNull;
  * <p>
  * In fact, this hologram is just an invisible armor stand with a custom visible name.
  */
-public final class HologramPerformer {
+public final class HologramCreatingPerformer {
 
-//<editor-fold default-state="collapsed" desc="Private Constants">
+//<editor-fold default-state="collapsed" desc="Private Static Constants">
     private static final double SECOND_LINE_X_ANGLE = 0D;
     private static final double SECOND_LINE_Y_ANGLE = -0.5D;
     private static final double SECOND_LINE_Z_ANGLE = 0D;

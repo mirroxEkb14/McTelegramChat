@@ -16,8 +16,7 @@ import java.util.ArrayList;
  */
 public final class UrsineCrossbowUtils {
 
-//<editor-fold default-state="collapsed" desc="Private Constants">
-    private static final int CROSSBOW_AMOUNT = 1;
+//<editor-fold default-state="collapsed" desc="Private Static Constants">
     private static final int MAX_PIERCING_LEVEL = 4;
     private static final int MAX_QUICK_CHARGE_LEVEL = 3;
     private static final TextComponent CROSSBOW_NAME = Component.text(
@@ -36,7 +35,9 @@ public final class UrsineCrossbowUtils {
      * @return Created ursine crossbow.
      */
     public static @NotNull ItemStack getUrsineCrossbow() {
-        final ItemStack ursineCrossbow = new ItemStack(Material.CROSSBOW, CROSSBOW_AMOUNT);
+        final ItemStack ursineCrossbow = new ItemStack(
+                Material.CROSSBOW,
+                CustomItemConstants.CUSTOM_ITEM_AMOUNT.getValue());
         final ItemMeta ursineCrossbowMeta = getUrsineCrossbowMeta(ursineCrossbow);
         ursineCrossbow.setItemMeta(ursineCrossbowMeta);
         return ursineCrossbow;

@@ -23,6 +23,11 @@ import org.jetbrains.annotations.NotNull;
  */
 public record EntityHitListener(Plugin plugin) implements Listener {
 
+    /**
+     * After a player hits an entity, this entity stars glowing and bleeding out.
+     *
+     * @param event Event of an entity getting damaged by another entity.
+     */
     @EventHandler
     public void onEntityHit(@NotNull EntityDamageByEntityEvent event) {
         if (event.getDamager() instanceof Player player) {

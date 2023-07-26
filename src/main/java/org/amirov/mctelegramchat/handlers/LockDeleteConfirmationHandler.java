@@ -15,8 +15,20 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Processes the player's choice, either he really wants to delete this lock or not.
  */
-public final class LockDeleteConfirmationPerformer {
+public final class LockDeleteConfirmationHandler {
 
+    /**
+     * if-else blocks explained:
+     * <ol>
+     * <li> "no" button, the player goes back to the "lock manager" gui.
+     * <li> "yes" button, the player whose head was selected is now deleted from the lock, the player who performed
+     * the deletion is now 
+     * </ol>
+     *
+     * @param event
+     * @param player
+     * @param currentItem
+     */
     public static void performLockDeleteConfirmationClick(@NotNull InventoryClickEvent event,
                                                           @NotNull Player player,
                                                           @NotNull ItemStack currentItem) {

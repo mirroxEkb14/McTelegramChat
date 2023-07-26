@@ -18,8 +18,7 @@ import java.util.Objects;
  */
 public final class SteelSwordUtils {
 
-//<editor-fold default-state="collapsed" desc="Private Constants">
-    private static final int STEEL_SWORD_AMOUNT = 1;
+//<editor-fold default-state="collapsed" desc="Private Static Constants">
     private static final int MAX_SHARPNESS_ENCHANT_LEVEL = 5;
     private static final TextComponent STEEL_SWORD_NAME = Component.text(
             "Teigr", NamedTextColor.GREEN);
@@ -42,7 +41,9 @@ public final class SteelSwordUtils {
      * @return Newly created iron sword of the type of {@link ItemStack}.
      */
     public static @NotNull ItemStack getIronSword() {
-        final ItemStack steelSword = new ItemStack(Material.IRON_SWORD, STEEL_SWORD_AMOUNT);
+        final ItemStack steelSword = new ItemStack(
+                Material.IRON_SWORD,
+                CustomItemConstants.CUSTOM_ITEM_AMOUNT.getValue());
         final ItemMeta steelSwordMeta = getSteelSwordMetaData(steelSword);
         steelSword.setItemMeta(steelSwordMeta);
         return steelSword;
@@ -65,8 +66,4 @@ public final class SteelSwordUtils {
 
         return steelSwordMeta;
     }
-
-//<editor-fold default-state="collapsed" desc="Getters">
-    public static TextComponent getSteelSwordName() { return STEEL_SWORD_NAME; }
-//</editor-fold>
 }

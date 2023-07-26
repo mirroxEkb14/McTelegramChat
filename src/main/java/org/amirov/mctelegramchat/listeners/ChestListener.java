@@ -98,22 +98,22 @@ public final class ChestListener implements Listener {
     /**
      * Determines either the passed block is a type of chest or not.
      *
-     * @param b Block that was clicked on.
+     * @param block Block that was clicked on.
      *
      * @return {@code true} if this block is a chest, {@code false} otherwise.
      */
-    private boolean isBlockChest(@NotNull Block b) {
-        return b.getType().equals(Material.CHEST);
+    private boolean isBlockChest(@NotNull Block block) {
+        return block.getType().equals(Material.CHEST);
     }
 
     /**
      * Determines either the player right-clicked or not.
      *
-     * @param e Event that a player triggered by interacting with something.
+     * @param event Event that a player triggered by interacting with something.
      *
      * @return {@code true} if this is an event of a right-click, {@code false} otherwise.
      */
-    private boolean playerRightClicked(@NotNull PlayerInteractEvent e) {
-        return e.getAction().equals(Action.RIGHT_CLICK_BLOCK);
+    private boolean playerRightClicked(@NotNull PlayerInteractEvent event) {
+        return event.getAction().equals(Action.RIGHT_CLICK_BLOCK);
     }
 }

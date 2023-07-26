@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public final class SpawnerBreakEvent extends Event {
 
-//<editor-fold default-state="collapsed" desc="Private Constants">
+//<editor-fold default-state="collapsed" desc="Private Static Constants">
     private static final HandlerList handlers = new HandlerList();
 //</editor-fold>
 

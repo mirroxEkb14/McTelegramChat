@@ -1,19 +1,11 @@
 package org.amirov.mctelegramchat.commands;
 
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.TextComponent;
-import net.kyori.adventure.text.format.NamedTextColor;
-import org.amirov.mctelegramchat.utility.PlayerHeadUtils;
-import org.bukkit.Bukkit;
+import org.amirov.mctelegramchat.gui.BanListGUI;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.ArrayList;
 
 /**
  * Opens an inventory with the heads of the players on the server currently online.
@@ -21,11 +13,6 @@ import java.util.ArrayList;
  * Singleton class.
  */
 public final class BanInventoryCommand implements CommandExecutor {
-
-//<editor-fold default-state="collapsed" desc="Private Constants">
-    private static final int INVENTORY_SIZE = 45;
-    private static final TextComponent INVENTORY_NAME = Component.text("Player list", NamedTextColor.BLUE);
-//</editor-fold>
 
     private static BanInventoryCommand instance;
 
@@ -56,19 +43,7 @@ public final class BanInventoryCommand implements CommandExecutor {
      * @param sender Player who performed the click.
      */
     public void onCommand(@NotNull CommandSender sender) {
-        if (sender instanceof Player player) {
-            final ArrayList<Player> playerList = new ArrayList<>(player.getServer().getOnlinePlayers());
-            final Inventory banInventory = Bukkit.createInventory(player, INVENTORY_SIZE, INVENTORY_NAME);
-
-            for (Player currentPlayer : playerList) {
-                final ItemStack playerHead = PlayerHeadUtils.getPlayerHead(currentPlayer);
-                banInventory.addItem(playerHead);
-            }
-            player.openInventory(banInventory);
-        }
+        if (sender instanceof Player player)
+            BanListGUI.openBanListGUI(player);
     }
-
-//<editor-fold default-state="collapsed" desc="Getters">
-    public static TextComponent getBanInventoryName() { return INVENTORY_NAME; }
-//</editor-fold>
 }

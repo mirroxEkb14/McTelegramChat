@@ -15,8 +15,7 @@ import java.util.ArrayList;
  */
 public final class HologramAmethystShardUtils {
 
-//<editor-fold default-state="collapsed" desc="Private Constants">
-    private static final int ITEM_AMOUNT = 1;
+//<editor-fold default-state="collapsed" desc="Private Static Constants">
     private static final TextComponent ITEM_TITLE = Component.text(
             "Hologram", NamedTextColor.BLUE);
     private static final ArrayList<TextComponent> loreList = new ArrayList<>();
@@ -34,7 +33,9 @@ public final class HologramAmethystShardUtils {
      * @return Custom amethyst shard item.
      */
     public static @NotNull ItemStack getHologramAmethystShard() {
-        final ItemStack item = new ItemStack(Material.AMETHYST_SHARD, ITEM_AMOUNT);
+        final ItemStack item = new ItemStack(
+                Material.AMETHYST_SHARD,
+                CustomItemConstants.CUSTOM_ITEM_AMOUNT.getValue());
         final ItemMeta itemMeta = getHologramAmethystShardMeta(item);
         item.setItemMeta(itemMeta);
         return item;

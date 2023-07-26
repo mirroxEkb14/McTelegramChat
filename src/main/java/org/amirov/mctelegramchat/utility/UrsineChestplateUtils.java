@@ -16,8 +16,7 @@ import java.util.ArrayList;
  */
 public final class UrsineChestplateUtils {
 
-//<editor-fold default-state="collapsed" desc="Private Constants">
-    private static final int CHESTPLATE_AMOUNT = 1;
+//<editor-fold default-state="collapsed" desc="Private Static Constants">
     private static final int MAX_PROJECTILE_PROTECTION_LEVEL = 4;
     private static final TextComponent CHESTPLATE_NAME = Component.text(
             "Mastercrafted Legendary Ursine Armor", NamedTextColor.BLUE);
@@ -36,7 +35,9 @@ public final class UrsineChestplateUtils {
      * @return Created a unique armor.
      */
     public static @NotNull ItemStack getUrsineChestplate() {
-        final ItemStack chestplate = new ItemStack(Material.NETHERITE_CHESTPLATE, CHESTPLATE_AMOUNT);
+        final ItemStack chestplate = new ItemStack(
+                Material.NETHERITE_CHESTPLATE,
+                CustomItemConstants.CUSTOM_ITEM_AMOUNT.getValue());
         final ItemMeta chestplateMeta = getUrsineChestplateMeta(chestplate);
         chestplate.setItemMeta(chestplateMeta);
         return chestplate;

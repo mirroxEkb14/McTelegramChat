@@ -131,6 +131,8 @@ public record PlayerJoinListener(McTelegramChat plugin) implements Listener {
      * Called when a player respawns.
      * <p>
      * When a player dies, respawns him at the spawn point if it is set in the "config.yml" file.
+     *
+     * @param event Event of a player respawning.
      */
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent event) {

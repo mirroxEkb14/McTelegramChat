@@ -1,7 +1,7 @@
-package org.amirov.mctelegramchat.listeners.performers;
+package org.amirov.mctelegramchat.handlers;
 
 import org.amirov.mctelegramchat.commands.BanInventoryCommand;
-import org.amirov.mctelegramchat.gui.BanInventoryGUI;
+import org.amirov.mctelegramchat.gui.BanConfirmationGUI;
 import org.amirov.mctelegramchat.gui.ConfirmationGUIConstants;
 import org.amirov.mctelegramchat.listeners.properties.BanReason;
 import org.amirov.mctelegramchat.logging.Loggers;
@@ -19,22 +19,31 @@ import java.util.Date;
 /**
  * Processes the player's choice in the ban confirmation menu, either he wants to ban the chosen player or not.
  */
-public final class BanConfirmationInventoryPerformer {
+public final class BanConfirmationHandler {
 
+//<editor-fold default-state="collapsed" desc="Private Static Constants">
     /**
      * The variable represents time in milliseconds for which a player will be banned.
      * <p>
      * The value is 5 seconds.
      */
     private static final long EXPIRES_TIME = 5_000L;
+//</editor-fold>
 
+    /**
+     * Depending on either the player clicked on the wooden axe or a close button, this method processes these cases
+     * and either bans the previously selected player or closes this inventory gui.
+     *
+     * @param event Event of a player clicking an inventory item.
+     * @param currentItem Item that was clicked on.
+     * @param player Player who performed the click.
+     */
     public static void performBanConfirmationInventoryClick(@NotNull InventoryClickEvent event,
                                                             @NotNull Player player,
                                                             @NotNull ItemStack currentItem) {
         event.setCancelled(true);
 
         final Material banWoodenAxe = BanWoodenAxeButton.getBanWoodenAxe().getType();
-
         if (currentItem.getType() == banWoodenAxe)
             performBan(player);
         else if (ConfirmationGUIConstants.isCloseButton(currentItem))
@@ -52,7 +61,7 @@ public final class BanConfirmationInventoryPerformer {
      * @param player Player who is to be banned.
      */
     private static void performBan(final @NotNull Player player) {
-        final String playerToBanName = BanInventoryGUI.getCurrentPlayerToBanName();
+        final String playerToBanName = BanConfirmationGUI.getCurrentPlayerToBanName();
         final Date expires = new Date();
         expires.setTime(new Date().getTime() + EXPIRES_TIME);
 

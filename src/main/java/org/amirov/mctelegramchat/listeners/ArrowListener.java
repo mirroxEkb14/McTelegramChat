@@ -25,11 +25,16 @@ import java.util.Objects;
  */
 public record ArrowListener(McTelegramChat plugin) implements Listener {
 
-//<editor-fold default-state="collapsed" desc="Private Constants">
+//<editor-fold default-state="collapsed" desc="Private Static Constants">
     private static final float soundVolume = 1.0f;
     private static final float soundPitch = 1.0f;
 //</editor-fold>
 
+    /**
+     * Teleports a player to the point where the arrow landed.
+     *
+     * @param event Event of a projectile hitting an object.
+     */
     @EventHandler
     public void onArrowLand(ProjectileHitEvent event) {
         if (isArrow(event) && shotByPlayer(event)) {
@@ -47,58 +52,58 @@ public record ArrowListener(McTelegramChat plugin) implements Listener {
      * Teleport a player to the arrow landing location, removes the arrow itself, sends a message to this player and
      * plays a sound at the location where a player was teleported to.
      *
-     * @param e Event of an arrow landing.
-     * @param p Player who shot this arrow.
+     * @param event Event of an arrow landing.
+     * @param player Player who shot this arrow.
      */
-    private void teleportToArrowLocation(@NotNull ProjectileHitEvent e, @NotNull Player p) {
-        final Location location = e.getEntity().getLocation();
-        p.teleport(location);
-        e.getEntity().remove();
-        p.sendMessage(Component.text(ChatMessage.ON_ARROW_LANDING_TELEPORT.getMessage()));
-        p.playSound(p, Sound.ENTITY_ARROW_HIT, soundVolume, soundPitch);
+    private void teleportToArrowLocation(@NotNull ProjectileHitEvent event, @NotNull Player player) {
+        final Location location = event.getEntity().getLocation();
+        player.teleport(location);
+        event.getEntity().remove();
+        player.sendMessage(Component.text(ChatMessage.ON_ARROW_LANDING_TELEPORT.getMessage()));
+        player.playSound(player, Sound.ENTITY_ARROW_HIT, soundVolume, soundPitch);
     }
 
     /**
      * Creates an {@link Entity} of a lightning that hits the location where the arrow was shot.
      *
-     * @param e Event when an arrow is landing.
-     * @param p Player shot this arrow.
+     * @param event Event when an arrow is landing.
+     * @param player Player shot this arrow.
      */
-    private void hitLightningAtArrowLocation(@NotNull ProjectileHitEvent e, @NotNull Player p) {
-        final Location arrowLocation = e.getEntity().getLocation();
-        p.getWorld().spawnEntity(arrowLocation, EntityType.LIGHTNING);
+    private void hitLightningAtArrowLocation(@NotNull ProjectileHitEvent event, @NotNull Player player) {
+        final Location arrowLocation = event.getEntity().getLocation();
+        player.getWorld().spawnEntity(arrowLocation, EntityType.LIGHTNING);
 
-        p.sendMessage(Component.text(ChatMessage.ON_ARROW_LANDING_LIGHTNING.getMessage(), NamedTextColor.BLUE));
+        player.sendMessage(Component.text(ChatMessage.ON_ARROW_LANDING_LIGHTNING.getMessage(), NamedTextColor.BLUE));
     }
 
     /**
      * Checks if the projectile is an arrow.
      *
-     * @param e Projectile event.
+     * @param event Projectile event.
      * @return {@code true} if it is an arrow, {@code false} otherwise.
      */
-    private boolean isArrow(@NotNull ProjectileHitEvent e) {
-        return e.getEntity().getType() == EntityType.ARROW;
+    private boolean isArrow(@NotNull ProjectileHitEvent event) {
+        return event.getEntity().getType() == EntityType.ARROW;
     }
 
     /**
      * Checks if the projectile event was triggered by a player.
      *
-     * @param e Projectile event.
+     * @param event Projectile event.
      * @return {@code true} if it is a player, {@code false} otherwise.
      */
-    private boolean shotByPlayer(@NotNull ProjectileHitEvent e) {
-        return e.getEntity().getShooter() instanceof Player;
+    private boolean shotByPlayer(@NotNull ProjectileHitEvent event) {
+        return event.getEntity().getShooter() instanceof Player;
     }
 
     /**
      * Checks if a player was holding a teleport bow when he shot an arrow.
      *
-     * @param i Item in the player's main hand.
+     * @param item Item in the player's main hand.
      * @return {@code true} if it is a teleport bow, {@code false} otherwise.
      */
-    private boolean isTeleportBow(@NotNull ItemStack i) {
-        final ItemMeta itemMeta = i.getItemMeta();
+    private boolean isTeleportBow(@NotNull ItemStack item) {
+        final ItemMeta itemMeta = item.getItemMeta();
         if (itemMeta == null) return false;
 
         final Component itemComponent = itemMeta.displayName();
@@ -109,11 +114,11 @@ public record ArrowListener(McTelegramChat plugin) implements Listener {
     /**
      * Checks if a player was holding a lighting crossbow when he shot an arrow.
      *
-     * @param i Item in the player's main hand.
+     * @param item Item in the player's main hand.
      * @return {@code true} if it is a lighting crossbow, {@code false} otherwise.
      */
-    private boolean isLightingCrossbow(@NotNull ItemStack i) {
-        final ItemMeta itemMeta = i.getItemMeta();
+    private boolean isLightingCrossbow(@NotNull ItemStack item) {
+        final ItemMeta itemMeta = item.getItemMeta();
         if (itemMeta == null) return false;
 
         final Component itemComponent = itemMeta.displayName();

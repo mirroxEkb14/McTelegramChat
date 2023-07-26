@@ -16,8 +16,7 @@ import java.util.ArrayList;
  */
 public final class SilverSwordUtils {
 
-//<editor-fold default-state="collapsed" desc="Private Constants">
-    private static final int SILVER_SWORD_AMOUNT = 1;
+//<editor-fold default-state="collapsed" desc="Private Static Constants">
     private static final int MAX_LOOTING_LEVEL = 3;
     private static final TextComponent SILVER_SWORD_NAME = Component.text(
             "Ursine silver sword", NamedTextColor.GREEN);
@@ -36,7 +35,9 @@ public final class SilverSwordUtils {
      * @return Created unique silver sword.
      */
     public static @NotNull ItemStack getNetheriteSword() {
-        final ItemStack netheriteSword = new ItemStack(Material.NETHERITE_SWORD, SILVER_SWORD_AMOUNT);
+        final ItemStack netheriteSword = new ItemStack(
+                Material.NETHERITE_SWORD,
+                CustomItemConstants.CUSTOM_ITEM_AMOUNT.getValue());
         final ItemMeta netheriteSwordMeta = getNetheriteSwordMeta(netheriteSword);
         netheriteSword.setItemMeta(netheriteSwordMeta);
         return netheriteSword;

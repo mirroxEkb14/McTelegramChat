@@ -4,8 +4,8 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.amirov.mctelegramchat.gui.ArmoryGUI;
-import org.amirov.mctelegramchat.gui.ConfirmationGUIConstants;
-import org.amirov.mctelegramchat.listeners.performers.MenuInventoryPerformer;
+import org.amirov.mctelegramchat.handlers.MainMenuHandler;
+import org.amirov.mctelegramchat.utility.CustomItemConstants;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -18,11 +18,11 @@ import java.util.ArrayList;
  * <p>
  * Usage example:
  * <br>
- * After clicking on this button the player goes back from {@link  ArmoryGUI} to {@link MenuInventoryPerformer}.
+ * After clicking on this button the player goes back from {@link  ArmoryGUI} to {@link MainMenuHandler}.
  */
-public class BackWoolButton {
+public final class BackWoolButton {
 
-//<editor-fold default-state="collapsed" desc="Private Constants">
+//<editor-fold default-state="collapsed" desc="Private Static Constants">
     private static final TextComponent ITEM_TITLE = Component.text(
             "Wool Button", NamedTextColor.RED);
     private static final ArrayList<TextComponent> loreList = new ArrayList<>();
@@ -40,7 +40,9 @@ public class BackWoolButton {
      * @return Custom red wool item.
      */
     public static @NotNull ItemStack getBackWool() {
-        final ItemStack item = new ItemStack(Material.RED_WOOL, ConfirmationGUIConstants.BUTTON_AMOUNT.getValue());
+        final ItemStack item = new ItemStack(
+                Material.RED_WOOL,
+                CustomItemConstants.CUSTOM_ITEM_AMOUNT.getValue());
         final ItemMeta itemMeta = getBackWoolMeta(item);
         item.setItemMeta(itemMeta);
         return item;

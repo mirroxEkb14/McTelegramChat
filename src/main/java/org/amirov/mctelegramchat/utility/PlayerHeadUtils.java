@@ -16,8 +16,7 @@ import java.util.ArrayList;
  */
 public final class PlayerHeadUtils {
 
-//<editor-fold default-state="collapsed" desc="Private Constants">
-    private static final int PLAYER_HEAD_AMOUNT = 1;
+//<editor-fold default-state="collapsed" desc="Private Static Constants">
     private static final String PLAYER_HEAD_LORE_HEALTH = "Health: ";
     private static final String PLAYER_HEAD_LORE_EXP = "EXP: ";
     private static final ArrayList<TextComponent> PLAYER_HEAD_LORE = new ArrayList<>();
@@ -30,7 +29,9 @@ public final class PlayerHeadUtils {
      * @return Passed player's head with his stats.
      */
     public static @NotNull ItemStack getPlayerHead(@NotNull Player currentPlayer) {
-        final ItemStack item = new ItemStack(Material.PLAYER_HEAD, PLAYER_HEAD_AMOUNT);
+        final ItemStack item = new ItemStack(
+                Material.PLAYER_HEAD,
+                CustomItemConstants.CUSTOM_ITEM_AMOUNT.getValue());
         final ItemMeta headMeta = getPlayerHeadMeta(item, currentPlayer);
         item.setItemMeta(headMeta);
         return item;
@@ -40,6 +41,8 @@ public final class PlayerHeadUtils {
      * Sets the {@link ItemMeta} for the item and returns it.
      *
      * @param playerHead Item itself.
+     * @param currentPlayer {@link Player} who is currently online for the ban menu.
+     *
      * @return {@link ItemMeta} object with the set name and description of the item.
      */
     private static @NotNull ItemMeta getPlayerHeadMeta(@NotNull ItemStack playerHead, @NotNull Player currentPlayer) {

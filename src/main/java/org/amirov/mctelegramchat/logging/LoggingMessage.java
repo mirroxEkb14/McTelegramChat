@@ -13,7 +13,7 @@ public enum LoggingMessage {
     SENDING_MESSAGE_ERROR("Error Sending a Message to Telegram: %s"),
     MENU_INVENTORY_CMD_WARNING("The 'menu' Command Was Run Through the Command Line"),
     MENU_INVENTORY_COMMAND_BLOCK_WARNING("The 'menu' Command Was Run Through the Command Block"),
-    COMMAND_MENU_WRONG_ITEM_SELECTED("Item That Is Not In GUI Command"),
+    COMMAND_MENU_WRONG_ITEM_SELECTED("Item That Is Not in GUI Command"),
     CREATING_CONFIG_FILE_ERROR("Error While Creating a Config File"),
     SAVING_CONFIG_FILE_ERROR("Config Files Were Not Setup Before Saving"),
     BAN_CONFIRMATION_INVENTORY_WRONG_ITEM("This Item Should Not Be Moved"),

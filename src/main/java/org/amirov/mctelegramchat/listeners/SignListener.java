@@ -11,6 +11,11 @@ import org.jetbrains.annotations.NotNull;
  */
 public final class SignListener implements Listener {
 
+    /**
+     * Spawns a diamond block instead of a sign.
+     *
+     * @param event Event of a sign being changed by a player.
+     */
     @EventHandler
     public void onSignChanged(@NotNull SignChangeEvent event) {
         event.getBlock().setType(Material.DIAMOND_BLOCK);

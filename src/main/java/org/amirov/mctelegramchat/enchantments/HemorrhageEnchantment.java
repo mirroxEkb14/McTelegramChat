@@ -43,6 +43,12 @@ public final class HemorrhageEnchantment extends Enchantment {
         return instance;
     }
 
+//<editor-fold default-state="collapsed" desc="Constructor">
+    public HemorrhageEnchantment() {
+        super(new NamespacedKey(McTelegramChat.getPlugin(), KEY_IDENTIFIER));
+    }
+//</editor-fold>
+
     /**
      * Determines if a player has a weapon with this enchantment or not.
      *
@@ -50,17 +56,12 @@ public final class HemorrhageEnchantment extends Enchantment {
      *
      * @return {@code true} if this player wears a weapon with the hemorrhage enchantment, {@code false} otherwise.
      */
+
     public static boolean entityHasBleedingEnchantment(@NotNull ItemStack item) {
         return item
                 .getEnchantments()
                 .containsKey(Enchantment.getByKey(getInstance().getKey()));
     }
-
-//<editor-fold default-state="collapsed" desc="Constructor">
-    public HemorrhageEnchantment() {
-        super(new NamespacedKey(McTelegramChat.getPlugin(), KEY_IDENTIFIER));
-    }
-//</editor-fold>
 
     @Override
     public @NotNull String getName() { return ENCHANTMENT_NAME; }

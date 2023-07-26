@@ -16,8 +16,7 @@ import java.util.ArrayList;
  */
 public final class MilvaBowUtils {
 
-//<editor-fold default-state="collapsed" desc="Private Constants">
-    private static final int BOW_AMOUNT = 1;
+//<editor-fold default-state="collapsed" desc="Private Static Constants">
     private static final int MAX_ARROW_INFINITE_LEVEL = 1;
     private static final int MAX_ARROW_DAMAGE_LEVEL = 5;
     private static final int MAX_ARROW_FIRE_LEVEL = 1;
@@ -37,7 +36,9 @@ public final class MilvaBowUtils {
      * @return Created unique bow.
      */
     public static @NotNull ItemStack getMilvaBow() {
-        final ItemStack milvaBow = new ItemStack(Material.BOW, BOW_AMOUNT);
+        final ItemStack milvaBow = new ItemStack(
+                Material.BOW,
+                CustomItemConstants.CUSTOM_ITEM_AMOUNT.getValue());
         final ItemMeta milvaBowMeta = getMilvaBowMeta(milvaBow);
         milvaBow.setItemMeta(milvaBowMeta);
         return milvaBow;

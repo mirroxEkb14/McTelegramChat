@@ -19,11 +19,11 @@ public final class SpawnerBreakListener implements Listener {
      * a new spawner that is going to be given to a breaker, after we change item metadata and the block state to
      * equal entity type of the entity that was just broken.
      *
-     * @param e Custom spawner break event.
+     * @param event Custom spawner break event.
      */
     @EventHandler
-    public void onSpawnerBreak(@NotNull SpawnerBreakEvent e) {
-        final CreatureSpawner csBrokenSpawner = (CreatureSpawner) e.getSpawner().getState();
+    public void onSpawnerBreak(@NotNull SpawnerBreakEvent event) {
+        final CreatureSpawner csBrokenSpawner = (CreatureSpawner) event.getSpawner().getState();
 
         final ItemStack spawnerToGive = new ItemStack(Material.SPAWNER);
         final BlockStateMeta metaToGive = (BlockStateMeta) spawnerToGive.getItemMeta();
@@ -33,6 +33,6 @@ public final class SpawnerBreakListener implements Listener {
         metaToGive.setBlockState(csSpawnerToGive);
         spawnerToGive.setItemMeta(metaToGive);
 
-        e.getBreaker().getInventory().addItem(spawnerToGive);
+        event.getBreaker().getInventory().addItem(spawnerToGive);
     }
 }

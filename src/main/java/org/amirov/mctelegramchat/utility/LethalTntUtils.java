@@ -15,8 +15,7 @@ import java.util.ArrayList;
  */
 public final class LethalTntUtils {
 
-//<editor-fold default-state="collapsed" desc="Private Constants">
-    private static final int LETHAL_TNT_AMOUNT = 1;
+//<editor-fold default-state="collapsed" desc="Private Static Constants">
     private static final TextComponent LETHAL_TNT_NAME = Component.text(
             "Suicide", NamedTextColor.DARK_RED);
     private static final ArrayList<TextComponent> loreList = new ArrayList<>();
@@ -34,7 +33,9 @@ public final class LethalTntUtils {
      * @return Created lethal tnt.
      */
     public static @NotNull ItemStack getLethalTnt() {
-        final ItemStack lethalTnt = new ItemStack(Material.TNT, LETHAL_TNT_AMOUNT);
+        final ItemStack lethalTnt = new ItemStack(
+                Material.TNT,
+                CustomItemConstants.CUSTOM_ITEM_AMOUNT.getValue());
         final ItemMeta lethalTntMeta = getLethalTntMeta(lethalTnt);
         lethalTnt.setItemMeta(lethalTntMeta);
         return lethalTnt;

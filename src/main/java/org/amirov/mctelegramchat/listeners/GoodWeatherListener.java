@@ -12,8 +12,13 @@ import org.jetbrains.annotations.NotNull;
  */
 public final class GoodWeatherListener implements Listener {
 
+    /**
+     * Weather doesn't ever change.
+     *
+     * @param event Event of the weather changing in the world.
+     */
     @EventHandler
-    public void onWeatherChange(@NotNull WeatherChangeEvent e) {
-        e.setCancelled(true);
+    public void onWeatherChange(@NotNull WeatherChangeEvent event) {
+        event.setCancelled(true);
     }
 }

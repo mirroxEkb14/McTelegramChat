@@ -35,7 +35,7 @@ import java.util.HashMap;
 import java.util.Objects;
 
 /**
- * Registers the bot, commands and event listeners.
+ * Registers the bot, custom enchantments, commands and event listeners.
  *
  * @author zea1ot 6/6/2023
  */
@@ -49,14 +49,15 @@ public final class McTelegramChat extends JavaPlugin {
 //</editor-fold>
 
 //<editor-fold default-state="collapsed" desc="Private Static Constants">
+    /**
+     * This {@link HashMap} holds a player as a key and his lock as a value.
+     */
     private static final HashMap<Player, Block> createdLocks = new HashMap<>();
 //</editor-fold>
 
 //<editor-fold default-state="collapsed" desc="Private Static Instance Variables">
     private static McTelegramChat plugin;
 
-    private static MongoClient mongoClient;
-    private static MongoDatabase mongoDatabase;
     private static MongoCollection<Document> mongoCollection;
 //</editor-fold>
 
@@ -158,6 +159,8 @@ public final class McTelegramChat extends JavaPlugin {
     /**
      * Registers the custom enchantment.
      *
+     * @param enchantment Custom enchantment to be registered.
+     *
      * @see <a href="https://www.spigotmc.org/threads/custom-enchantments-1-13.346538">Custom Enchantments 1.13+</a>
      */
     private static void registerEnchantment(Enchantment enchantment) {
@@ -175,6 +178,8 @@ public final class McTelegramChat extends JavaPlugin {
 
     /**
      * Unregisters the custom enchantment.
+     *
+     * @param enchant Custom enchantment to be unregistered.
      *
      * @see <a href="https://www.spigotmc.org/threads/custom-enchantments-1-13.346538">Custom Enchantments 1.13+</a>
      */
@@ -215,8 +220,8 @@ public final class McTelegramChat extends JavaPlugin {
             Loggers.printSevereLog(LoggingMessage.MONGODB_CONNECTION_STRING_EMPTY.getMessage());
             return;
         }
-        mongoClient = MongoClients.create(connectionString);
-        mongoDatabase = mongoClient.getDatabase(
+        MongoClient mongoClient = MongoClients.create(connectionString);
+        MongoDatabase mongoDatabase = mongoClient.getDatabase(
                 ConfigProperty.MONGODB_DATABASE_NAME.getKeyName());
         mongoCollection = mongoDatabase.getCollection(
                 ConfigProperty.MONGODB_COLLECTION_NAME.getKeyName());

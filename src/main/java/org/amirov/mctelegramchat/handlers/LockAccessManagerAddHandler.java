@@ -1,4 +1,4 @@
-package org.amirov.mctelegramchat.listeners.performers;
+package org.amirov.mctelegramchat.handlers;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -16,8 +16,19 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Processes cases when a player wants to add another players for them to be able to access his locked chests.
  */
-public final class LockAccessManagerAddPerformer {
+public final class LockAccessManagerAddHandler {
 
+    /**
+     * If-else blocks explained:
+     * <ol>
+     * <li> {@code if} the player clicked on the "close" button, he goes back to the "lock access manager" gui.
+     * <li> {@code else if} the player clicked on the "player head", the logic of adding a new player to the lock performs.
+     * </ol>
+     *
+     * @param event Event of a player clicking in an inventory.
+     * @param player Player who performed the click.
+     * @param currentItem Item that was clicked on.
+     */
     public static void performLockAccessManagerAddClick(@NotNull InventoryClickEvent event,
                                                         @NotNull Player player,
                                                         @NotNull ItemStack currentItem) {

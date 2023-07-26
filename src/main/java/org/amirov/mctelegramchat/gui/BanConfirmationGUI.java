@@ -17,16 +17,16 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 /**
- * Opens a ban menu.
+ * Opens a ban confirmation menu.
  */
-public final class BanInventoryGUI {
+public final class BanConfirmationGUI {
 
 //<editor-fold default-state="collapsed" desc="Private Constants">
     private static final int INVENTORY_SIZE = 9;
     private static final int BAN_ITEM_INDEX = 0;
     private static final int PLAYER_HEAD_INDEX = 4;
     private static final int BACK_ITEM_INDEX = 8;
-    private static final TextComponent INVENTORY_TITLE = Component.text(
+    private static final TextComponent INVENTORY_NAME = Component.text(
             "Ban Confirm", NamedTextColor.RED);
 //</editor-fold>
 
@@ -41,15 +41,15 @@ public final class BanInventoryGUI {
      * @param player Player who made the click.
      * @param currentItem Item the player clicked on.
      */
-    public static void performBanInventoryClick(@NotNull InventoryClickEvent event,
-                                                @NotNull Player player,
-                                                @NotNull ItemStack currentItem) {
+    public static void openBanConfirmationGUI(@NotNull InventoryClickEvent event,
+                                              @NotNull Player player,
+                                              @NotNull ItemStack currentItem) {
         if (currentItem.getType() == Material.PLAYER_HEAD) {
             final Player playerToBan = getPlayerToBan(event, player);
             final Inventory emptyConfirmBanMenu = Bukkit.createInventory(
                     player,
                     INVENTORY_SIZE,
-                    INVENTORY_TITLE);
+                    INVENTORY_NAME);
             final Inventory confirmBanMenu = getConfirmBanMenu(emptyConfirmBanMenu, playerToBan);
             player.openInventory(confirmBanMenu);
         }
@@ -97,7 +97,7 @@ public final class BanInventoryGUI {
     }
 
 //<editor-fold default-state="collapsed" desc="Getters">
-    public static TextComponent getBanInventoryTitle() { return INVENTORY_TITLE; }
+    public static TextComponent getInventoryName() { return INVENTORY_NAME; }
 
     public static String getCurrentPlayerToBanName() { return currentPlayerToBanName; }
 //</editor-fold>

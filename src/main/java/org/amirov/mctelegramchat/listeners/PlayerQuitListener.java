@@ -18,6 +18,8 @@ public final class PlayerQuitListener implements Listener {
      * Called when a player leaves a server.
      * <p>
      * Sends a message to the game chat about a player leaving a server.
+     *
+     * @param event Event of a player leaving the server.
      */
     @EventHandler
     public void onPlayerQuit(@NotNull PlayerQuitEvent event) {

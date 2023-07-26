@@ -1,4 +1,4 @@
-package org.amirov.mctelegramchat.listeners.performers;
+package org.amirov.mctelegramchat.handlers.performers;
 
 import org.amirov.mctelegramchat.utility.SilverSwordUtils;
 import org.amirov.mctelegramchat.utility.UrsineChestplateUtils;
@@ -14,6 +14,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public final class SpawnArmorStandPerformer {
 
+//<editor-fold default-state="collapsed" desc="Private Static Constants">
     /**
      * Contains the angles for creating an {@link EulerAngle} object for the head pose of this armor stand.
      *
@@ -28,13 +29,14 @@ public final class SpawnArmorStandPerformer {
     private static final double LEFT_LEG_POSE_X_AXIS = 38D;
     private static final double LEFT_LEG_POSE_Y_AXIS = 0D;
     private static final double LEFT_LEG_POSE_Z_AXIS = 0D;
+//</editor-fold>
 
     /**
      * Spawns a custom armor stand on the block where the player is standing.
      *
      * @param player Player who clicked on the armor stand.
      */
-    public static void spawnArmorStand(@NotNull Player player) {
+    public static void performSpawnArmorStand(@NotNull Player player) {
         final ArmorStand armorStand = (ArmorStand) player.getWorld().spawnEntity(
                 player.getLocation(),
                 EntityType.ARMOR_STAND);

@@ -1,4 +1,4 @@
-package org.amirov.mctelegramchat.listeners.performers;
+package org.amirov.mctelegramchat.handlers;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -17,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * This class processes the "yes" and "no" cases of the {@link LockCommand} depending on the player's choice.
  */
-public final class LockConfirmationInventoryPerformer {
+public final class LockConfirmationHandler {
 
     /**
      * If the player selected {@code yes}, a lock on this chest is created and now it can be opened only by its owner;
@@ -28,9 +28,9 @@ public final class LockConfirmationInventoryPerformer {
      * @param player Player who triggered the event.
      * @param currentItem Item was this player clicked on.
      */
-    public static void performLockConfirmationInventoryClick(@NotNull InventoryClickEvent event,
-                                                             @NotNull Player player,
-                                                             @NotNull ItemStack currentItem) {
+    public static void performLockConfirmationClick(@NotNull InventoryClickEvent event,
+                                                    @NotNull Player player,
+                                                    @NotNull ItemStack currentItem) {
         event.setCancelled(true);
         if (isYesClicked(currentItem)) {
             LockPerformer.createNewLock(player, McTelegramChat.getCreatedLocks().get(player));

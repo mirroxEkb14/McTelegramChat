@@ -16,8 +16,7 @@ import java.util.ArrayList;
  */
 public final class GlowingChestplate {
 
-//<editor-fold default-state="collapsed" desc="Private Constants">
-    private static final int CHESTPLATE_AMOUNT = 1;
+//<editor-fold default-state="collapsed" desc="Private Static Constants">
     private static final TextComponent CHESTPLATE_NAME = Component.text(
             "Glowing Chestplate", NamedTextColor.YELLOW);
     private static final ArrayList<TextComponent> loreList = new ArrayList<>();
@@ -35,7 +34,9 @@ public final class GlowingChestplate {
      * @return Created chestplate with a custom enchantment of glowing.
      */
     public static @NotNull ItemStack getGlowingChestplate() {
-        final ItemStack glowingChestplate = new ItemStack(Material.IRON_CHESTPLATE, CHESTPLATE_AMOUNT);
+        final ItemStack glowingChestplate = new ItemStack(
+                Material.IRON_CHESTPLATE,
+                CustomItemConstants.CUSTOM_ITEM_AMOUNT.getValue());
         glowingChestplate.addUnsafeEnchantment(
                 GlowEnchantment.getInstance(),
                 GlowEnchantment.getInstance().getMaxLevel());

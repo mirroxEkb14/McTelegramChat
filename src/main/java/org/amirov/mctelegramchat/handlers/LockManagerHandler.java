@@ -1,4 +1,4 @@
-package org.amirov.mctelegramchat.listeners.performers;
+package org.amirov.mctelegramchat.handlers;
 
 import org.amirov.mctelegramchat.gui.*;
 import org.amirov.mctelegramchat.logging.Loggers;
@@ -11,25 +11,32 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Processes the events of clicking on items inside the lock manager menu.
  */
-public final class LockManagerInventoryPerformer {
-
+public final class LockManagerHandler {
 
     /**
-     * Player clicks on some item inside the lock manager menu.
+     * if-else blocks explained:
+     * <lo>
+     * <li> "access manager" button, the player opens up a new inventory menu of "lock access manager".
+     * <li> "delete" button, a confirmation gui pops up.
+     * <li> "info" button, nothing happens except a new log to the console.
+     * <li> "close" button, the player goes back to the "lock list" gui.
+     * <li> "glass panel" block was clicked on, a log of this event is printed to the console, for the player nothing
+     * happens.
+     * </lo>
      *
      * @param event Event of a player clicking on some item in this menu.
      * @param player Player who triggered the event.
      * @param currentItem Item that this player clicked on.
      */
-    public static void performLockManagerInventoryClick(@NotNull InventoryClickEvent event,
-                                                        @NotNull Player player,
-                                                        @NotNull ItemStack currentItem) {
+    public static void performLockManagerClick(@NotNull InventoryClickEvent event,
+                                               @NotNull Player player,
+                                               @NotNull ItemStack currentItem) {
         event.setCancelled(true);
-        if (isManageAccessBtn(currentItem)) {
+        if (isManageAccessButton(currentItem)) {
             LockAccessManagerGUI.openLockAccessManagerGUI(player);
-        } else if (isDeleteBtn(currentItem)) {
+        } else if (isDeleteButton(currentItem)) {
             LockDeleteConfirmationGUI.openLockDeleteConfirmationGUI(player);
-        } else if (isInfoBtn(currentItem)) {
+        } else if (isInfoButton(currentItem)) {
             Loggers.printInfoLog(LoggingMessage.LOCK_ACCESS_MANAGER_INFO_BUTTON_CLICKED.getMessage());
         } else if (ConfirmationGUIConstants.isCloseButton(currentItem)) {
             LockListGUI.openLockListGUI(player);
@@ -45,7 +52,7 @@ public final class LockManagerInventoryPerformer {
      *
      * @return {@code true} if that was the case, {@code false} otherwise.
      */
-    private static boolean isManageAccessBtn(@NotNull ItemStack item) {
+    private static boolean isManageAccessButton(@NotNull ItemStack item) {
         return item.getType().equals(LockManagerGUI.getManageAccessName());
     }
 
@@ -57,7 +64,7 @@ public final class LockManagerInventoryPerformer {
      *
      * @return {@code true} if that was the case, {@code false} otherwise.
      */
-    private static boolean isDeleteBtn(@NotNull ItemStack item) {
+    private static boolean isDeleteButton(@NotNull ItemStack item) {
         return item.getType().equals(LockManagerGUI.getDeleteLockButtonMaterial());
     }
 
@@ -68,7 +75,7 @@ public final class LockManagerInventoryPerformer {
      *
      * @return {@code true} if that was the case, {@code false} otherwise.
      */
-    private static boolean isInfoBtn(@NotNull ItemStack item) {
+    private static boolean isInfoButton(@NotNull ItemStack item) {
         return item.getType().equals(LockManagerGUI.getInfoButtonMaterial());
     }
 }

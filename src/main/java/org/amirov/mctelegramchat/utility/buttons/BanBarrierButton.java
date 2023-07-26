@@ -4,7 +4,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.amirov.mctelegramchat.commands.BanInventoryCommand;
-import org.amirov.mctelegramchat.gui.ConfirmationGUIConstants;
+import org.amirov.mctelegramchat.utility.CustomItemConstants;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 public final class BanBarrierButton {
 
-//<editor-fold default-state="collapsed" desc="Private Constants">
+//<editor-fold default-state="collapsed" desc="Private Static Constants">
     private static final TextComponent ITEM_TITLE = Component.text(
             "Back", NamedTextColor.RED);
     private static final ArrayList<TextComponent> loreList = new ArrayList<>();
@@ -35,7 +35,9 @@ public final class BanBarrierButton {
      * @return Custom barrier item.
      */
     public static @NotNull ItemStack getBanBarrier() {
-        final ItemStack item = new ItemStack(Material.BARRIER, ConfirmationGUIConstants.BUTTON_AMOUNT.getValue());
+        final ItemStack item = new ItemStack(
+                Material.BARRIER,
+                CustomItemConstants.CUSTOM_ITEM_AMOUNT.getValue());
         final ItemMeta itemMeta = getBanBarrierMeta(item);
         item.setItemMeta(itemMeta);
         return item;

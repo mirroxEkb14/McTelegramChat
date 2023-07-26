@@ -16,8 +16,7 @@ import java.util.ArrayList;
  */
 public final class TeleportBowUtils {
 
-//<editor-fold default-state="collapsed" desc="Private Constants">
-    private static final int BOW_AMOUNT = 1;
+//<editor-fold default-state="collapsed" desc="Private Static Constants">
     private static final int MAX_ARROW_INFINITE_LEVEL = 1;
     private static final TextComponent BOW_NAME = Component.text(
             "Teleport Bow", NamedTextColor.BLUE);
@@ -34,7 +33,9 @@ public final class TeleportBowUtils {
      * @return Created teleport bow.
      */
     public static @NotNull ItemStack getTeleportBow() {
-        final ItemStack teleportBow = new ItemStack(Material.BOW, BOW_AMOUNT);
+        final ItemStack teleportBow = new ItemStack(
+                Material.BOW,
+                CustomItemConstants.CUSTOM_ITEM_AMOUNT.getValue());
         final ItemMeta teleportBowMeta = getTeleportBowMeta(teleportBow);
         teleportBow.setItemMeta(teleportBowMeta);
         return teleportBow;

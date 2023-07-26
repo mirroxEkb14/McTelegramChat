@@ -6,6 +6,7 @@ import net.kyori.adventure.text.format.NamedTextColor;
 import org.amirov.mctelegramchat.McTelegramChat;
 import org.amirov.mctelegramchat.commands.performers.LockPerformer;
 import org.amirov.mctelegramchat.properties.LockCommandDBProperties;
+import org.amirov.mctelegramchat.handlers.LockListHandler;
 import org.bson.Document;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -37,6 +38,15 @@ public final class LockListGUI {
     private static final String Y_COORDINATE_REPRESENTATIVE = " y: ";
     private static final String Z_COORDINATE_REPRESENTATIVE = " z: ";
     private static final String DATE_REPRESENTATIVE = "Date created: ";
+//</editor-fold>
+
+//<editor-fold default-state="collapsed" desc="Public Static Constants">
+    /**
+     * Holds the {@link Material} of the current block that represents a lock.
+     * <p>
+     * Used inside the {@link LockListHandler}.
+     */
+    public static Material currentLockMaterial;
 //</editor-fold>
 
     private static Inventory lockListGUI;
@@ -77,8 +87,9 @@ public final class LockListGUI {
      * @return Chest with the information about the lock.
      */
     private static @NotNull ItemStack getLockItem(@NotNull Document document) {
+        currentLockMaterial = Material.valueOf(document.getString(LOCK_NAME_DOCUMENT_KEY));
         final ItemStack lock = new ItemStack(
-                Material.valueOf(document.getString(LOCK_NAME_DOCUMENT_KEY)),
+                currentLockMaterial,
                 LOCKED_CHEST_AMOUNT);
         ItemMeta lockMeta = lock.getItemMeta();
         lockMeta.displayName(Component.text(

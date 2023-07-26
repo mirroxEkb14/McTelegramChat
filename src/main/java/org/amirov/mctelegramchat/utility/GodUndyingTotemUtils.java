@@ -15,8 +15,7 @@ import java.util.ArrayList;
  */
 public final class GodUndyingTotemUtils {
 
-//<editor-fold default-state="collapsed" desc="Private Constants">
-    private static final int ITEM_AMOUNT = 1;
+//<editor-fold default-state="collapsed" desc="Private Static Constants">
     private static final TextComponent ITEM_TITLE = Component.text(
             "God mode", NamedTextColor.DARK_AQUA);
     private static final ArrayList<TextComponent> loreList = new ArrayList<>();
@@ -34,7 +33,9 @@ public final class GodUndyingTotemUtils {
      * @return Custom undying totem item.
      */
     public static @NotNull ItemStack getGodUndyingTotem() {
-        final ItemStack item = new ItemStack(Material.TOTEM_OF_UNDYING, ITEM_AMOUNT);
+        final ItemStack item = new ItemStack(
+                Material.TOTEM_OF_UNDYING,
+                CustomItemConstants.CUSTOM_ITEM_AMOUNT.getValue());
         final ItemMeta itemMeta = getGodUndyingTotemMeta(item);
         item.setItemMeta(itemMeta);
         return item;

@@ -1,7 +1,7 @@
 package org.amirov.mctelegramchat.properties;
 
 /**
- * @author zea1ot 7/25/2023
+ * This enumeration contains the keys for MongoDB collections.
  */
 public enum LockCommandDBProperties {
     PLAYER_UUID_KEY_NAME("uuid"),

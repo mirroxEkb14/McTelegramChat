@@ -1,7 +1,9 @@
-package org.amirov.mctelegramchat.listeners.performers;
+package org.amirov.mctelegramchat.handlers;
 
 import net.kyori.adventure.text.Component;
 import org.amirov.mctelegramchat.gui.ArmoryGUI;
+import org.amirov.mctelegramchat.handlers.performers.HologramCreatingPerformer;
+import org.amirov.mctelegramchat.handlers.performers.SpawnArmorStandPerformer;
 import org.amirov.mctelegramchat.logging.Loggers;
 import org.amirov.mctelegramchat.logging.LoggingMessage;
 import org.amirov.mctelegramchat.properties.ChatMessage;
@@ -13,10 +15,12 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Performs the logic for the clicks on items inside the main menu inventory.
  */
-public final class MenuInventoryPerformer {
+public final class MainMenuHandler {
 
 //<editor-fold default-state="collapsed" desc="Private Static Constants">
     private static boolean isCurrentPlayerFlies = false;
+
+    private static final int MAX_FOOD_LEVEL = 20;
 //</editor-fold>
 
     /**
@@ -32,18 +36,29 @@ public final class MenuInventoryPerformer {
         event.setCancelled(true);
         switch (currentItem.getType()) {
             case TNT -> performPlayerSuicide(player);
-            case ARMOR_STAND -> SpawnArmorStandPerformer.spawnArmorStand(player);
-            case BREAD -> FeedBreadPerformer.feedPlayer(player);
+            case ARMOR_STAND -> SpawnArmorStandPerformer.performSpawnArmorStand(player);
+            case BREAD -> feedPlayer(player);
             case ELYTRA -> makeHimFly(player);
             case SHIELD -> {
                 ArmoryGUI.openArmoryInventory(player);
                 return;
             }
             case TOTEM_OF_UNDYING -> makeHimGod(player);
-            case AMETHYST_SHARD -> HologramPerformer.performHologramCreating(player);
+            case AMETHYST_SHARD -> HologramCreatingPerformer.performHologramCreating(player);
             default -> Loggers.printInfoLog(LoggingMessage.COMMAND_MENU_WRONG_ITEM_SELECTED.getMessage());
         }
         player.closeInventory();
+    }
+
+
+    /**
+     * Restores player's food level to its maximum and sends him a message.
+     *
+     * @param player Player who clicked on the item and will be fed.
+     */
+    public static void feedPlayer(@NotNull Player player) {
+        player.setFoodLevel(MAX_FOOD_LEVEL);
+        player.sendMessage(Component.text(ChatMessage.ON_FEED_ITEM.getMessage()));
     }
 
     /**

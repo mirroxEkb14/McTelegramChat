@@ -119,7 +119,7 @@ public final class SPWBot extends TelegramLongPollingBot {
         return mcTelegramChat.getConfig().getString(configKeyName);
     }
 
-//<editor-fold default-state="collapsed" desc="Private Constants">
+//<editor-fold default-state="collapsed" desc="Getters">
     public long getAdminId() { return adminId; }
 //</editor-fold>
 }

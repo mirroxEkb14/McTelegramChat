@@ -1,4 +1,4 @@
-package org.amirov.mctelegramchat.listeners.performers;
+package org.amirov.mctelegramchat.handlers;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
@@ -16,8 +16,20 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Processes clicks on items inside the "delete players" inventory menu.
  */
-public class LockAccessManagerDeletePerformer {
+public class LockAccessManagerDeleteHandler {
 
+    /**
+     * if-else blocks explained:
+     * <lo>
+     * <li> {@code if} a player clicks on the "close" button, he goes back to the "lock access manager" gui.
+     * <li> {@code else if} a player selects the "player head" item, the player whose head was chosen is added to /
+     * removed from the lock.
+     * </lo>
+     *
+     * @param event Event of an inventory click.
+     * @param player Player who clicked.
+     * @param currentItem Item a player clicked on.
+     */
     public static void performLockAccessManagerDeleteClick(@NotNull InventoryClickEvent event,
                                                            @NotNull Player player,
                                                            @NotNull ItemStack currentItem) {

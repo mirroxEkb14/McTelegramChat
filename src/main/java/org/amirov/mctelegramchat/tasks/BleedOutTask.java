@@ -13,7 +13,7 @@ public final class BleedOutTask extends BukkitRunnable {
     private static final int HEALTH_SUBTRAHEND = 1;
 //</editor-fold>
 
-//<editor-fold default-state="collapsed" desc="Private Static Constants">
+//<editor-fold default-state="collapsed" desc="Public Static Constants">
     public static final long TASK_DELAY = 0L;
     public static final long TASK_PERIOD = 100L;
 //</editor-fold>

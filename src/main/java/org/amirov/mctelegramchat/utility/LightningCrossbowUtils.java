@@ -17,7 +17,6 @@ import java.util.ArrayList;
 public final class LightningCrossbowUtils {
 
 //<editor-fold default-state="collapsed" desc="Private Constants">
-    private static final int CROSSBOW_AMOUNT = 1;
     private static final int MAX_MULTISHOT_LEVEL = 1;
     private static final TextComponent CROSSBOW_NAME = Component.text(
             "Lightning crossbow", NamedTextColor.BLUE);
@@ -36,7 +35,9 @@ public final class LightningCrossbowUtils {
      * @return Created lighting crossbow.
      */
     public static @NotNull ItemStack getLightningCrossbow() {
-        final ItemStack lightningCrossbow = new ItemStack(Material.CROSSBOW, CROSSBOW_AMOUNT);
+        final ItemStack lightningCrossbow = new ItemStack(
+                Material.CROSSBOW,
+                CustomItemConstants.CUSTOM_ITEM_AMOUNT.getValue());
         final ItemMeta lightningCrossbowMeta = getLightningCrossbowMeta(lightningCrossbow);
         lightningCrossbow.setItemMeta(lightningCrossbowMeta);
         return lightningCrossbow;
