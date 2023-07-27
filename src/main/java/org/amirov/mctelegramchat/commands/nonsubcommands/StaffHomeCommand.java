@@ -1,4 +1,4 @@
-package org.amirov.mctelegramchat.commands;
+package org.amirov.mctelegramchat.commands.nonsubcommands;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
@@ -102,6 +102,12 @@ public record StaffHomeCommand(Plugin plugin) implements CommandExecutor {
         return commandArgs.length == COMMAND_ARGUMENTS_ONE_VALUE;
     }
 
+    /**
+     * Teleport a player to another player's staffhome location.
+     *
+     * @param player Player who performed the command.
+     * @param targetPlayerName Player's name typed as a command argument.
+     */
     private void performTpToPlayerHomeCommand(@NotNull Player player, String targetPlayerName) {
         final Player targetPlayer = Bukkit.getPlayer(targetPlayerName);
         if (targetPlayer == null) {
@@ -119,6 +125,13 @@ public record StaffHomeCommand(Plugin plugin) implements CommandExecutor {
         player.sendMessage(getMessageAfterTpToPlayerHome(targetPlayerName));
     }
 
+    /**
+     * Forms and returns a message for a player who's been teleported to s staffhome location.
+     *
+     * @param targetPlayerName
+     *
+     * @return {@link TextComponent} representing a message that is sent after teleportation.
+     */
     private @NotNull TextComponent getMessageAfterTpToPlayerHome(String targetPlayerName) {
         final String messageWithName = String.format(
                 ChatMessage.ON_COMMAND_STAFFHOME_TO_PLAYER_HOME.getMessage(), targetPlayerName);
@@ -146,6 +159,11 @@ public record StaffHomeCommand(Plugin plugin) implements CommandExecutor {
                 commandArgs[FIRST_COMMAND_ARGUMENT_INDEX].equalsIgnoreCase(RELOAD_COMMAND);
     }
 
+    /**
+     * Reloads the config file.
+     *
+     * @param player Player who performed the command.
+     */
     private void performReloadCommand(@NotNull Player player) {
         plugin.reloadConfig();
         player.sendMessage(Component.text(
@@ -160,6 +178,11 @@ public record StaffHomeCommand(Plugin plugin) implements CommandExecutor {
                 commandArgs[FIRST_COMMAND_ARGUMENT_INDEX].equalsIgnoreCase(RETURN_COMMAND);
     }
 
+    /**
+     * Performs the "return" subcommand that teleports this player to the saved staffhome location.
+     *
+     * @param player Player who typed the command in.
+     */
     private void performReturnCommand(@NotNull Player player) {
         final String sectionPlayerName = getSectionName(player.getName());
         final boolean isStaffHomeLocation = isStaffHomeLocation(sectionPlayerName);
@@ -179,6 +202,9 @@ public record StaffHomeCommand(Plugin plugin) implements CommandExecutor {
                 ChatMessage.ON_COMMAND_STAFFHOME_RETURN_NO_SAVED_LOCATION.getMessage(), NamedTextColor.DARK_RED));
     }
 
+    /**
+     * Saves a new section with this player's name.
+     */
     private void clearSection() {
         plugin.getConfig().set(currentPlayerSectionName, null);
         plugin.saveConfig();

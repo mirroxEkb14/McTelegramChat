@@ -1,4 +1,4 @@
-package org.amirov.mctelegramchat.commands;
+package org.amirov.mctelegramchat.commands.nonsubcommands;
 
 import net.kyori.adventure.text.Component;
 import org.amirov.mctelegramchat.McTelegramChat;
@@ -16,6 +16,16 @@ import org.jetbrains.annotations.NotNull;
  */
 public record SetSpawnCommand(McTelegramChat plugin) implements CommandExecutor {
 
+    /**
+     * Sets spawn location for this player saving it to a custom config file.
+     *
+     * @param sender Source of the command.
+     * @param command Executed command itself.
+     * @param label Alias of the used command.
+     * @param args Command arguments.
+     *
+     * @return {@code true} always due to this command is always valid.
+     */
     @Override
     public boolean onCommand(@NotNull CommandSender sender,
                              @NotNull Command command,

@@ -1,4 +1,4 @@
-package org.amirov.mctelegramchat.commands;
+package org.amirov.mctelegramchat.commands.nonsubcommands;
 
 import org.amirov.mctelegramchat.gui.MainMenuGUI;
 import org.amirov.mctelegramchat.logging.Loggers;
@@ -12,20 +12,16 @@ import org.jetbrains.annotations.NotNull;
  * <p>
  * Singleton class.
  */
-public final class MenuInventoryCommand implements CommandExecutor {
+public final class MainMenuCommand implements CommandExecutor {
 
-//<editor-fold default-state="collapsed" desc="Static Instance Variables">
-    private static MenuInventoryCommand instance;
-//</editor-fold>
+    private static MainMenuCommand instance;
 
-//<editor-fold default-state="collapsed" desc="Constructor">
-    public static MenuInventoryCommand getInstance() {
+    public static MainMenuCommand getInstance() {
         if (instance == null)
-            return new MenuInventoryCommand();
+            return new MainMenuCommand();
 
         return instance;
     }
-//</editor-fold>
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender,

@@ -1,9 +1,10 @@
 package org.amirov.mctelegramchat.commands.files.properties;
 
 /**
- * Contains the keys for custom config files.
+ * Contains the keys for custom config files and the name of a file where the location is stored.
  */
 public enum ConfigFileKey {
+    LOCATION_FILE("location.yml"),
     PLAYER_UUID("player-uuid"),
     PLAYER_LOCATION("player-location-");
 

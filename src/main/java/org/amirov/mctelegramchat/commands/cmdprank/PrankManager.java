@@ -1,8 +1,7 @@
-package org.amirov.mctelegramchat.commands.cmdprank.management;
+package org.amirov.mctelegramchat.commands.cmdprank;
 
-import org.amirov.mctelegramchat.commands.CommandUtils;
+import org.amirov.mctelegramchat.commands.performers.CommandUtils;
 import org.amirov.mctelegramchat.commands.SubCommand;
-import org.amirov.mctelegramchat.commands.cmdprank.ExplodeCommand;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -16,7 +15,7 @@ import java.util.ArrayList;
  * <p>
  * Command {@code prank} has a bunch of subcommands like {@code explode} or {@code freeze}.
  */
-public final class PrankCommandManager implements CommandExecutor {
+public final class PrankManager implements CommandExecutor {
 
 //<editor-fold default-state="collapsed" desc="Private Static Constants">
     /**
@@ -31,7 +30,7 @@ public final class PrankCommandManager implements CommandExecutor {
 //</editor-fold>
 
 //<editor-fold default-state="collapsed" desc="Constructor">
-    public PrankCommandManager() {
+    public PrankManager() {
         prankSubcommands.add(new ExplodeCommand());
     }
 //</editor-fold>

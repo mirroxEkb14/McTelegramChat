@@ -1,4 +1,4 @@
-package org.amirov.mctelegramchat.commands;
+package org.amirov.mctelegramchat.commands.nonsubcommands;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
@@ -22,6 +22,7 @@ import java.util.UUID;
  */
 public record KillCommand(McTelegramChat plugin) implements CommandExecutor {
 
+//<editor-fold default-state="collapsed" desc="Private Static Constants">
     /**
      * key -> UUID of the player.
      * <p>
@@ -33,6 +34,7 @@ public record KillCommand(McTelegramChat plugin) implements CommandExecutor {
      * Cooldown time in milliseconds.
      */
     private static final long COOLDOWN_TIME = 10000L;
+//</editor-fold>
 
     /**
      * Execution principle:
@@ -48,6 +50,11 @@ public record KillCommand(McTelegramChat plugin) implements CommandExecutor {
      * updates player's time in the map and kills the target if so, sends a message that the time has not yet passed
      * otherwise.
      * </ol>
+     *
+     * @param sender Source of the command.
+     * @param command Executed command itself.
+     * @param label Alias of the used command.
+     * @param args Command arguments.
      */
     @Override
     public boolean onCommand(@NotNull CommandSender sender,

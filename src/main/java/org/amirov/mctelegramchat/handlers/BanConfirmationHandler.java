@@ -1,6 +1,6 @@
 package org.amirov.mctelegramchat.handlers;
 
-import org.amirov.mctelegramchat.commands.BanInventoryCommand;
+import org.amirov.mctelegramchat.commands.nonsubcommands.BanCommand;
 import org.amirov.mctelegramchat.gui.BanConfirmationGUI;
 import org.amirov.mctelegramchat.gui.enums.ConfirmationGUIConstants;
 import org.amirov.mctelegramchat.listeners.properties.BanReason;
@@ -47,7 +47,7 @@ public final class BanConfirmationHandler {
         if (currentItem.getType() == banWoodenAxe)
             performBan(player);
         else if (ConfirmationGUIConstants.isCloseButton(currentItem))
-            BanInventoryCommand.getInstance().onCommand(player);
+            BanCommand.getInstance().onCommand(player);
         else
             Loggers.printSevereLog(LoggingMessage.BAN_CONFIRMATION_INVENTORY_WRONG_ITEM.getMessage());
     }

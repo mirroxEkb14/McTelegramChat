@@ -3,7 +3,7 @@ package org.amirov.mctelegramchat.commands.cmdprank;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
-import org.amirov.mctelegramchat.commands.CommandUtils;
+import org.amirov.mctelegramchat.commands.performers.CommandUtils;
 import org.amirov.mctelegramchat.commands.SubCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;

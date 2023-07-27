@@ -1,4 +1,4 @@
-package org.amirov.mctelegramchat.listeners.performers;
+package org.amirov.mctelegramchat.handlers;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;

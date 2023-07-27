@@ -1,4 +1,4 @@
-package org.amirov.mctelegramchat.commands;
+package org.amirov.mctelegramchat.commands.nonsubcommands;
 
 import net.kyori.adventure.text.Component;
 import org.amirov.mctelegramchat.commands.files.ConfigFilesNotSetupException;
@@ -18,12 +18,23 @@ import java.util.UUID;
 /**
  * Saves the current player's location to a custom configuration file.
  */
-public final class SaveLocCommand implements CommandExecutor {
+public final class SaveLocationCommand implements CommandExecutor {
 
-//<editor-fold default-state="collapsed" desc="Private Constants">
+//<editor-fold default-state="collapsed" desc="Private Static Constants">
     private static final int NAME_WORD_LENGTH = 1;
 //</editor-fold>
 
+    /**
+     * Checks the presence of command arguments and either sends a message that no arguments were typed or saves this
+     * player's location to a custom file.
+     *
+     * @param sender Source of the command.
+     * @param command Executed command itself.
+     * @param label Alias of the used command.
+     * @param args Command arguments.
+     *
+     * @return {@code true} always due to this command is always valid.
+     */
     @Override
     public boolean onCommand(@NotNull CommandSender sender,
                              @NotNull Command command,
@@ -37,9 +48,9 @@ public final class SaveLocCommand implements CommandExecutor {
             try {
                 final UUID playerId = player.getUniqueId();
                 final String locKeyName = args[0];
-                final Location playerLoc = player.getLocation();
+                final Location playerLocation = player.getLocation();
 
-                ConfigManager.savePlayerLocation(playerId, locKeyName, playerLoc);
+                ConfigManager.savePlayerLocation(playerId, locKeyName, playerLocation);
                 player.sendMessage(Component.text(ChatMessage.ON_COMMAND_LOCATION_SAVED.getMessage()));
             } catch (ConfigFilesNotSetupException e) {
                 Loggers.printSevereLog(LoggingMessage.SAVING_CONFIG_FILE_ERROR.getMessage());

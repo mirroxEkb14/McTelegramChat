@@ -1,4 +1,4 @@
-package org.amirov.mctelegramchat.commands;
+package org.amirov.mctelegramchat.commands.nonsubcommands;
 
 import org.amirov.mctelegramchat.gui.BanListGUI;
 import org.bukkit.command.Command;
@@ -12,18 +12,16 @@ import org.jetbrains.annotations.NotNull;
  * <p>
  * Singleton class.
  */
-public final class BanInventoryCommand implements CommandExecutor {
+public final class BanCommand implements CommandExecutor {
 
-    private static BanInventoryCommand instance;
+    private static BanCommand instance;
 
-//<editor-fold default-state="collapsed" desc="Constructor">
-    public static BanInventoryCommand getInstance() {
+    public static BanCommand getInstance() {
         if (instance == null)
-            return new BanInventoryCommand();
+            return new BanCommand();
 
         return instance;
     }
-//</editor-fold>
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender,

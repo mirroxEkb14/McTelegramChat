@@ -17,7 +17,7 @@ import java.util.Random;
  */
 public final class TeleportPerformer {
 
-//<editor-fold default-state="collapsed" desc="Private Constants">
+//<editor-fold default-state="collapsed" desc="Private Static Constants">
     private static final int X_BOUND = 25000;
     private static final int Y_BOUND = 150;
     private static final int Z_BOUND = 25000;
@@ -30,7 +30,7 @@ public final class TeleportPerformer {
     private static final HashSet<Material> dangerousBlocks = new HashSet<>();
 //</editor-fold>
 
-//<editor-fold default-state="collapsed" desc="Static blocks">
+//<editor-fold default-state="collapsed" desc="Static Initialization Block">
     static {
         dangerousBlocks.add(Material.LAVA);
     }

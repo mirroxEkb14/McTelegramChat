@@ -1,9 +1,7 @@
-package org.amirov.mctelegramchat.commands.cmdquartermaster.management;
+package org.amirov.mctelegramchat.commands.cmdquartermaster;
 
-import org.amirov.mctelegramchat.commands.CommandUtils;
+import org.amirov.mctelegramchat.commands.performers.CommandUtils;
 import org.amirov.mctelegramchat.commands.SubCommand;
-import org.amirov.mctelegramchat.commands.cmdquartermaster.LockCommand;
-import org.amirov.mctelegramchat.commands.cmdquartermaster.LockListCommand;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -17,7 +15,7 @@ import java.util.ArrayList;
  * <p>
  * /qm *manage* *command argument 2*
  */
-public class QuartermasterCommandManager implements CommandExecutor {
+public final class QuartermasterManager implements CommandExecutor {
 
 //<editor-fold default-state="collapsed" desc="Private Static Constants">
     private static final ArrayList<SubCommand> qmSubcommands = new ArrayList<>();
@@ -29,7 +27,7 @@ public class QuartermasterCommandManager implements CommandExecutor {
 //</editor-fold>
 
 //<editor-fold default-state="collapsed" desc="Constructor">
-    public QuartermasterCommandManager() {
+    public QuartermasterManager() {
         qmSubcommands.add(new LockCommand());
         qmSubcommands.add(new LockListCommand());
     }

@@ -1,7 +1,8 @@
-package org.amirov.mctelegramchat.commands;
+package org.amirov.mctelegramchat.commands.performers;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
+import org.amirov.mctelegramchat.commands.SubCommand;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.Contract;

@@ -1,4 +1,4 @@
-package org.amirov.mctelegramchat.commands;
+package org.amirov.mctelegramchat.commands.nonsubcommands;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
@@ -17,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public final class SpawnSignCommand implements CommandExecutor {
 
-//<editor-fold default-state="collapsed" desc="Private Constants">
+//<editor-fold default-state="collapsed" desc="Private Static Constants">
     /**
      * These constants are needed to process the command arguments passed by a player.
      * <p>
@@ -29,6 +29,16 @@ public final class SpawnSignCommand implements CommandExecutor {
     private static final int INDEX_SUBTRAHEND = 1;
 //</editor-fold>
 
+    /**
+     * Checks the command arguments and spawn a sign on the block the player is currently standing on.
+     *
+     * @param sender Source of the command.
+     * @param command Executed command itself.
+     * @param label Alias of the used command.
+     * @param args Command arguments.
+     *
+     * @return {@code true} always due to this command is always valid.
+     */
     @Override
     public boolean onCommand(@NotNull CommandSender sender,
                              @NotNull Command command,

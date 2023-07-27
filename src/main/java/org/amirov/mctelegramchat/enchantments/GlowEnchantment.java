@@ -57,11 +57,17 @@ public final class GlowEnchantment extends Enchantment {
      * @return {@code true} if this player wears a chestplayer with the glow enchantment, {@code false} otherwise.
      */
     public static boolean entityHasGlowEnchantment(@NotNull Player player) {
-        return player
+        final ItemStack chestplate = player
                 .getEquipment()
-                .getChestplate()
-                .getEnchantments()
-                .containsKey(Enchantment.getByKey(getInstance().getKey()));
+                .getChestplate();
+        if (chestplate != null) {
+            return player
+                    .getEquipment()
+                    .getChestplate()
+                    .getEnchantments()
+                    .containsKey(Enchantment.getByKey(getInstance().getKey()));
+        }
+        return false;
     }
 
     @Override

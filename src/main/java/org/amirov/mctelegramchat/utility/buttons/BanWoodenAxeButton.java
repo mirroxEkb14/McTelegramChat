@@ -3,7 +3,7 @@ package org.amirov.mctelegramchat.utility.buttons;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
-import org.amirov.mctelegramchat.commands.BanInventoryCommand;
+import org.amirov.mctelegramchat.commands.nonsubcommands.BanCommand;
 import org.amirov.mctelegramchat.utility.CustomItemConstants;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 
 /**
- * Creates and provides a wooden axe for a player to ban in {@link BanInventoryCommand}.
+ * Creates and provides a wooden axe for a player to ban in {@link BanCommand}.
  */
 public final class BanWoodenAxeButton {
 

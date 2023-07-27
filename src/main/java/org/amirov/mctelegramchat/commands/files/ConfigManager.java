@@ -1,7 +1,6 @@
 package org.amirov.mctelegramchat.commands.files;
 
 import org.amirov.mctelegramchat.commands.files.properties.ConfigFileKey;
-import org.amirov.mctelegramchat.commands.files.properties.ConfigFileName;
 import org.amirov.mctelegramchat.logging.Loggers;
 import org.amirov.mctelegramchat.logging.LoggingMessage;
 import org.bukkit.Bukkit;
@@ -36,6 +35,18 @@ public final class ConfigManager {
      */
     private static FileConfiguration configFile;
 
+    /**
+     * Saves player's location to a custom location file.
+     *
+     * @param playerUUID Player's unique id.
+     * @param locationName Name of this location specified by the player himself.
+     * @param location {@link Location} object containing the current location of the player.
+     *
+     * @return {@code true} if the location was successfully saved, {@code false} otherwise.
+     *
+     * @throws ConfigFilesNotSetupException Thrown is the method is called when the {@link File} and
+     * {@link FileConfiguration} objects are not set in advance.
+     */
     public static boolean savePlayerLocation(@NotNull UUID playerUUID, String locationName, @NotNull Location location)
             throws ConfigFilesNotSetupException {
         if (file == null || configFile == null)
@@ -50,6 +61,13 @@ public final class ConfigManager {
         return true;
     }
 
+    /**
+     * Finds and returns the full key name for storing the location for this player.
+     *
+     * @param locationName Name for this location specified by the player.
+     *
+     * @return {@link String} representing location key to store this player's location.
+     */
     @Contract(pure = true)
     private static @NotNull String getFullLocationKey(String locationName) {
         return ConfigFileKey.PLAYER_LOCATION.getKey() + locationName;
@@ -63,11 +81,14 @@ public final class ConfigManager {
         configFile = new YamlConfiguration();
     }
 
+    /**
+     * Sets up the {@link File} object.
+     */
     private static void setupFileObject() {
         try {
             final Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin(PROJECT_NAME);
             Objects.requireNonNull(plugin);
-            file = new File(plugin.getDataFolder(), ConfigFileName.LOCATION_FILE.getName());
+            file = new File(plugin.getDataFolder(), ConfigFileKey.LOCATION_FILE.getKey());
             if (!file.exists())
                 file.createNewFile();
         } catch (IOException e) {

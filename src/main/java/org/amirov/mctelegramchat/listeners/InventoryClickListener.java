@@ -1,10 +1,9 @@
 package org.amirov.mctelegramchat.listeners;
 
 import net.kyori.adventure.text.Component;
-import org.amirov.mctelegramchat.commands.MenuInventoryCommand;
+import org.amirov.mctelegramchat.commands.nonsubcommands.MainMenuCommand;
 import org.amirov.mctelegramchat.gui.*;
 import org.amirov.mctelegramchat.handlers.*;
-import org.amirov.mctelegramchat.listeners.performers.LockDeleteConfirmationHandler;
 import org.amirov.mctelegramchat.utility.buttons.BackWoolButton;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -57,7 +56,7 @@ public final class InventoryClickListener implements Listener {
             return;
         } else if (currentItem.getType() == BackWoolButton.getBackWool().getType()) {
             if (curName.equals(armoryInventoryName)) {
-                MenuInventoryCommand.getInstance().onCommand(player);
+                MainMenuCommand.getInstance().onCommand(player);
             }
             return;
         }

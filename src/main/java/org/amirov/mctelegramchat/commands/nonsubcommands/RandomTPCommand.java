@@ -1,4 +1,4 @@
-package org.amirov.mctelegramchat.commands;
+package org.amirov.mctelegramchat.commands.nonsubcommands;
 
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.amirov.mctelegramchat.commands.performers.TeleportPerformer;
@@ -17,6 +17,16 @@ import net.kyori.adventure.text.TextComponent;
  */
 public record RandomTPCommand(Plugin plugin) implements CommandExecutor {
 
+    /**
+     * Performs the teleportation of a player and sends a notification message.
+     *
+     * @param sender Source of the command.
+     * @param command Executed command itself.
+     * @param label Alias of the used command.
+     * @param args Command arguments.
+     *
+     * @return {@code true} always due to this command is always valid.
+     */
     @Override
     public boolean onCommand(@NotNull CommandSender sender,
                              @NotNull Command command,
@@ -29,6 +39,11 @@ public record RandomTPCommand(Plugin plugin) implements CommandExecutor {
         return true;
     }
 
+    /**
+     * Sends a message after the teleportation to the player.
+     *
+     * @param player Player who's been teleported.
+     */
     private void sendTeleportationMessage(@NotNull Player player) {
         final int x = player.getLocation().getBlockX();
         final int y = player.getLocation().getBlockY();

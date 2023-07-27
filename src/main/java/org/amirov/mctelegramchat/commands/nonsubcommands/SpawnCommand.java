@@ -1,4 +1,4 @@
-package org.amirov.mctelegramchat.commands;
+package org.amirov.mctelegramchat.commands.nonsubcommands;
 
 import org.amirov.mctelegramchat.McTelegramChat;
 import org.amirov.mctelegramchat.properties.ChatMessage;
@@ -15,6 +15,17 @@ import org.jetbrains.annotations.NotNull;
  */
 public record SpawnCommand(McTelegramChat plugin) implements CommandExecutor {
 
+    /**
+     * Takes the spawn location of this player from a custom config file and teleport the player to this point. If
+     * there is no such a location set in the file, sends a notification to the player.
+     *
+     * @param sender Source of the command.
+     * @param command Executed command itself.
+     * @param label Alias of the used command.
+     * @param args Command arguments.
+     *
+     * @return {@code true} always due to this command is always valid.
+     */
     @Override
     public boolean onCommand(@NotNull CommandSender sender,
                              @NotNull Command command,

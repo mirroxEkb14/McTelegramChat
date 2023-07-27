@@ -1,4 +1,4 @@
-package org.amirov.mctelegramchat.commands;
+package org.amirov.mctelegramchat.commands.nonsubcommands;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -27,13 +27,23 @@ public final class ScoreBoardCommand implements CommandExecutor {
     private static final byte SCORE_LINE_2 = 2;
 //</editor-fold>
 
-//<editor-fold default-state="collapsed" desc="Static block">
+//<editor-fold default-state="collapsed" desc="Static Initialization Block">
     static {
         SCORE_EXAMPLE_1 = ChatColor.GOLD + "Money: $" + ChatColor.GREEN + "1000";
         SCORE_EXAMPLE_2 = ChatColor.GOLD + "Level: " + ChatColor.GREEN + "35";
     }
 //</editor-fold>
 
+    /**
+     * Creates a board on the right side of the screen with the set scores.
+     *
+     * @param sender Source of the command.
+     * @param command Executed command itself.
+     * @param label Alias of the used command.
+     * @param args Command arguments.
+     *
+     * @return {@code true} always due to this command is always valid.
+     */
     @Override
     public boolean onCommand(@NotNull CommandSender sender,
                              @NotNull Command command,
