@@ -4,7 +4,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.amirov.mctelegramchat.commands.performers.LockPerformer;
-import org.amirov.mctelegramchat.gui.ConfirmationGUIConstants;
+import org.amirov.mctelegramchat.gui.enums.ConfirmationGUIConstants;
 import org.amirov.mctelegramchat.gui.LockAccessManagerGUI;
 import org.amirov.mctelegramchat.gui.LockManagerGUI;
 import org.amirov.mctelegramchat.properties.ChatMessage;

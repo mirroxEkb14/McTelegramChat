@@ -22,18 +22,18 @@ import org.jetbrains.annotations.NotNull;
 public final class InventoryClickListener implements Listener {
 
 //<editor-fold default-state="collapsed" desc="Private Static Constants">
-    private static final Component mainMenuName = MainMenuGUI.getInventoryName();
-    private static final Component armoryInventoryName = ArmoryGUI.getArmoryInventoryName();
-    private static final Component banListName = BanListGUI.getInventoryName();
-    private static final Component banConfirmationName = BanConfirmationGUI.getInventoryName();
-    private static final Component lockConfirmationInventoryName = LockConfirmationGUI.getInventoryTitle();
-    private static final Component lockListInventoryName = LockListGUI.getInventoryTitle();
-    private static final Component lockManagerInventoryName = LockManagerGUI.getInventoryTitle();
-    private static final Component lockDeleteConfirmationInventoryName = LockDeleteConfirmationGUI.getInventoryName();
-    private static final Component lockAccessManagerInventoryName = LockAccessManagerGUI.getInventoryName();
-    private static final Component lockAccessManagerAddName = PlayersOnlineGUI.getInventoryAddName();
-    private static final Component lockAccessManagerViewInventoryName = ApprovedPlayerListGUI.getInventoryName();
-    private static final Component lockAccessManagerRemoveInventoryName = PlayersOnlineGUI.getInventoryRemoveName();
+    private static final Component mainMenuName = MainMenuGUI.getMainMenuName();
+    private static final Component armoryInventoryName = ArmoryGUI.getArmoryName();
+    private static final Component banListName = BanListGUI.getBanListName();
+    private static final Component banConfirmationName = BanConfirmationGUI.getBanConfirmationName();
+    private static final Component lockConfirmationInventoryName = LockConfirmationGUI.getLockConfirmationName();
+    private static final Component lockListInventoryName = LockListGUI.getLockListName();
+    private static final Component lockManagerInventoryName = LockManagerGUI.getLockManagerName();
+    private static final Component lockDeleteConfirmationInventoryName = LockDeleteConfirmationGUI.getLockDeleteConfirmationName();
+    private static final Component lockAccessManagerInventoryName = LockAccessManagerGUI.getLockAccessManagerName();
+    private static final Component lockAccessManagerAddName = PlayersOnlineGUI.getPlayersOnlineAddName();
+    private static final Component lockAccessManagerViewInventoryName = ApprovedPlayerListGUI.getApprovedPlayerListName();
+    private static final Component lockAccessManagerRemoveInventoryName = PlayersOnlineGUI.getPlayersOnlineDeleteName();
 //</editor-fold>
 
     /**

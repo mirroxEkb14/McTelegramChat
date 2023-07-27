@@ -3,6 +3,7 @@ package org.amirov.mctelegramchat.gui;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
+import org.amirov.mctelegramchat.gui.enums.ConfirmationGUIConstants;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -19,7 +20,7 @@ import org.jetbrains.annotations.NotNull;
 public final class LockConfirmationGUI {
 
 //<editor-fold default-state="collapsed" desc="Private Static Constants">
-    private static final TextComponent INVENTORY_TITLE = Component.text(
+    private static final TextComponent INVENTORY_NAME = Component.text(
             "Lock Chest?", NamedTextColor.DARK_AQUA);
 
     private static final Material YES_BUTTON_MATERIAL = Material.TOTEM_OF_UNDYING;
@@ -40,7 +41,7 @@ public final class LockConfirmationGUI {
         Inventory lockConfirmationGUI = Bukkit.createInventory(
                 player,
                 ConfirmationGUIConstants.INVENTORY_SIZE.getValue(),
-                INVENTORY_TITLE);
+                INVENTORY_NAME);
         final ItemStack yes = getYesButton();
         final ItemStack no = getNoButton();
         lockConfirmationGUI.setItem(ConfirmationGUIConstants.YES_ITEM_SLOT_INDEX.getValue(), yes);
@@ -82,7 +83,7 @@ public final class LockConfirmationGUI {
     }
 
 //<editor-fold default-state="collapsed" desc="Getters">
-    public static TextComponent getInventoryTitle() { return INVENTORY_TITLE; }
+    public static TextComponent getLockConfirmationName() { return INVENTORY_NAME; }
 
     public static Material getYesButtonMaterial() { return YES_BUTTON_MATERIAL; }
 

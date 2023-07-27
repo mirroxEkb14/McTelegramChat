@@ -18,7 +18,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public final class ArmoryGUI {
 
-//<editor-fold default-state="collapsed" desc="Private Constants">
+//<editor-fold default-state="collapsed" desc="Private Static Constants">
     private static final int INVENTORY_SIZE = 36;
     private static final TextComponent INVENTORY_NAME = Component.text(
             "Armory", NamedTextColor.DARK_GRAY);
@@ -75,6 +75,6 @@ public final class ArmoryGUI {
     }
 
 //<editor-fold default-state="collapsed" desc="Getters">
-    public static TextComponent getArmoryInventoryName() { return INVENTORY_NAME; }
+    public static TextComponent getArmoryName() { return INVENTORY_NAME; }
 //</editor-fold>
 }

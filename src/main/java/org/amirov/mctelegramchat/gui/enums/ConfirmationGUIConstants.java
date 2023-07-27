@@ -1,4 +1,4 @@
-package org.amirov.mctelegramchat.gui;
+package org.amirov.mctelegramchat.gui.enums;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;

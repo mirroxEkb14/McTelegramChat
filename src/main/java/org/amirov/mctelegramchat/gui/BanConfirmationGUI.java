@@ -3,11 +3,11 @@ package org.amirov.mctelegramchat.gui;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
+import org.amirov.mctelegramchat.gui.enums.ConfirmationGUIConstants;
 import org.amirov.mctelegramchat.utility.buttons.BanBarrierButton;
 import org.amirov.mctelegramchat.utility.buttons.BanWoodenAxeButton;
 import org.amirov.mctelegramchat.utility.PlayerHeadUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
@@ -21,7 +21,7 @@ import java.util.Objects;
  */
 public final class BanConfirmationGUI {
 
-//<editor-fold default-state="collapsed" desc="Private Constants">
+//<editor-fold default-state="collapsed" desc="Private Static Constants">
     private static final int INVENTORY_SIZE = 9;
     private static final int BAN_ITEM_INDEX = 0;
     private static final int PLAYER_HEAD_INDEX = 4;
@@ -30,7 +30,7 @@ public final class BanConfirmationGUI {
             "Ban Confirm", NamedTextColor.RED);
 //</editor-fold>
 
-//<editor-fold default-state="collapsed" desc="Mutable Static Variables">
+//<editor-fold default-state="collapsed" desc="Mutable Static Instance Variables">
     private static String currentPlayerToBanName;
 //</editor-fold>
 
@@ -44,7 +44,7 @@ public final class BanConfirmationGUI {
     public static void openBanConfirmationGUI(@NotNull InventoryClickEvent event,
                                               @NotNull Player player,
                                               @NotNull ItemStack currentItem) {
-        if (currentItem.getType() == Material.PLAYER_HEAD) {
+        if (ConfirmationGUIConstants.isPlayerHead(currentItem)) {
             final Player playerToBan = getPlayerToBan(event, player);
             final Inventory emptyConfirmBanMenu = Bukkit.createInventory(
                     player,
@@ -97,7 +97,7 @@ public final class BanConfirmationGUI {
     }
 
 //<editor-fold default-state="collapsed" desc="Getters">
-    public static TextComponent getInventoryName() { return INVENTORY_NAME; }
+    public static TextComponent getBanConfirmationName() { return INVENTORY_NAME; }
 
     public static String getCurrentPlayerToBanName() { return currentPlayerToBanName; }
 //</editor-fold>

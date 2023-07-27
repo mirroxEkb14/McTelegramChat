@@ -2,7 +2,7 @@ package org.amirov.mctelegramchat.handlers;
 
 import org.amirov.mctelegramchat.commands.BanInventoryCommand;
 import org.amirov.mctelegramchat.gui.BanConfirmationGUI;
-import org.amirov.mctelegramchat.gui.ConfirmationGUIConstants;
+import org.amirov.mctelegramchat.gui.enums.ConfirmationGUIConstants;
 import org.amirov.mctelegramchat.listeners.properties.BanReason;
 import org.amirov.mctelegramchat.logging.Loggers;
 import org.amirov.mctelegramchat.logging.LoggingMessage;

@@ -19,7 +19,8 @@ public final class BanListGUI {
 
 //<editor-fold default-state="collapsed" desc="Private Static Constants">
     private static final int INVENTORY_SIZE = 45;
-    private static final TextComponent INVENTORY_NAME = Component.text("Player list", NamedTextColor.BLUE);
+    private static final TextComponent INVENTORY_NAME = Component.text(
+            "Player list", NamedTextColor.BLUE);
 //</editor-fold>
 
     /**
@@ -39,6 +40,6 @@ public final class BanListGUI {
     }
 
 //<editor-fold default-state="collapsed" desc="Getters">
-    public static TextComponent getInventoryName() { return INVENTORY_NAME; }
+    public static TextComponent getBanListName() { return INVENTORY_NAME; }
 //</editor-fold>
 }

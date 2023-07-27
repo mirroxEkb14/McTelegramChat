@@ -25,7 +25,7 @@ public final class LockListGUI {
 
 //<editor-fold default-state="collapsed" desc="Private Static Constants">
     private static final int INVENTORY_SIZE = 54;
-    private static final TextComponent INVENTORY_TITLE = Component.text(
+    private static final TextComponent INVENTORY_NAME = Component.text(
             "Your locks", NamedTextColor.DARK_RED);
 
     private static final int LOCKED_CHEST_AMOUNT = 1;
@@ -57,7 +57,7 @@ public final class LockListGUI {
      * @param player Owner of the locks.
      */
     public static void openLockListGUI(@NotNull Player player) {
-        lockListGUI = Bukkit.createInventory(player, INVENTORY_SIZE, INVENTORY_TITLE);
+        lockListGUI = Bukkit.createInventory(player, INVENTORY_SIZE, INVENTORY_NAME);
 
         final String playerUUID = player.getUniqueId().toString();
         final Document filter = new Document(LockCommandDBProperties.PLAYER_UUID_KEY_NAME.getKey(), playerUUID);
@@ -132,7 +132,7 @@ public final class LockListGUI {
     }
 
 //<editor-fold default-state="collapsed" desc="Getters">
-    public static TextComponent getInventoryTitle() { return INVENTORY_TITLE; }
+    public static TextComponent getLockListName() { return INVENTORY_NAME; }
 
     public static Inventory getLockListGUI() { return lockListGUI; }
 //</editor-fold>

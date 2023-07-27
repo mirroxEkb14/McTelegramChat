@@ -51,6 +51,6 @@ public final class MainMenuGUI {
     }
 
 //<editor-fold default-state="collapsed" desc="Getters">
-    public static TextComponent getInventoryName() { return INVENTORY_NAME; }
+    public static TextComponent getMainMenuName() { return INVENTORY_NAME; }
 //</editor-fold>
 }

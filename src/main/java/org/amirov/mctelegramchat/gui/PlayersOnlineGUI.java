@@ -3,6 +3,7 @@ package org.amirov.mctelegramchat.gui;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
+import org.amirov.mctelegramchat.gui.enums.ConfirmationGUIConstants;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -23,19 +24,27 @@ public final class PlayersOnlineGUI {
     private static final int INVENTORY_SIZE = 54;
     private static final TextComponent INVENTORY_ADD_NAME = Component.text(
             "Player To Add", NamedTextColor.GREEN);
-    private static final TextComponent INVENTORY_REMOVE_NAME = Component.text(
-            "Player To Remove", NamedTextColor.GREEN);
+    private static final TextComponent INVENTORY_DELETE_NAME = Component.text(
+            "Player To Delete", NamedTextColor.GREEN);
+
+    private static final Material PLAYER_HEAD_MATERIAL = Material.PLAYER_HEAD;
 
     private static final int CLOSE_BUTTON_INDEX = 53;
 //</editor-fold>
 
-    private static final Material PLAYER_HEAD_MATERIAL = Material.PLAYER_HEAD;
-
+    /**
+     * Creates and opens an inventory with all the online players currently on the server to add to / remove from
+     * the lock.
+     *
+     * @param player Player who triggered the event.
+     * @param toAdd if {@code true}, inventory name will be as an "Add Player", otherwise {@code false} the name of the
+     *              inventory will be a "Delete Player".
+     */
     public static void openPlayersOnlineGUI(@NotNull Player player, boolean toAdd) {
         final Inventory playersToAddGUI = Bukkit.createInventory(
                 player,
                 INVENTORY_SIZE,
-                toAdd ? INVENTORY_ADD_NAME : INVENTORY_REMOVE_NAME);
+                toAdd ? INVENTORY_ADD_NAME : INVENTORY_DELETE_NAME);
 
         final ArrayList<Player> onlinePlayers = new ArrayList<>(player.getServer().getOnlinePlayers());
         for (Player onlinePlayer : onlinePlayers) {
@@ -78,9 +87,9 @@ public final class PlayersOnlineGUI {
         return playerHead;
     }
 
-//<editor-fold default-state="collapsed" desc="Private Static Constants">
-    public static TextComponent getInventoryAddName() { return INVENTORY_ADD_NAME; }
+//<editor-fold default-state="collapsed" desc="Getters">
+    public static TextComponent getPlayersOnlineAddName() { return INVENTORY_ADD_NAME; }
 
-    public static TextComponent getInventoryRemoveName() { return INVENTORY_REMOVE_NAME; }
+    public static TextComponent getPlayersOnlineDeleteName() { return INVENTORY_DELETE_NAME; }
 //</editor-fold>
 }

@@ -3,6 +3,7 @@ package org.amirov.mctelegramchat.gui;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
+import org.amirov.mctelegramchat.gui.enums.ConfirmationGUIConstants;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -77,7 +78,7 @@ public final class LockDeleteConfirmationGUI {
     }
 
 //<editor-fold default-state="collapsed" desc="Getters">
-    public static TextComponent getInventoryName() { return INVENTORY_NAME; }
+    public static TextComponent getLockDeleteConfirmationName() { return INVENTORY_NAME; }
 
     public static Material getYesButtonMaterial() { return YES_BUTTON_MATERIAL; }
 

@@ -4,6 +4,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.amirov.mctelegramchat.commands.performers.LockPerformer;
+import org.amirov.mctelegramchat.gui.enums.ConfirmationGUIConstants;
 import org.amirov.mctelegramchat.logging.Loggers;
 import org.amirov.mctelegramchat.logging.LoggingMessage;
 import org.bson.Document;
@@ -29,7 +30,7 @@ public final class LockManagerGUI {
 
 //<editor-fold default-state="collapsed" desc="Private Static Constants">
     private static final int INVENTORY_SIZE = 9;
-    private static final TextComponent INVENTORY_TITLE = Component.text(
+    private static final TextComponent INVENTORY_NAME = Component.text(
             "Lock Manager", NamedTextColor.DARK_AQUA);
 
     private static final Material MANAGE_ACCESS_BUTTON_MATERIAL = Material.ARMOR_STAND;
@@ -54,6 +55,8 @@ public final class LockManagerGUI {
     private static final int INFO_BUTTON_INDEX = 7;
     private static final int CLOSE_BUTTON_INDEX = 8;
 
+    private static final String TEXT_COMPONENT_ID_PATTERN = "[A-aZ-z0-9]{24}";
+
     /**
      * Represents an index where the lock id is locked in the item lore.
      */
@@ -62,7 +65,7 @@ public final class LockManagerGUI {
 
     private static String currentLockId;
 
-//<editor-fold default-state="collapsed" desc="Private Static Constants">
+//<editor-fold default-state="collapsed" desc="Static Initialization Block">
     static {
         manageAccessLore.add(Component.text(
                 "Manage who has access to this Lock", NamedTextColor.GREEN));
@@ -83,7 +86,7 @@ public final class LockManagerGUI {
      * @param player Player for whom the gui will be opened.
      */
     public static void openLockManagerGUI(@NotNull Player player) {
-        final Inventory lockManagerGUI = Bukkit.createInventory(player, INVENTORY_SIZE, INVENTORY_TITLE);
+        final Inventory lockManagerGUI = Bukkit.createInventory(player, INVENTORY_SIZE, INVENTORY_NAME);
 
         final ItemStack manageAccessBtn = getManageAccessButton();
         final ItemStack deleteBtn = getDeleteButton();
@@ -202,7 +205,7 @@ public final class LockManagerGUI {
      */
     @Contract(pure = true)
     private static @NotNull String getExtractedId(String textComponentImpl) {
-        final Pattern pattern = Pattern.compile("[A-aZ-z0-9]{24}");
+        final Pattern pattern = Pattern.compile(TEXT_COMPONENT_ID_PATTERN);
         Matcher matcher = pattern.matcher(textComponentImpl);
         final boolean found = matcher.find();
         if (!found) Loggers.printSevereLog(LoggingMessage.LOCK_ID_NOT_FOUND.getMessage());
@@ -213,7 +216,7 @@ public final class LockManagerGUI {
 
 
 //<editor-fold default-state="collapsed" desc="Getters">
-    public static TextComponent getInventoryTitle() { return INVENTORY_TITLE; }
+    public static TextComponent getLockManagerName() { return INVENTORY_NAME; }
 
     public static Material getManageAccessName() { return MANAGE_ACCESS_BUTTON_MATERIAL; }
 

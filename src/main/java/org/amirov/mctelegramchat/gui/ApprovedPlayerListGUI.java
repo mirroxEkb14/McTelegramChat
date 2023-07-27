@@ -4,6 +4,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.amirov.mctelegramchat.commands.performers.LockPerformer;
+import org.amirov.mctelegramchat.gui.enums.ConfirmationGUIConstants;
 import org.amirov.mctelegramchat.properties.ChatMessage;
 import org.amirov.mctelegramchat.properties.LockCommandDBProperties;
 import org.bukkit.Bukkit;
@@ -31,6 +32,13 @@ public final class ApprovedPlayerListGUI {
     private static final int CLOSE_BUTTON_INDEX = 44;
 //</editor-fold>
 
+    /**
+     * Gets the list of players from the DB who are allowed to use this lock, then shows this list as players' heads
+     * in the menu.
+     *
+     * @param player Player who triggered the event.
+     * @param lockId Id of the lock in the DB.
+     */
     public static void openApprovedPlayerListGUI(@NotNull Player player, String lockId) {
         final Inventory approvedPlayerListGUI = Bukkit.createInventory(player, INVENTORY_SIZE, INVENTORY_NAME);
 
@@ -75,6 +83,6 @@ public final class ApprovedPlayerListGUI {
     }
 
 //<editor-fold default-state="collapsed" desc="Getters">
-    public static TextComponent getInventoryName() { return INVENTORY_NAME; }
+    public static TextComponent getApprovedPlayerListName() { return INVENTORY_NAME; }
 //</editor-fold>
 }

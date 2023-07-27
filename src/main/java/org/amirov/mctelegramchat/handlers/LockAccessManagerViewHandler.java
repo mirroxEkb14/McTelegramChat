@@ -1,6 +1,6 @@
 package org.amirov.mctelegramchat.handlers;
 
-import org.amirov.mctelegramchat.gui.ConfirmationGUIConstants;
+import org.amirov.mctelegramchat.gui.enums.ConfirmationGUIConstants;
 import org.amirov.mctelegramchat.gui.LockAccessManagerGUI;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
