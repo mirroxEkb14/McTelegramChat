@@ -15,7 +15,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 /**
- * Manages everything directly related to lock management: creating, deleting, editing locks.
+ * This performer class manages everything directly related to lock management: creating, deleting, editing locks.
  */
 public final class LockPerformer {
 
@@ -33,6 +33,8 @@ public final class LockPerformer {
      *
      * @param player Player who triggered the command.
      * @param block Block that a player is locking.
+     *
+     * @see #getBlockLocationAsDocument(Block)
      */
     public static void createNewLock(@NotNull Player player, @NotNull Block block) {
         final Document lock = new Document(LockCommandDBProperties.PLAYER_UUID_KEY_NAME.getKey(), player.getUniqueId().toString())
@@ -47,9 +49,11 @@ public final class LockPerformer {
     }
 
     /**
-     * Delete selected lock from the DB.
+     * Deletes selected lock from the DB.
      *
      * @param chest Lock itself.
+     *
+     * @see #getFilter(Block)
      */
     public static void deleteLock(@NotNull Block chest) {
         final Document filter = getFilter(chest);
@@ -58,9 +62,11 @@ public final class LockPerformer {
 
 
     /**
-     * Delete selected lock from the DB by its id.
+     * Deletes selected lock from the DB by its id.
      *
      * @param lockId Lock id.
+     *
+     * @see #getLockById(String)
      */
     public static void deleteLock(String lockId) {
         final Document lock = getLockById(lockId);
@@ -73,6 +79,8 @@ public final class LockPerformer {
      * @param chest Chest another player interacted with.
      *
      * @return Instance of the player who locked the chest another player tried to open.
+     *
+     * @see #getFilter(Block)
      */
     public static Player getPlayerWhoLocked(@NotNull Block chest) {
         final Document filter = getFilter(chest);
@@ -130,6 +138,8 @@ public final class LockPerformer {
      * @param chest Chest a player tried to open.
      *
      * @return {@code true} if the chest passed as a parameter is already locked by someone, {@code false} otherwise.
+     *
+     * @see #getFilter(Block)
      */
     public static boolean isChestLocked(@NotNull Block chest) {
         final Document filter = getFilter(chest);

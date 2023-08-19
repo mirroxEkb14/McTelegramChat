@@ -3,7 +3,7 @@ package org.amirov.mctelegramchat.handlers;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.amirov.mctelegramchat.McTelegramChat;
-import org.amirov.mctelegramchat.commands.cmdquartermaster.LockCommand;
+import org.amirov.mctelegramchat.commands.subcommands.quartermaster.LockCommand;
 import org.amirov.mctelegramchat.gui.LockConfirmationGUI;
 import org.amirov.mctelegramchat.commands.performers.LockPerformer;
 import org.amirov.mctelegramchat.logging.Loggers;

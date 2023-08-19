@@ -1,4 +1,4 @@
-package org.amirov.mctelegramchat.commands.cmdquartermaster;
+package org.amirov.mctelegramchat.commands.subcommands.quartermaster;
 
 import org.amirov.mctelegramchat.commands.performers.CommandUtils;
 import org.amirov.mctelegramchat.commands.SubCommand;
@@ -13,7 +13,18 @@ import java.util.ArrayList;
 /**
  * Manages the subcommands of the "quartermaster" plugin.
  * <p>
- * /qm *manage* *command argument 2*
+ * /qm *lock*
+ * <br>
+ * /qm *manage*
+ * <p>
+ * Command typing explanation:
+ * <ol>
+ * <li> Typing only {@code /qm} would trigger sending a help command with this command's description.
+ * <li> Typing {@code /qm *random text instead of subcommand*} would trigger sending a warning message along with the
+ * help message.
+ * <li> Typing {@code /qm *correct subcommand* *random text*} would trigger sending a warning message along with the
+ * help message.
+ * </ol>
  */
 public final class QuartermasterManager implements CommandExecutor {
 
@@ -36,13 +47,7 @@ public final class QuartermasterManager implements CommandExecutor {
     /**
      * Checks either a player who typed the command specified any command arguments. If that is the case, the method
      * loops through the list of the subcommands of this certain command and performs this subcommand. Otherwise, if
-     * the command performer didn't specify any arguments, this method rung a help command.
-     * <p>
-     * If-else blocks explained:
-     * <ol>
-     * <li> {@code 0} would mean that a player typed just {@code /qm} with no command arguments.
-     * <li> {@code 1} would mean a player typed {@code /qm lock} or {@code /qm manage}.
-     * </ol>
+     * the command performer didn't specify any arguments, this method calls a help command.
      *
      * @param sender Source of the command.
      * @param command Executed command.
@@ -57,11 +62,12 @@ public final class QuartermasterManager implements CommandExecutor {
                              @NotNull String label,
                              @NotNull String[] args) {
         if (sender instanceof Player performer) {
-            if (CommandUtils.cmdArgumentsMoreThanZero(args)) {
-                CommandUtils.performSubcommand(qmSubcommands, performer, args);
-            } else if (CommandUtils.cmdArgumentsZero(args)) {
+            if (CommandUtils.cmdArgumentsZero(args)) {
                 CommandUtils.askPerformerForArgs(performer);
-                CommandUtils.sendHelpMessage(QUARTERMASTER_COMMAND_TITLE, qmSubcommands, performer);
+            } else if (CommandUtils.cmdArgumentsOne(args)) {
+                CommandUtils.performSubcommand(QUARTERMASTER_COMMAND_TITLE, qmSubcommands, performer, args);
+            } else if (CommandUtils.cmdArgumentsTwo(args)) {
+                CommandUtils.sendMessageTooManyArguments(performer);
             }
         }
         return true;

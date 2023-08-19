@@ -1,4 +1,4 @@
-package org.amirov.mctelegramchat.commands.cmdquartermaster;
+package org.amirov.mctelegramchat.commands.subcommands.quartermaster;
 
 import org.amirov.mctelegramchat.commands.SubCommand;
 import org.amirov.mctelegramchat.gui.LockListGUI;

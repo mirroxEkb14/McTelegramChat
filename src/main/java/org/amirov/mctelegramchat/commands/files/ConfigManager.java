@@ -46,6 +46,8 @@ public final class ConfigManager {
      *
      * @throws ConfigFilesNotSetupException Thrown is the method is called when the {@link File} and
      * {@link FileConfiguration} objects are not set in advance.
+     *
+     * @see #getFullLocationKey(String)
      */
     public static boolean savePlayerLocation(@NotNull UUID playerUUID, String locationName, @NotNull Location location)
             throws ConfigFilesNotSetupException {
@@ -75,6 +77,8 @@ public final class ConfigManager {
 
     /**
      * Sets up the file objects
+     *
+     * @see #setupFileObject()
      */
     public static void setupConfigFiles() {
         setupFileObject();

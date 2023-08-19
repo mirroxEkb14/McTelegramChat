@@ -1,4 +1,4 @@
-package org.amirov.mctelegramchat.commands.cmdquartermaster;
+package org.amirov.mctelegramchat.commands.subcommands.quartermaster;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;

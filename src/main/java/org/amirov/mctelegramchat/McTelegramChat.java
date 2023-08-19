@@ -4,11 +4,11 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import org.amirov.mctelegramchat.commands.cmdquartermaster.QuartermasterManager;
+import org.amirov.mctelegramchat.commands.subcommands.quartermaster.QuartermasterManager;
 import org.amirov.mctelegramchat.commands.files.ConfigManager;
 import org.amirov.mctelegramchat.commands.nonsubcommands.*;
 import org.amirov.mctelegramchat.commands.properties.CommandName;
-import org.amirov.mctelegramchat.commands.cmdprank.PrankManager;
+import org.amirov.mctelegramchat.commands.subcommands.prank.PrankManager;
 import org.amirov.mctelegramchat.enchantments.GlowEnchantment;
 import org.amirov.mctelegramchat.enchantments.HemorrhageEnchantment;
 import org.amirov.mctelegramchat.listeners.*;
@@ -63,6 +63,12 @@ public final class McTelegramChat extends JavaPlugin {
 
     /**
      * Called when the program is enabled.
+     *
+     * @see #initListeners(SPWBot)
+     * @see #initCommands()
+     * @see #initTasks()
+     * @see #initEnchantments()
+     * @see #connectToMongoDB()
      */
     @Override
     public void onEnable() {
@@ -150,6 +156,8 @@ public final class McTelegramChat extends JavaPlugin {
 
     /**
      * Initializes all the custom enchantments.
+     *
+     * @see #registerEnchantment(Enchantment)
      */
     private void initEnchantments() {
         registerEnchantment(GlowEnchantment.getInstance());
@@ -229,6 +237,8 @@ public final class McTelegramChat extends JavaPlugin {
 
     /**
      * Called when the program is disabled.
+     * 
+     * @see #unregisterEnchantment(Enchantment) 
      */
     @Override
     public void onDisable() {

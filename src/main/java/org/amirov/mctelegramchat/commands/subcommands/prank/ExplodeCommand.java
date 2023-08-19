@@ -1,4 +1,4 @@
-package org.amirov.mctelegramchat.commands.cmdprank;
+package org.amirov.mctelegramchat.commands.subcommands.prank;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
@@ -82,7 +82,7 @@ public final class ExplodeCommand extends SubCommand {
      * @param targetName Name of a player who should be exploded.
      */
     private void sendMessageWrongPlayerNameToPerformer(@NotNull Player performer, String targetName) {
-        final TextComponent firstMsgPart = Component.text(TO_PERFORMER_WRONG_NAME_MESSAGE, NamedTextColor.DARK_RED);
+        final TextComponent firstMsgPart = Component.text(TO_PERFORMER_WRONG_NAME_MESSAGE, NamedTextColor.RED);
         performer.sendMessage(firstMsgPart
                 .append(Component.text(targetName, NamedTextColor.BLUE)));
     }
@@ -93,7 +93,7 @@ public final class ExplodeCommand extends SubCommand {
      * @param performer Performer of this command.
      */
     private void sendNotificationToPerformer(@NotNull Player performer) {
-        final TextComponent firstMsgPart = Component.text(TO_PERFORMER_NO_NAME_MESSAGE, NamedTextColor.DARK_RED);
+        final TextComponent firstMsgPart = Component.text(TO_PERFORMER_NO_NAME_MESSAGE, NamedTextColor.RED);
         performer.sendMessage(firstMsgPart
                 .append(Component.text(CommandUtils.MESSAGE_LINE_DELIMITER))
                 .append(Component.text(getSyntax(), NamedTextColor.LIGHT_PURPLE)));
@@ -107,7 +107,7 @@ public final class ExplodeCommand extends SubCommand {
      */
     private void sendNotificationToTarget(@NotNull Player target, String performerPlayerName) {
         target.sendMessage(Component.text(
-                String.format(TO_TARGET_MESSAGE_SCRATCH, performerPlayerName), NamedTextColor.DARK_RED));
+                String.format(TO_TARGET_MESSAGE_SCRATCH, performerPlayerName), NamedTextColor.RED));
     }
 
     /**
@@ -127,7 +127,7 @@ public final class ExplodeCommand extends SubCommand {
      *
      * @param args Array of command arguments.
      *
-     * @return {@code true} if there are more than {@code 1} command arguments, {@code false} otherwise.
+     * @return {@code true}, if there are more than {@code 1} command arguments, {@code false} otherwise.
      */
     @Contract(pure = true)
     private boolean isTargetNameProvided(String @NotNull [] args) {
@@ -140,7 +140,7 @@ public final class ExplodeCommand extends SubCommand {
      *
      * @param args Array of command arguments.
      *
-     * @return {@code true} if there are command arguments except of a subcommand name, {@code false} otherwise.
+     * @return {@code true}, if there are command arguments except of a subcommand name, {@code false} otherwise.
      */
     @Contract(pure = true)
     private boolean areCommandArguments(String @NotNull [] args) {
