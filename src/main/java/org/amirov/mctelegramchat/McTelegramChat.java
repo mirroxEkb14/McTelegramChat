@@ -102,8 +102,6 @@ public final class McTelegramChat extends JavaPlugin {
     private void initCommands() {
         final PluginCommand mainMenuCommand = getCommand(CommandName.MAIN_MENU_COMMAND.getName());
         Objects.requireNonNull(mainMenuCommand).setExecutor(new MainMenuCommand());
-        final PluginCommand killCommand = getCommand(CommandName.KILL_COMMAND.getName());
-        Objects.requireNonNull(killCommand).setExecutor(new KillCommand(this));
         final PluginCommand setSpawnCommand = getCommand(CommandName.SET_SPAWN_COMMAND.getName());
         Objects.requireNonNull(setSpawnCommand).setExecutor(new SetSpawnCommand(this));
         final PluginCommand spawnCommand = getCommand(CommandName.SPAWN_COMMAND.getName());
@@ -123,7 +121,7 @@ public final class McTelegramChat extends JavaPlugin {
         final PluginCommand scoreBoardCommand = getCommand(CommandName.SCORE_BOARD_COMMAND.getName());
         Objects.requireNonNull(scoreBoardCommand).setExecutor(new ScoreBoardCommand());
         final PluginCommand prankCommand = getCommand(CommandName.PRANK_COMMAND.getName());
-        Objects.requireNonNull(prankCommand).setExecutor(new PrankManager());
+        Objects.requireNonNull(prankCommand).setExecutor(new PrankManager(this));
         final PluginCommand quartermasterCommand = getCommand(CommandName.QUARTERMASTER_COMMAND.getName());
         Objects.requireNonNull(quartermasterCommand).setExecutor(new QuartermasterManager());
     }

@@ -1,8 +1,8 @@
 # For creating a new bot use https://t.me/BotFather
-telegram-bot-api-key: 6031022457:AAHWip-kLQBuetURtKBdXWvWvzjSiupwAKI
-telegram-bot-username: spwhelper_bot
+telegram-bot-api-key: bot_token_here
+telegram-bot-username: bot_username_here
 # For your telegram id use https://t.me/getmyid_bot
-telegram-bot-admin-id: 1148695153
+telegram-bot-admin-id: admin_id_here
 # Some commands permissions
 player-kill: true
 # True if you want to limit how far players teleport using the 'rtp' command
@@ -20,7 +20,7 @@ motd-message:
   - ''
   - '&d&o-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-'
 # db-related constants for connection
-mongodb-connection-string: mongodb+srv://zea1ot19:19Mongodb!19kz@papercluster.c9roepk.mongodb.net/?retryWrites=true&w=majority
+mongodb-connection-string: connection_string_here
 mongodb-database-name: quartermaster
 mongodb-collection-name: locks
 # Enable staffhome teleportation

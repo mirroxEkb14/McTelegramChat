@@ -5,7 +5,6 @@ package org.amirov.mctelegramchat.commands.properties;
  */
 public enum CommandName {
     MAIN_MENU_COMMAND("menu"),
-    KILL_COMMAND("kill"),
     SET_SPAWN_COMMAND("setspawn"),
     SPAWN_COMMAND("spawn"),
     SAVE_LOCATION_COMMAND("saveloc"),

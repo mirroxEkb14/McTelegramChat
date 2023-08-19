@@ -1,8 +1,10 @@
 package org.amirov.mctelegramchat.commands.performers;
 
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.amirov.mctelegramchat.commands.SubCommand;
+import org.amirov.mctelegramchat.properties.ChatMessage;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.Contract;
@@ -35,7 +37,7 @@ public final class CommandUtils {
     private static final String WRONG_ARGUMENT_MESSAGE =
             ChatColor.RED +  "Wrong Subcommand Typed" + ChatColor.ITALIC;
     private static final String MUCH_ARGUMENTS_MESSAGE =
-            ChatColor.RED + "Too Much Command Arguments. See Help Message Below:" + ChatColor.ITALIC;
+            ChatColor.RED + "Too Much Command Arguments" + ChatColor.ITALIC;
 //</editor-fold>
 
 //<editor-fold default-state="collapsed" desc="Public Static Constants">
@@ -60,14 +62,13 @@ public final class CommandUtils {
                                          @NotNull Player performer,
                                          String @NotNull [] args) {
         for (SubCommand subCommand : subCommands) {
-            if (isSubcommand(subCommands, args)){
+            if (subCommand.getName().equalsIgnoreCase(args[SUBCOMMAND_ARGUMENT_INDEX])) {
                 subCommand.perform(performer, args);
                 return;
             }
-            sendMessageWrongArgument(performer);
-            sendHelpMessage(commandTitle, subCommands, performer);
-            break;
         }
+        sendMessageWrongArgument(performer);
+        sendHelpMessage(commandTitle, subCommands, performer);
     }
 
     /**
@@ -79,7 +80,7 @@ public final class CommandUtils {
      *
      * @see #getCommandTitle(String)
      */
-    private static void sendHelpMessage(String commandTitle,
+    public static void sendHelpMessage(String commandTitle,
                                        @NotNull ArrayList<SubCommand> subCommands,
                                        @NotNull Player performer) {
         final String msgTitle = getCommandTitle(commandTitle);
@@ -101,6 +102,20 @@ public final class CommandUtils {
                 .append(MESSAGE_LINE_DELIMITER)
                 .append(floorDelimiter);
         performer.sendMessage(stringBuilder.toString());
+    }
+
+
+    /**
+     * Sends a message to the performer that we typed a wrong player name.
+     *
+     * @param performer Performer of this command.
+     * @param targetName Name of a player who should be exploded.
+     */
+    public static void sendMessageWrongPlayerNameToPerformer(@NotNull Player performer, String targetName) {
+        final TextComponent firstMsgPart = Component.text(
+                ChatMessage.PLAYER_NAME_WRONG_OR_OFFLINE.getMessage(), NamedTextColor.RED);
+        performer.sendMessage(firstMsgPart
+                .append(Component.text(targetName, NamedTextColor.BLUE)));
     }
 
     /**
@@ -160,7 +175,7 @@ public final class CommandUtils {
      * @param performer Player who typed this command.
      */
     public static void askPerformerForArgs(@NotNull Player performer) {
-        performer.sendMessage(Component.text(NO_ARGUMENTS_MESSAGE, NamedTextColor.DARK_RED));
+        performer.sendMessage(Component.text(NO_ARGUMENTS_MESSAGE, NamedTextColor.RED));
     }
 
     /**

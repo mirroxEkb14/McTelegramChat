@@ -8,8 +8,6 @@ public enum ChatMessage {
     ON_FEED_ITEM("Bon Appetit"),
     ON_GOD_ITEM_ON("God Mode Enabled"),
     ON_GOD_ITEM_OFF("God Mode Disabled"),
-    ON_COMMAND_KILL_NO_NAME("Player's Name Was Not Provided"),
-    ON_COMMAND_KILL_WRONG_COMMAND_ARGUMENTS("Unknown Player's Name"),
     ON_COMMAND_KILL_PLAYER_OFFLINE("This Player Is Currently off-line"),
     ON_COMMAND_KILL_NOTIFICATION("Player %s Was Killed"),
     ON_COMMAND_KILL_EXPLANATION("You Were Killed by %s"),
@@ -53,7 +51,10 @@ public enum ChatMessage {
     ON_LOCK_ADD_PLAYER_YOU_ADDED_TO_LOCK(" Was Added to the Lock"),
     ON_LOCK_ADD_PLAYER_YOU_WERE_ADDED_TO_LOCK(" Granted You Access to the Lock"),
     ON_LOCK_ADD_PLAYER_YOU_DELETED_FROM_LOCK(" Was Deleted from the Lock"),
-    ON_LOCK_ADD_PLAYER_YOU_WERE_DELETED_FROM_LOCK(" Deleted You from the Lock");
+    ON_LOCK_ADD_PLAYER_YOU_WERE_DELETED_FROM_LOCK(" Deleted You from the Lock"),
+    ON_COMMAND_EXPLODE_PERFORMER_MSG_SCRATCH("You Exploded %s"),
+    ON_COMMAND_EXPLODE_TARGET_MSG_SCRATCH("You Were Exploded by %s"),
+    PLAYER_NAME_WRONG_OR_OFFLINE("Target Name Wrong or Offline: ");
 
     private final String message;
 

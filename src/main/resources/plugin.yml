@@ -11,9 +11,6 @@ commands:
     usage: /<command>
     aliases:
       - m
-  kill:
-    description: Kill a certain player
-    usage: /<command>
   setspawn:
     description: Save your spawn point
     usage: /<command>

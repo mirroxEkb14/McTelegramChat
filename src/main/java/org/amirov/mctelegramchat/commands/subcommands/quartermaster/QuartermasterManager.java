@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 
 /**
- * Manages the subcommands of the "quartermaster" plugin.
+ * Manages the subcommands of the {@code quartermaster} plugin.
  * <p>
  * /qm *lock*
  * <br>
@@ -19,11 +19,10 @@ import java.util.ArrayList;
  * <p>
  * Command typing explanation:
  * <ol>
- * <li> Typing only {@code /qm} would trigger sending a help command with this command's description.
+ * <li> Typing only {@code /qm} would trigger sending a warning message.
  * <li> Typing {@code /qm *random text instead of subcommand*} would trigger sending a warning message along with the
  * help message.
- * <li> Typing {@code /qm *correct subcommand* *random text*} would trigger sending a warning message along with the
- * help message.
+ * <li> Typing {@code /qm *correct subcommand* *random text*} would trigger sending a warning message.
  * </ol>
  */
 public final class QuartermasterManager implements CommandExecutor {

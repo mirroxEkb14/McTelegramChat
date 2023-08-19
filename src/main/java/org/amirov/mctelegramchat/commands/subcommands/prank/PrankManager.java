@@ -6,6 +6,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -13,7 +14,17 @@ import java.util.ArrayList;
 /**
  * Manages the subcommands of the {@code prank} command.
  * <p>
- * Command {@code prank} has a bunch of subcommands like {@code explode} or {@code freeze}.
+ * /prank *explode* *player name*
+ * <br>
+ * /prank *kill* *player name*
+ * <p>
+ * Command typing explanation:
+ * <ol>
+ * <li> Typing only {@code /prank} would trigger sending a warning message.
+ * <li> Typing {@code /prank *random text instead of subcommand*} would trigger sending a warning message along with the
+ * help message.
+ * <li> Typing {@code /prank *correct subcommand* *random text*} would trigger sending a warning message.
+ * </ol>
  */
 public final class PrankManager implements CommandExecutor {
 
@@ -30,8 +41,9 @@ public final class PrankManager implements CommandExecutor {
 //</editor-fold>
 
 //<editor-fold default-state="collapsed" desc="Constructor">
-    public PrankManager() {
+    public PrankManager(Plugin plugin) {
         prankSubcommands.add(new ExplodeCommand());
+        prankSubcommands.add(new KillCommand(plugin));
     }
 //</editor-fold>
 
@@ -62,6 +74,7 @@ public final class PrankManager implements CommandExecutor {
                     return true;
                 }
                 CommandUtils.sendMessageWrongArgument(performer);
+                CommandUtils.sendHelpMessage(PRANK_COMMAND_TITLE, prankSubcommands, performer);
             } else if (CommandUtils.cmdArgumentsTwo(args)) {
                 CommandUtils.performSubcommand(PRANK_COMMAND_TITLE, prankSubcommands, performer, args);
             } else if (CommandUtils.cmdArgumentsThree(args)) {

@@ -5,6 +5,7 @@ import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.amirov.mctelegramchat.commands.performers.CommandUtils;
 import org.amirov.mctelegramchat.commands.SubCommand;
+import org.amirov.mctelegramchat.properties.ChatMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -24,17 +25,9 @@ public final class ExplodeCommand extends SubCommand {
     private static final String EXPLODE_COMMAND_SYNTAX = "/prank explode <player name>";
 
     private static final int SUBCOMMAND_ARGUMENT_OF_PLAYER_NAME = 1;
-    private static final int LOWER_BOUND_OF_ARGUMENTS_AMOUNT = 1;
 
     private static final int EXPLODE_SOUND_VOLUME = 1;
     private static final int EXPLODE_SOUND_PITCH = 1;
-
-    private static final String TO_PERFORMER_MESSAGE_SCRATCH = "You Exploded %s";
-    private static final String TO_TARGET_MESSAGE_SCRATCH = "You Were Exploded by %s";
-
-    private static final String TO_PERFORMER_NO_NAME_MESSAGE = "No Target Name Provided";
-
-    private static final String TO_PERFORMER_WRONG_NAME_MESSAGE = "Wrong Target Name: ";
 //</editor-fold>
 
     @Contract(pure = true)
@@ -53,50 +46,22 @@ public final class ExplodeCommand extends SubCommand {
     public void perform(@NotNull Player performer, String @NotNull [] args) {
         String targetName = "";
         try {
-            if (areCommandArguments(args)) {
-                targetName = args[SUBCOMMAND_ARGUMENT_OF_PLAYER_NAME];
-                final Player target = Bukkit.getPlayer(targetName);
+            targetName = args[SUBCOMMAND_ARGUMENT_OF_PLAYER_NAME];
+            final Player target = Bukkit.getPlayer(targetName);
 
-                Objects.requireNonNull(target);
-                target.playSound(target.getLocation(),
-                        Sound.ENTITY_GENERIC_EXPLODE,
-                        EXPLODE_SOUND_VOLUME,
-                        EXPLODE_SOUND_PITCH);
-                target.setHealth(Double.MIN_VALUE);
-                target.sendMessage(Component.text());
+            Objects.requireNonNull(target);
+            target.playSound(target.getLocation(),
+                    Sound.ENTITY_GENERIC_EXPLODE,
+                    EXPLODE_SOUND_VOLUME,
+                    EXPLODE_SOUND_PITCH);
+            target.setHealth(Double.MIN_VALUE);
+            target.sendMessage(Component.text());
 
-                sendNotificationToPerformer(performer, target.getName());
-                sendNotificationToTarget(target, performer.getName());
-            } else if (isTargetNameProvided(args)) {
-                sendNotificationToPerformer(performer);
-            }
+            sendNotificationToPerformer(performer, target.getName());
+            sendNotificationToTarget(target, performer.getName());
         } catch (NullPointerException ex) {
-            sendMessageWrongPlayerNameToPerformer(performer, targetName);
+            CommandUtils.sendMessageWrongPlayerNameToPerformer(performer, targetName);
         }
-    }
-
-    /**
-     * Sends a message to the performer that we typed a wrong player name.
-     *
-     * @param performer Performer of this command.
-     * @param targetName Name of a player who should be exploded.
-     */
-    private void sendMessageWrongPlayerNameToPerformer(@NotNull Player performer, String targetName) {
-        final TextComponent firstMsgPart = Component.text(TO_PERFORMER_WRONG_NAME_MESSAGE, NamedTextColor.RED);
-        performer.sendMessage(firstMsgPart
-                .append(Component.text(targetName, NamedTextColor.BLUE)));
-    }
-
-    /**
-     * Sends a message to the command performer that he didn't provide a target's name.
-     *
-     * @param performer Performer of this command.
-     */
-    private void sendNotificationToPerformer(@NotNull Player performer) {
-        final TextComponent firstMsgPart = Component.text(TO_PERFORMER_NO_NAME_MESSAGE, NamedTextColor.RED);
-        performer.sendMessage(firstMsgPart
-                .append(Component.text(CommandUtils.MESSAGE_LINE_DELIMITER))
-                .append(Component.text(getSyntax(), NamedTextColor.LIGHT_PURPLE)));
     }
 
     /**
@@ -107,7 +72,8 @@ public final class ExplodeCommand extends SubCommand {
      */
     private void sendNotificationToTarget(@NotNull Player target, String performerPlayerName) {
         target.sendMessage(Component.text(
-                String.format(TO_TARGET_MESSAGE_SCRATCH, performerPlayerName), NamedTextColor.RED));
+                String.format(ChatMessage.ON_COMMAND_EXPLODE_TARGET_MSG_SCRATCH.getMessage(), performerPlayerName),
+                NamedTextColor.RED));
     }
 
     /**
@@ -118,32 +84,7 @@ public final class ExplodeCommand extends SubCommand {
      */
     private void sendNotificationToPerformer(@NotNull Player performer, String targetPlayerName) {
         performer.sendMessage(Component.text(
-                String.format(TO_PERFORMER_MESSAGE_SCRATCH, targetPlayerName), NamedTextColor.BLUE));
-    }
-
-
-    /**
-     * Determines either a target's name was provided as a command argument or not.
-     *
-     * @param args Array of command arguments.
-     *
-     * @return {@code true}, if there are more than {@code 1} command arguments, {@code false} otherwise.
-     */
-    @Contract(pure = true)
-    private boolean isTargetNameProvided(String @NotNull [] args) {
-        return args.length == LOWER_BOUND_OF_ARGUMENTS_AMOUNT;
-    }
-
-    /**
-     * Determines either there are command arguments more than 1 (which means except the {@code explode} argument there
-     * is also a player's name) or not.
-     *
-     * @param args Array of command arguments.
-     *
-     * @return {@code true}, if there are command arguments except of a subcommand name, {@code false} otherwise.
-     */
-    @Contract(pure = true)
-    private boolean areCommandArguments(String @NotNull [] args) {
-        return args.length > LOWER_BOUND_OF_ARGUMENTS_AMOUNT;
+                String.format(ChatMessage.ON_COMMAND_EXPLODE_PERFORMER_MSG_SCRATCH.getMessage(), targetPlayerName),
+                NamedTextColor.BLUE));
     }
 }
