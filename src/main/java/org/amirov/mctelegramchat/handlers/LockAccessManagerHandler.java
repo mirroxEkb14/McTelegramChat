@@ -24,6 +24,10 @@ public final class LockAccessManagerHandler {
      * @param event Event of interacting with the inventory.
      * @param player Player triggered the event.
      * @param currentItem Item that was clicked on.
+     *
+     * @see #isViewButton(ItemStack)
+     * @see #isAddButton(ItemStack)
+     * @see #isDeleteButton(ItemStack)
      */
     public static void performLockAccessManagerClick(@NotNull InventoryClickEvent event,
                                                      @NotNull Player player,
@@ -46,7 +50,7 @@ public final class LockAccessManagerHandler {
      *
      * @param item Item itself.
      *
-     * @return {@code true} if this item is a "remove" button for this menu, {@code false} otherwise.
+     * @return {@code true}, if this item is a "remove" button for this menu, {@code false} otherwise.
      */
     private static boolean isDeleteButton(@NotNull ItemStack item) {
         return item.getType().equals(LockAccessManagerGUI.getRemoveButtonMaterial());
@@ -58,7 +62,7 @@ public final class LockAccessManagerHandler {
      *
      * @param item Item itself.
      *
-     * @return {@code true} if this item is an "add" button for this menu, {@code false} otherwise.
+     * @return {@code true}, if this item is an "add" button for this menu, {@code false} otherwise.
      */
     private static boolean isAddButton(@NotNull ItemStack item) {
         return item.getType().equals(LockAccessManagerGUI.getAddButtonMaterial());
@@ -69,7 +73,7 @@ public final class LockAccessManagerHandler {
      *
      * @param item Item itself.
      *
-     * @return {@code true} if this item is a "view" button for this menu, {@code false} otherwise.
+     * @return {@code true}, if this item is a "view" button for this menu, {@code false} otherwise.
      */
     private static boolean isViewButton(@NotNull ItemStack item) {
         return item.getType().equals(LockAccessManagerGUI.getViewButtonMaterial());

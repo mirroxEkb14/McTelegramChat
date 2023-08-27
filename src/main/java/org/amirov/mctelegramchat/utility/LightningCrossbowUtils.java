@@ -33,6 +33,8 @@ public final class LightningCrossbowUtils {
      * Getter. Returns the item as a {@link ItemStack} object.
      *
      * @return Created lighting crossbow.
+     *
+     * @see #getLightningCrossbowMeta(ItemStack)
      */
     public static @NotNull ItemStack getLightningCrossbow() {
         final ItemStack lightningCrossbow = new ItemStack(

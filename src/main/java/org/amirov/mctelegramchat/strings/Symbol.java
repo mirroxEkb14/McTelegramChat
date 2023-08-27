@@ -1,4 +1,4 @@
-package org.amirov.mctelegramchat.properties;
+package org.amirov.mctelegramchat.strings;
 
 /**
  * Contains symbols that are:
@@ -16,7 +16,9 @@ public enum Symbol {
     AMPERSAND_TAG_ENTITY("&amp"),
     MONOSPACE_OPENING_TAG("<code>"),
     MONOSPACE_CLOSING_TAG("</code>"),
-    COLON_WITH_WHITE_SPACE(": "); // punctuation mark
+    COLON_WITH_WHITE_SPACE(": "), // punctuation mark
+    SPACE(" "),
+    QUOTATION_MARKS("");
 
     private final String symbol;
 

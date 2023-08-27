@@ -34,6 +34,10 @@ public final class LockDeleteConfirmationGUI {
      * Opens a menu where a player confirms, either he deletes this selected lock or not.
      *
      * @param player Player who opened the menu.
+     *
+     *
+     * @see #getYesButton()
+     * @see #getNoButton()
      */
     public static void openLockDeleteConfirmationGUI(@NotNull Player player) {
         final Inventory lockDeleteConfirmationGUI = Bukkit.createInventory(

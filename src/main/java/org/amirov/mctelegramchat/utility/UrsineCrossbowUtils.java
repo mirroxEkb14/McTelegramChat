@@ -33,6 +33,8 @@ public final class UrsineCrossbowUtils {
      * Getter. Returns the item as a {@link ItemStack} object.
      *
      * @return Created ursine crossbow.
+     *
+     * @see #getUrsineCrossbowMeta(ItemStack)
      */
     public static @NotNull ItemStack getUrsineCrossbow() {
         final ItemStack ursineCrossbow = new ItemStack(

@@ -31,6 +31,8 @@ public final class GodUndyingTotemUtils {
      * Works as a getter. Sets up the item and returns it as an {@link ItemStack} object.
      *
      * @return Custom undying totem item.
+     *
+     * @see #getGodUndyingTotemMeta(ItemStack)
      */
     public static @NotNull ItemStack getGodUndyingTotem() {
         final ItemStack item = new ItemStack(

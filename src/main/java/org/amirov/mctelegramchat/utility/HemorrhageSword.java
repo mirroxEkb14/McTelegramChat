@@ -32,6 +32,8 @@ public final class HemorrhageSword {
      * Provides a getter. Sets up and returns the item.
      *
      * @return Created sword with a custom enchantment of hemorrhage.
+     *
+     * @see #getHemorrhageSwordMeta(ItemStack)
      */
     public static @NotNull ItemStack getHemorrhageSword() {
         final ItemStack hemorrhageSword = new ItemStack(

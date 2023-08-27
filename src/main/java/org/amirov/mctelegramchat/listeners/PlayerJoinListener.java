@@ -4,9 +4,9 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.title.Title;
 import org.amirov.mctelegramchat.McTelegramChat;
-import org.amirov.mctelegramchat.properties.ConfigProperty;
+import org.amirov.mctelegramchat.strings.ConfigProperty;
 import org.amirov.mctelegramchat.listeners.properties.DisplayMessage;
-import org.amirov.mctelegramchat.properties.Symbol;
+import org.amirov.mctelegramchat.strings.Symbol;
 import org.amirov.mctelegramchat.utility.GlowingChestplate;
 import org.amirov.mctelegramchat.utility.HemorrhageSword;
 import org.bukkit.ChatColor;
@@ -36,6 +36,12 @@ public record PlayerJoinListener(McTelegramChat plugin) implements Listener {
      * Called when a player joins a server.
      * <p>
      * Greets a player.
+     *
+     * @see #updateInvisibleList(Player)
+     * @see #teleportToSpawnPoint(Player, boolean)
+     * @see #sendMotdMessage(Player)
+     * @see #equipPlayerWithGlowingChestplate(Player)
+     * @see #equipPlayerWithHemorrhageSword(Player)
      */
     @EventHandler
     public void onPlayerJoin(@NotNull PlayerJoinEvent event) {
@@ -110,6 +116,8 @@ public record PlayerJoinListener(McTelegramChat plugin) implements Listener {
      * @param joinedPlayer Player who joined the server.
      * @param wasBefore    {@code boolean} parameter that tells us either this player has already joined this server
      *                     or it's his first time.
+     *
+     * @see #getConfigSpawnLocation()
      */
     private void teleportToSpawnPoint(Player joinedPlayer, boolean wasBefore) {
         if (wasBefore) {
@@ -133,6 +141,8 @@ public record PlayerJoinListener(McTelegramChat plugin) implements Listener {
      * When a player dies, respawns him at the spawn point if it is set in the "config.yml" file.
      *
      * @param event Event of a player respawning.
+     *
+     * @see #getConfigSpawnLocation()
      */
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent event) {

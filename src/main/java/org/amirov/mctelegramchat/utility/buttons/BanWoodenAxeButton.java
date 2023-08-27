@@ -3,8 +3,8 @@ package org.amirov.mctelegramchat.utility.buttons;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
-import org.amirov.mctelegramchat.commands.nonsubcommands.BanCommand;
 import org.amirov.mctelegramchat.utility.CustomItemConstants;
+import org.amirov.mctelegramchat.commands.subcommands.admin.BanCommand;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -33,6 +33,8 @@ public final class BanWoodenAxeButton {
      * Works as a getter. Sets up a custom wooden axe representing a confirmation button and returns it.
      *
      * @return Custom wooden axe item.
+     *
+     * @see #getBanWoodenAxeMeta(ItemStack)
      */
     public static @NotNull ItemStack getBanWoodenAxe() {
         final ItemStack item = new ItemStack(

@@ -1,5 +1,5 @@
 /**
- * The {@code commands} package contain all the commands that are available for users on the server.
+ * The {@code commands} package contains all the commands that are available for users on the server.
  *
  * @see <a href="https://www.spigotmc.org/wiki/plugin-yml">Plugin.yml</a>
  *

@@ -32,6 +32,8 @@ public final class OpenArmoryShieldButton {
      * Getter. Sets up a custom shield representing a button that opens an armory with some unique items.
      *
      * @return Custom shield item.
+     *
+     * @see #getOpenArmoryShieldMeta(ItemStack)
      */
     public static @NotNull ItemStack getOpenArmoryShield() {
         final ItemStack item = new ItemStack(

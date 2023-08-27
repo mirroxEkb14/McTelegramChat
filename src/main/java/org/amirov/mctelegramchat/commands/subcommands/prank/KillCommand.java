@@ -3,15 +3,10 @@ package org.amirov.mctelegramchat.commands.subcommands.prank;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
-import org.amirov.mctelegramchat.McTelegramChat;
 import org.amirov.mctelegramchat.commands.SubCommand;
 import org.amirov.mctelegramchat.commands.performers.CommandUtils;
-import org.amirov.mctelegramchat.properties.ChatMessage;
-import org.amirov.mctelegramchat.properties.ConfigProperty;
+import org.amirov.mctelegramchat.strings.ConfigProperty;
 import org.bukkit.Bukkit;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
@@ -33,7 +28,10 @@ public final class KillCommand extends SubCommand {
 
     private static final int PLAYER_NAME_INDEX = 1;
 
-    private final Plugin plugin;
+    private static final String KILL_COOLDOWN = "Cooldown Time %d";
+    private static final String KILL_NO_PERMISSION = "No Permission";
+    private static final String KILL_NOTIFICATION = "Player %s Was Killed";
+    private static final String KILL_EXPLANATION = "You Were Killed by %s";
 
     /**
      * key -> UUID of the player.
@@ -48,8 +46,13 @@ public final class KillCommand extends SubCommand {
     private static final long COOLDOWN_TIME = 10000L;
 //</editor-fold>
 
+//<editor-fold default-state="collapsed" desc="Private Instance Variables">
+    private final Plugin plugin;
+//</editor-fold>
 
+//<editor-fold default-state="collapsed" desc="Constructor">
     public KillCommand(Plugin plugin) { this.plugin = plugin; }
+//</editor-fold>
 
     @Override
     public @NotNull String getName() { return KILL_COMMAND_NAME; }
@@ -78,14 +81,14 @@ public final class KillCommand extends SubCommand {
                         finishKilling(performer, target);
                     }
                     final TextComponent cooldownMessage = Component.text(String.format(
-                            ChatMessage.ON_COMMAND_KILL_COOLDOWN.getMessage(), COOLDOWN_TIME - timeElapsed));
+                            KILL_COOLDOWN, COOLDOWN_TIME - timeElapsed));
                     performer.sendMessage(cooldownMessage);
                 }
             } catch (NullPointerException e) {
                 CommandUtils.sendMessageWrongPlayerNameToPerformer(performer, targetName);
             }
         } else {
-            performer.sendMessage(ChatMessage.ON_COMMAND_KILL_NO_PERMISSION.getMessage());
+            performer.sendMessage(KILL_NO_PERMISSION);
         }
     }
 
@@ -112,7 +115,7 @@ public final class KillCommand extends SubCommand {
      * @param target A player who was killed.
      */
     private void sendNotificationToPlayer(@NotNull Player player, @NotNull Player target) {
-        final String message = String.format(ChatMessage.ON_COMMAND_KILL_NOTIFICATION.getMessage(), target.getName());
+        final String message = String.format(KILL_NOTIFICATION, target.getName());
         final TextComponent notification = Component.text(message, NamedTextColor.BLUE);
         player.sendMessage(notification);
     }
@@ -124,7 +127,7 @@ public final class KillCommand extends SubCommand {
      * @param player A player who run the command.
      */
     private void sendExplanationToTarget(@NotNull Player target, @NotNull Player player) {
-        final String message = String.format(ChatMessage.ON_COMMAND_KILL_EXPLANATION.getMessage(), player.getName());
+        final String message = String.format(KILL_EXPLANATION, player.getName());
         final TextComponent explanation = Component.text(message, NamedTextColor.RED);
         target.sendMessage(explanation);
     }

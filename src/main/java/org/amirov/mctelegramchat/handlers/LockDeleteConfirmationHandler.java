@@ -1,12 +1,12 @@
 package org.amirov.mctelegramchat.handlers;
 
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.amirov.mctelegramchat.commands.performers.LockPerformer;
 import org.amirov.mctelegramchat.gui.LockDeleteConfirmationGUI;
 import org.amirov.mctelegramchat.gui.LockListGUI;
 import org.amirov.mctelegramchat.gui.LockManagerGUI;
-import org.amirov.mctelegramchat.properties.ChatMessage;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
@@ -17,6 +17,9 @@ import org.jetbrains.annotations.NotNull;
  */
 public final class LockDeleteConfirmationHandler {
 
+    private static final TextComponent LOCK_DELETED = Component.text(
+            "You Deleted the Lock", NamedTextColor.GREEN);
+
     /**
      * if-else blocks explained:
      * <ol>
@@ -25,9 +28,12 @@ public final class LockDeleteConfirmationHandler {
      * the deletion is now 
      * </ol>
      *
-     * @param event
-     * @param player
-     * @param currentItem
+     * @param event Event when a user clicks on some item in the inventory.
+     * @param player Player who triggered the event.
+     * @param currentItem {@link ItemStack} that the player clicked on.
+     *
+     * @see #isNoButton(ItemStack)
+     * @see #isYesButton(ItemStack)
      */
     public static void performLockDeleteConfirmationClick(@NotNull InventoryClickEvent event,
                                                           @NotNull Player player,
@@ -37,8 +43,7 @@ public final class LockDeleteConfirmationHandler {
             LockManagerGUI.openLockManagerGUI(player);
         } else if (isYesButton(currentItem)) {
             LockPerformer.deleteLock(LockManagerGUI.getCurrentLockId());
-            player.sendMessage(Component.text(
-                    ChatMessage.ON_LOCK_DELETED.getMessage(), NamedTextColor.GREEN));
+            player.sendMessage(LOCK_DELETED);
             LockListGUI.openLockListGUI(player);
         }
     }

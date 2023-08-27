@@ -1,7 +1,7 @@
 package org.amirov.mctelegramchat.handlers;
 
-import org.amirov.mctelegramchat.commands.nonsubcommands.BanCommand;
 import org.amirov.mctelegramchat.gui.BanConfirmationGUI;
+import org.amirov.mctelegramchat.gui.BanListGUI;
 import org.amirov.mctelegramchat.gui.enums.ConfirmationGUIConstants;
 import org.amirov.mctelegramchat.listeners.properties.BanReason;
 import org.amirov.mctelegramchat.logging.Loggers;
@@ -37,6 +37,8 @@ public final class BanConfirmationHandler {
      * @param event Event of a player clicking an inventory item.
      * @param currentItem Item that was clicked on.
      * @param player Player who performed the click.
+     *
+     * @see #performBan(Player)
      */
     public static void performBanConfirmationInventoryClick(@NotNull InventoryClickEvent event,
                                                             @NotNull Player player,
@@ -47,7 +49,7 @@ public final class BanConfirmationHandler {
         if (currentItem.getType() == banWoodenAxe)
             performBan(player);
         else if (ConfirmationGUIConstants.isCloseButton(currentItem))
-            BanCommand.getInstance().onCommand(player);
+            BanListGUI.openBanListGUI(player);
         else
             Loggers.printSevereLog(LoggingMessage.BAN_CONFIRMATION_INVENTORY_WRONG_ITEM.getMessage());
     }

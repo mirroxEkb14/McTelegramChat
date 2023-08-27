@@ -3,9 +3,8 @@ package org.amirov.mctelegramchat.commands.nonsubcommands;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
-import org.amirov.mctelegramchat.properties.ChatMessage;
-import org.amirov.mctelegramchat.properties.ConfigProperty;
-import org.amirov.mctelegramchat.properties.Symbol;
+import org.amirov.mctelegramchat.strings.ConfigProperty;
+import org.amirov.mctelegramchat.strings.Symbol;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -26,6 +25,27 @@ public record StaffHomeCommand(Plugin plugin) implements CommandExecutor {
     private static final String SET_COMMAND = "set";
     private static final String RETURN_COMMAND = "return";
     private static final String RELOAD_COMMAND = "reload";
+
+    private static final String STAFFHOME_LORE = """
+            &7==&a&lStaff&eHome&7==
+            &6&o/staffhome set &7- &9Set a Temporary Home
+            &6&o/staffhome return &7- &9Return to Temporary Home and Remove It
+            &6&o/staffhome <name> &7- &9Teleport to a Temporary Home
+            &6&o/staffhome reload &7- &9Reload the Configuration
+            &7=========================""";
+    private static final String TO_PLAYER_HOME = "Teleported to Temporary Home of %s to: ";
+    private static final TextComponent TO_PLAYER_HOME_NO_HOME = Component.text(
+            "No Temporary Home for This Player", NamedTextColor.RED);
+    private static final TextComponent RELOAD = Component.text(
+            "Staffhome Configuration Reloaded", NamedTextColor.WHITE);
+    private static final TextComponent RETURNED_HOME = Component.text(
+            "At Temporary Home Now", NamedTextColor.BLUE);
+    private static final TextComponent RETURN_NO_HOME_SAVED = Component.text(
+            "No Temporary Home Set", NamedTextColor.RED);
+    private static final TextComponent RESET = Component.text(
+            "Overriding Temporary Home at: ", NamedTextColor.GREEN);
+    private static final TextComponent SET = Component.text(
+            "Temporary Home at: ", NamedTextColor.GREEN);
 
     private static final byte COMMAND_ARGUMENTS_ONE_VALUE = 1;
     private static final byte FIRST_COMMAND_ARGUMENT_INDEX = 0;
@@ -92,7 +112,7 @@ public record StaffHomeCommand(Plugin plugin) implements CommandExecutor {
     private @NotNull String getLoreMessage() {
         return ChatColor.translateAlternateColorCodes(
                 Symbol.AMPERSAND.getSymbol().charAt(AMPERSAND_CHAR_INDEX),
-                ChatMessage.ON_COMMAND_STAFFHOME_LORE.getMessage());
+                STAFFHOME_LORE);
     }
 
     /**
@@ -111,8 +131,7 @@ public record StaffHomeCommand(Plugin plugin) implements CommandExecutor {
     private void performTpToPlayerHomeCommand(@NotNull Player player, String targetPlayerName) {
         final Player targetPlayer = Bukkit.getPlayer(targetPlayerName);
         if (targetPlayer == null) {
-            player.sendMessage(Component.text(
-                    ChatMessage.ON_COMMAND_STAFFHOME_TO_PLAYER_HOME_NO_HOME.getMessage(), NamedTextColor.DARK_RED));
+            player.sendMessage(TO_PLAYER_HOME_NO_HOME);
             return;
         }
         currentPlayerSectionName = getSectionName(targetPlayerName);
@@ -133,8 +152,7 @@ public record StaffHomeCommand(Plugin plugin) implements CommandExecutor {
      * @return {@link TextComponent} representing a message that is sent after teleportation.
      */
     private @NotNull TextComponent getMessageAfterTpToPlayerHome(String targetPlayerName) {
-        final String messageWithName = String.format(
-                ChatMessage.ON_COMMAND_STAFFHOME_TO_PLAYER_HOME.getMessage(), targetPlayerName);
+        final String messageWithName = String.format(TO_PLAYER_HOME, targetPlayerName);
         final TextComponent tpToPlayer = Component.text(
                 messageWithName, NamedTextColor.GREEN);
         final TextComponent xCoordinate = Component.text(
@@ -145,9 +163,9 @@ public record StaffHomeCommand(Plugin plugin) implements CommandExecutor {
                 getZCoordinateValueRounded(getZSectionName()), NamedTextColor.GRAY);
         return tpToPlayer
                 .append(xCoordinate)
-                .append(Component.text(" "))
+                .append(Component.text(Symbol.SPACE.getSymbol()))
                 .append(yCoordinate)
-                .append(Component.text(" "))
+                .append(Component.text(Symbol.SPACE.getSymbol()))
                 .append(zCoordinate);
     }
 
@@ -166,8 +184,7 @@ public record StaffHomeCommand(Plugin plugin) implements CommandExecutor {
      */
     private void performReloadCommand(@NotNull Player player) {
         plugin.reloadConfig();
-        player.sendMessage(Component.text(
-                ChatMessage.ON_COMMAND_STAFFHOME_RELOAD.getMessage(), NamedTextColor.GRAY));
+        player.sendMessage(RELOAD);
     }
 
     /**
@@ -193,13 +210,11 @@ public record StaffHomeCommand(Plugin plugin) implements CommandExecutor {
                     getYCoordinateValue(),
                     getZCoordinateValue());
             player.teleport(returnLocation);
-            player.sendMessage(Component.text(
-                    ChatMessage.ON_COMMAND_STAFFHOME_RETURNED_HOME.getMessage(), NamedTextColor.GREEN));
+            player.sendMessage(RETURNED_HOME);
             clearSection();
             return;
         }
-        player.sendMessage(Component.text(
-                ChatMessage.ON_COMMAND_STAFFHOME_RETURN_NO_SAVED_LOCATION.getMessage(), NamedTextColor.DARK_RED));
+        player.sendMessage(RETURN_NO_HOME_SAVED);
     }
 
     /**
@@ -249,37 +264,33 @@ public record StaffHomeCommand(Plugin plugin) implements CommandExecutor {
     }
 
     private @NotNull TextComponent getMessageAfterReset() {
-        final TextComponent tempHome = Component.text(
-                ChatMessage.ON_COMMAND_STAFFHOME_RESET.getMessage(), NamedTextColor.GREEN);
         final TextComponent xCoordinate = Component.text(
                 getXCoordinateValueRounded(getXSectionName()), NamedTextColor.GRAY);
         final TextComponent yCoordinate = Component.text(
                 getYCoordinateValueRounded(getYSectionName()), NamedTextColor.GRAY);
         final TextComponent zCoordinate = Component.text(
                 getZCoordinateValueRounded(getZSectionName()), NamedTextColor.GRAY);
-        return tempHome
+        return RESET
                 .append(xCoordinate)
-                .append(Component.text(" "))
+                .append(Component.text())
                 .append(yCoordinate)
-                .append(Component.text(" "))
+                .append(Component.text(Symbol.SPACE.getSymbol()))
                 .append(zCoordinate);
     }
 
     @Contract(pure = true)
     private @NotNull TextComponent getMessageAfterSet(String xName, String yName, String zName) {
-        final TextComponent tempHome = Component.text(
-                ChatMessage.ON_COMMAND_STAFFHOME_SET.getMessage(), NamedTextColor.GREEN);
         final TextComponent xCoordinate = Component.text(
                 getXCoordinateValueRounded(xName), NamedTextColor.GRAY);
         final TextComponent yCoordinate = Component.text(
                 getYCoordinateValueRounded(yName), NamedTextColor.GRAY);
         final TextComponent zCoordinate = Component.text(
                 getZCoordinateValueRounded(zName), NamedTextColor.GRAY);
-        return tempHome
+        return SET
                 .append(xCoordinate)
-                .append(Component.text(" "))
+                .append(Component.text(Symbol.SPACE.getSymbol()))
                 .append(yCoordinate)
-                .append(Component.text(" "))
+                .append(Component.text(Symbol.SPACE.getSymbol()))
                 .append(zCoordinate);
     }
 

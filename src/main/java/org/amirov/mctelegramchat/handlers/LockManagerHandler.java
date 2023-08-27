@@ -28,6 +28,10 @@ public final class LockManagerHandler {
      * @param event Event of a player clicking on some item in this menu.
      * @param player Player who triggered the event.
      * @param currentItem Item that this player clicked on.
+     *
+     * @see #isManageAccessButton(ItemStack)
+     * @see #isDeleteButton(ItemStack)
+     * @see #isInfoButton(ItemStack)
      */
     public static void performLockManagerClick(@NotNull InventoryClickEvent event,
                                                @NotNull Player player,

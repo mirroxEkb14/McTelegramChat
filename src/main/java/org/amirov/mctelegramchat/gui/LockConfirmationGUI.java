@@ -36,6 +36,9 @@ public final class LockConfirmationGUI {
      * Opens an inventory with a confirmation menu, either a player wants to lock the chest or not.
      *
      * @param player Player who triggered the event.
+     *
+     * @see #getYesButton()
+     * @see #getNoButton()
      */
     public static void openLockConfirmationGUI(@NotNull Player player) {
         Inventory lockConfirmationGUI = Bukkit.createInventory(

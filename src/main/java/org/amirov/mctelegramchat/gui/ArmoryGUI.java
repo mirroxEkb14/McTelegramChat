@@ -41,6 +41,8 @@ public final class ArmoryGUI {
      * Opens an inventory with the unique items (armory).
      *
      * @param player Player who clicked on the {@link OpenArmoryShieldButton} button.
+     *
+     * @see #setArmoryItems(Inventory)
      */
     public static void openArmoryInventory(@NotNull Player player) {
         final Inventory armory = Bukkit.createInventory(player, INVENTORY_SIZE, INVENTORY_NAME);

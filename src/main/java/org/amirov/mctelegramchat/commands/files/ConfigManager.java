@@ -1,6 +1,5 @@
 package org.amirov.mctelegramchat.commands.files;
 
-import org.amirov.mctelegramchat.commands.files.properties.ConfigFileKey;
 import org.amirov.mctelegramchat.logging.Loggers;
 import org.amirov.mctelegramchat.logging.LoggingMessage;
 import org.bukkit.Bukkit;
@@ -21,7 +20,14 @@ import java.util.UUID;
  */
 public final class ConfigManager {
 
+//<editor-fold default-state="collapsed" desc="Private Static Constants">
+    private static final String LOCATION_FILE = "location.yml";
+    private static final String PLAYER_UUID = "player-uuid";
+    private static final String PLAYER_LOCATION = "player-location-";
+
     private static final String PROJECT_NAME = "McTelegramChat";
+//</editor-fold>
+
     /**
      * {@link File} object.
      * <p>
@@ -54,7 +60,7 @@ public final class ConfigManager {
         if (file == null || configFile == null)
             throw new ConfigFilesNotSetupException(LoggingMessage.SAVING_CONFIG_FILE_ERROR.getMessage());
         try {
-            configFile.set(ConfigFileKey.PLAYER_UUID.getKey(), playerUUID);
+            configFile.set(PLAYER_UUID, playerUUID);
             configFile.set(getFullLocationKey(locationName), location);
             configFile.save(file);
         } catch (IOException e) {
@@ -72,7 +78,7 @@ public final class ConfigManager {
      */
     @Contract(pure = true)
     private static @NotNull String getFullLocationKey(String locationName) {
-        return ConfigFileKey.PLAYER_LOCATION.getKey() + locationName;
+        return PLAYER_LOCATION + locationName;
     }
 
     /**
@@ -92,7 +98,7 @@ public final class ConfigManager {
         try {
             final Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin(PROJECT_NAME);
             Objects.requireNonNull(plugin);
-            file = new File(plugin.getDataFolder(), ConfigFileKey.LOCATION_FILE.getKey());
+            file = new File(plugin.getDataFolder(), LOCATION_FILE);
             if (!file.exists())
                 file.createNewFile();
         } catch (IOException e) {

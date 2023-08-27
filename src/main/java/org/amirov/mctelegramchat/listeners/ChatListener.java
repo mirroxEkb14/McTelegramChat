@@ -4,7 +4,7 @@ import io.papermc.paper.event.player.AsyncChatEvent;
 import net.kyori.adventure.text.TextComponent;
 import org.amirov.mctelegramchat.logging.Loggers;
 import org.amirov.mctelegramchat.logging.LoggingMessage;
-import org.amirov.mctelegramchat.properties.Symbol;
+import org.amirov.mctelegramchat.strings.Symbol;
 import org.amirov.mctelegramchat.telegrambot.SPWBot;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -24,6 +24,8 @@ public record ChatListener(SPWBot telegramBot) implements Listener {
      * Sends player's message to the bot.
      *
      * @see <a href="https://core.telegram.org/bots/api#sendmessage">Sending messages</a>
+     * @see #getFormattedChatMessageText(String)
+     * @see #getFullChatMessage(String, String)
      */
     @EventHandler
     public void handleChatMessage(@NotNull AsyncChatEvent event) {

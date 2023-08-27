@@ -33,6 +33,8 @@ public final class UrsineChestplateUtils {
      * Getter. Returns a custom chestplate of the type of {@link ItemStack}.
      *
      * @return Created a unique armor.
+     *
+     * @see #getUrsineChestplateMeta(ItemStack)
      */
     public static @NotNull ItemStack getUrsineChestplate() {
         final ItemStack chestplate = new ItemStack(

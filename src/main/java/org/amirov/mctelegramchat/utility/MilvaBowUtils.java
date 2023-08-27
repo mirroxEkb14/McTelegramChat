@@ -34,6 +34,8 @@ public final class MilvaBowUtils {
      * Getter. Sets up the {@link ItemStack} object and returns it.
      *
      * @return Created unique bow.
+     *
+     * @see #getMilvaBowMeta(ItemStack)
      */
     public static @NotNull ItemStack getMilvaBow() {
         final ItemStack milvaBow = new ItemStack(

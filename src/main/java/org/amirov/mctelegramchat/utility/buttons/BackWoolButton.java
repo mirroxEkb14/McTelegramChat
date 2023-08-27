@@ -38,6 +38,8 @@ public final class BackWoolButton {
      * Works as a getter. Sets up a custom wool representing a back button.
      *
      * @return Custom red wool item.
+     *
+     * @see #getBackWoolMeta(ItemStack)
      */
     public static @NotNull ItemStack getBackWool() {
         final ItemStack item = new ItemStack(

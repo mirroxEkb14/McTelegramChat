@@ -31,6 +31,8 @@ public final class LethalTntUtils {
      * Works as a getter. Sets up the custom tnt object and returns it.
      *
      * @return Created lethal tnt.
+     *
+     * @see #getLethalTntMeta(ItemStack)
      */
     public static @NotNull ItemStack getLethalTnt() {
         final ItemStack lethalTnt = new ItemStack(

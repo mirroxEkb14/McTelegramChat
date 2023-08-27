@@ -32,6 +32,8 @@ public final class FlyElytraButton {
      * Getter. Sets up custom elytra that allows to fly.
      *
      * @return Custom elytra of the type of {@link ItemStack}.
+     *
+     * @see #getFlyElytraMeta(ItemStack)
      */
     public static @NotNull ItemStack getFlyElytra() {
         final ItemStack item = new ItemStack(

@@ -5,7 +5,7 @@ import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.amirov.mctelegramchat.McTelegramChat;
 import org.amirov.mctelegramchat.commands.performers.LockPerformer;
-import org.amirov.mctelegramchat.properties.LockCommandDBProperties;
+import org.amirov.mctelegramchat.strings.LockCommandDBProperties;
 import org.amirov.mctelegramchat.handlers.LockListHandler;
 import org.bson.Document;
 import org.bukkit.Bukkit;
@@ -55,6 +55,9 @@ public final class LockListGUI {
      * Creates a filter by which the method find all the player's locks in the DB and uses them to display in gui.
      *
      * @param player Owner of the locks.
+     *
+     * @see #getLockItem(Document)
+     * @see #fillEmptySlots()
      */
     public static void openLockListGUI(@NotNull Player player) {
         lockListGUI = Bukkit.createInventory(player, INVENTORY_SIZE, INVENTORY_NAME);

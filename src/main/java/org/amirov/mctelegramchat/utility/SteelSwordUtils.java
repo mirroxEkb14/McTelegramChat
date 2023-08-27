@@ -39,6 +39,8 @@ public final class SteelSwordUtils {
      * Works as a getter. Sets the metadata of the object and returns it.
      *
      * @return Newly created iron sword of the type of {@link ItemStack}.
+     * 
+     * @see #getSteelSwordMetaData(ItemStack)
      */
     public static @NotNull ItemStack getIronSword() {
         final ItemStack steelSword = new ItemStack(

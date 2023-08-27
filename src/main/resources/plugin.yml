@@ -11,20 +11,11 @@ commands:
     usage: /<command>
     aliases:
       - m
-  setspawn:
-    description: Save your spawn point
-    usage: /<command>
   spawn:
     description: Teleport yourself to your spawn point
     usage: /<command>
   saveloc:
     description: Save current location point
-    usage: /<command>
-  spawnsign:
-    description: Spawn a sign with a text
-    usage: /<command>
-  ban:
-    description: Open ban list
     usage: /<command>
   rtp:
     description: Random tp
@@ -48,6 +39,9 @@ commands:
     usage: /<command>
   prank:
     description: Contains subcommands with different ways to prank a player
+    usage: /<command>
+  admin:
+    description: Contains subcommands only an admin can use
     usage: /<command>
   quartermaster:
     description: Manage And Use QuarterMaster Plugin

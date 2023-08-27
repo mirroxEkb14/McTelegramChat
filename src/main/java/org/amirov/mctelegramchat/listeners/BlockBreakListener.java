@@ -21,6 +21,8 @@ public final class BlockBreakListener implements Listener {
      * to his inventory.
      *
      * @param event Event of a player breaking a block.
+     *
+     * @see #isItemWithSilkTouch(Player)
      */
     @EventHandler
     public void onBlockBreak(@NotNull BlockBreakEvent event) {

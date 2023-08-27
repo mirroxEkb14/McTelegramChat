@@ -4,7 +4,6 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.amirov.mctelegramchat.commands.SubCommand;
-import org.amirov.mctelegramchat.properties.ChatMessage;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.Contract;
@@ -23,7 +22,6 @@ public final class CommandUtils {
     private static final int SUBCOMMAND_ZERO_ARGUMENT = 0;
     private static final int SUBCOMMAND_ONE_ARGUMENT = 1;
     private static final int SUBCOMMAND_TWO_ARGUMENT = 2;
-    private static final int SUBCOMMAND_THREE_ARGUMENT = 3;
 
     private static final String HELP_MESSAGE_CEILING_DELIMITER = "=======";
     private static final String HELP_MESSAGE_FLOOR_DELIMITER = "===================================";
@@ -33,11 +31,15 @@ public final class CommandUtils {
     private static final int COMMAND_TITLE_NAME_WORD_INDEX = 0;
     private static final int COMMAND_TITLE_COMMAND_WORD_INDEX = 1;
 
-    private static final String NO_ARGUMENTS_MESSAGE = "Command Arguments Needed";
+    private static final String NO_ARGUMENTS_MESSAGE =
+            ChatColor.RED + "Command Arguments Needed"  + ChatColor.ITALIC;
     private static final String WRONG_ARGUMENT_MESSAGE =
             ChatColor.RED +  "Wrong Subcommand Typed" + ChatColor.ITALIC;
     private static final String MUCH_ARGUMENTS_MESSAGE =
             ChatColor.RED + "Too Much Command Arguments" + ChatColor.ITALIC;
+
+    private static final TextComponent PLAYER_NAME_WRONG_OR_OFFLINE = Component.text(
+            "Target Name Wrong or Offline: ", NamedTextColor.RED);
 //</editor-fold>
 
 //<editor-fold default-state="collapsed" desc="Public Static Constants">
@@ -112,9 +114,7 @@ public final class CommandUtils {
      * @param targetName Name of a player who should be exploded.
      */
     public static void sendMessageWrongPlayerNameToPerformer(@NotNull Player performer, String targetName) {
-        final TextComponent firstMsgPart = Component.text(
-                ChatMessage.PLAYER_NAME_WRONG_OR_OFFLINE.getMessage(), NamedTextColor.RED);
-        performer.sendMessage(firstMsgPart
+        performer.sendMessage(PLAYER_NAME_WRONG_OR_OFFLINE
                 .append(Component.text(targetName, NamedTextColor.BLUE)));
     }
 
@@ -175,7 +175,7 @@ public final class CommandUtils {
      * @param performer Player who typed this command.
      */
     public static void askPerformerForArgs(@NotNull Player performer) {
-        performer.sendMessage(Component.text(NO_ARGUMENTS_MESSAGE, NamedTextColor.RED));
+        performer.sendMessage(NO_ARGUMENTS_MESSAGE);
     }
 
     /**
@@ -211,13 +211,7 @@ public final class CommandUtils {
         return args.length == SUBCOMMAND_TWO_ARGUMENT;
     }
 
-
-    /**
-     * Determines either a player typed three command arguments - no more, no less.
-     *
-     * @param args Command arguments as an array of {@link String}s.
-     *
-     * @return {@code true}, if the command argument's length is three, {@code false} otherwise.
-     */
-    public static boolean cmdArgumentsThree(String @NotNull [] args) { return args.length == SUBCOMMAND_THREE_ARGUMENT; }
+//<editor-fold default-state="collapsed" desc="Getters">
+    public static int getSubcommandArgumentIndex() { return SUBCOMMAND_ARGUMENT_INDEX; }
+//<editor-fold>
 }

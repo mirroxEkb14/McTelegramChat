@@ -26,7 +26,10 @@ public final class PlayerHeadUtils {
      * Returns the player's head that was passed as an argument.
      *
      * @param currentPlayer Player whose head the method returns.
+     *
      * @return Passed player's head with his stats.
+     *
+     * @see #getPlayerHeadMeta(ItemStack, Player)
      */
     public static @NotNull ItemStack getPlayerHead(@NotNull Player currentPlayer) {
         final ItemStack item = new ItemStack(
@@ -44,6 +47,9 @@ public final class PlayerHeadUtils {
      * @param currentPlayer {@link Player} who is currently online for the ban menu.
      *
      * @return {@link ItemMeta} object with the set name and description of the item.
+     *
+     * @see #initHeadLore(double, float)
+     * @see #resetHeadLore()
      */
     private static @NotNull ItemMeta getPlayerHeadMeta(@NotNull ItemStack playerHead, @NotNull Player currentPlayer) {
         final ItemMeta playerHeadMeta = playerHead.getItemMeta();

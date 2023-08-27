@@ -1,11 +1,9 @@
 package org.amirov.mctelegramchat.commands.subcommands.prank;
 
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.amirov.mctelegramchat.commands.performers.CommandUtils;
 import org.amirov.mctelegramchat.commands.SubCommand;
-import org.amirov.mctelegramchat.properties.ChatMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -28,6 +26,9 @@ public final class ExplodeCommand extends SubCommand {
 
     private static final int EXPLODE_SOUND_VOLUME = 1;
     private static final int EXPLODE_SOUND_PITCH = 1;
+
+    private static final String EXPLODE_TARGET_SCRATCH = "You Were Exploded by %s";
+    private static final String EXPLODE_KILLER_SCRATCH = "You Exploded %s";
 //</editor-fold>
 
     @Contract(pure = true)
@@ -72,7 +73,7 @@ public final class ExplodeCommand extends SubCommand {
      */
     private void sendNotificationToTarget(@NotNull Player target, String performerPlayerName) {
         target.sendMessage(Component.text(
-                String.format(ChatMessage.ON_COMMAND_EXPLODE_TARGET_MSG_SCRATCH.getMessage(), performerPlayerName),
+                String.format(EXPLODE_TARGET_SCRATCH, performerPlayerName),
                 NamedTextColor.RED));
     }
 
@@ -84,7 +85,7 @@ public final class ExplodeCommand extends SubCommand {
      */
     private void sendNotificationToPerformer(@NotNull Player performer, String targetPlayerName) {
         performer.sendMessage(Component.text(
-                String.format(ChatMessage.ON_COMMAND_EXPLODE_PERFORMER_MSG_SCRATCH.getMessage(), targetPlayerName),
+                String.format(EXPLODE_KILLER_SCRATCH, targetPlayerName),
                 NamedTextColor.BLUE));
     }
 }

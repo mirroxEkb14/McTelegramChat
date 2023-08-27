@@ -77,7 +77,7 @@ public final class PrankManager implements CommandExecutor {
                 CommandUtils.sendHelpMessage(PRANK_COMMAND_TITLE, prankSubcommands, performer);
             } else if (CommandUtils.cmdArgumentsTwo(args)) {
                 CommandUtils.performSubcommand(PRANK_COMMAND_TITLE, prankSubcommands, performer, args);
-            } else if (CommandUtils.cmdArgumentsThree(args)) {
+            } else {
                 CommandUtils.sendMessageTooManyArguments(performer);
             }
         }

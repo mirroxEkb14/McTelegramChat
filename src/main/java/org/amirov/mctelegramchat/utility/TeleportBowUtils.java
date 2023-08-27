@@ -31,6 +31,8 @@ public final class TeleportBowUtils {
      * Getter. Sets up the {@link ItemStack} object and returns it.
      *
      * @return Created teleport bow.
+     *
+     * @see #getTeleportBowMeta(ItemStack)
      */
     public static @NotNull ItemStack getTeleportBow() {
         final ItemStack teleportBow = new ItemStack(

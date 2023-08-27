@@ -1,11 +1,12 @@
 package org.amirov.mctelegramchat.commands.nonsubcommands;
 
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.amirov.mctelegramchat.commands.files.ConfigFilesNotSetupException;
 import org.amirov.mctelegramchat.commands.files.ConfigManager;
 import org.amirov.mctelegramchat.logging.Loggers;
 import org.amirov.mctelegramchat.logging.LoggingMessage;
-import org.amirov.mctelegramchat.properties.ChatMessage;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -22,6 +23,12 @@ public final class SaveLocationCommand implements CommandExecutor {
 
 //<editor-fold default-state="collapsed" desc="Private Static Constants">
     private static final int NAME_WORD_LENGTH = 1;
+    private static final int LOCATION_KEY_INDEX = 0;
+
+    private static final TextComponent WRONG_COMMAND_ARGUMENTS = Component.text(
+            "Only One Word for Point Name", NamedTextColor.RED);
+    private static final TextComponent LOCATION_SAVED = Component.text(
+            "Location Point Saved", NamedTextColor.GREEN);
 //</editor-fold>
 
     /**
@@ -42,16 +49,16 @@ public final class SaveLocationCommand implements CommandExecutor {
                              @NotNull String[] args) {
         if (sender instanceof Player player) {
             if (args.length != NAME_WORD_LENGTH) {
-                player.sendMessage(ChatMessage.ON_COMMAND_LOCATION_WRONG_COMMAND_ARGUMENTS.getMessage());
+                player.sendMessage(WRONG_COMMAND_ARGUMENTS);
                 return true;
             }
             try {
                 final UUID playerId = player.getUniqueId();
-                final String locKeyName = args[0];
+                final String locKeyName = args[LOCATION_KEY_INDEX];
                 final Location playerLocation = player.getLocation();
 
                 ConfigManager.savePlayerLocation(playerId, locKeyName, playerLocation);
-                player.sendMessage(Component.text(ChatMessage.ON_COMMAND_LOCATION_SAVED.getMessage()));
+                player.sendMessage(LOCATION_SAVED);
             } catch (ConfigFilesNotSetupException e) {
                 Loggers.printSevereLog(LoggingMessage.SAVING_CONFIG_FILE_ERROR.getMessage());
             }

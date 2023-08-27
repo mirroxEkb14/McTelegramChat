@@ -33,6 +33,8 @@ public final class SilverSwordUtils {
      * Works as a getter. Sets up the item and returns it.
      *
      * @return Created unique silver sword.
+     *
+     * @see #getNetheriteSwordMeta(ItemStack)
      */
     public static @NotNull ItemStack getNetheriteSword() {
         final ItemStack netheriteSword = new ItemStack(

@@ -39,6 +39,8 @@ public final class PlayersOnlineGUI {
      * @param player Player who triggered the event.
      * @param toAdd if {@code true}, inventory name will be as an "Add Player", otherwise {@code false} the name of the
      *              inventory will be a "Delete Player".
+     *
+     * @see #getOnlinePlayerHead(Player)
      */
     public static void openPlayersOnlineGUI(@NotNull Player player, boolean toAdd) {
         final Inventory playersToAddGUI = Bukkit.createInventory(

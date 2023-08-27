@@ -6,7 +6,7 @@ import org.amirov.mctelegramchat.handlers.performers.HologramCreatingPerformer;
 import org.amirov.mctelegramchat.handlers.performers.SpawnArmorStandPerformer;
 import org.amirov.mctelegramchat.logging.Loggers;
 import org.amirov.mctelegramchat.logging.LoggingMessage;
-import org.amirov.mctelegramchat.properties.ChatMessage;
+import org.amirov.mctelegramchat.strings.ChatMessage;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
@@ -29,6 +29,11 @@ public final class MainMenuHandler {
      * @param event Event of a player clicking an inventory item.
      * @param currentItem Item that was clicked on.
      * @param player Player who performed the click.
+     *
+     * @see #performPlayerSuicide(Player)
+     * @see #feedPlayer(Player)
+     * @see #makeHimFly(Player)
+     * @see #makeHimGod(Player)
      */
     public static void performMenuInventoryClick(@NotNull InventoryClickEvent event,
                                                  @NotNull ItemStack currentItem,

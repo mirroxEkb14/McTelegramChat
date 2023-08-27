@@ -35,6 +35,8 @@ public final class SpawnArmorStandPerformer {
      * Spawns a custom armor stand on the block where the player is standing.
      *
      * @param player Player who clicked on the armor stand.
+     *
+     * @see #setArmorStandPose(ArmorStand)
      */
     public static void performSpawnArmorStand(@NotNull Player player) {
         final ArmorStand armorStand = (ArmorStand) player.getWorld().spawnEntity(

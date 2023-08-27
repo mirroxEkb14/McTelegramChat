@@ -1,10 +1,10 @@
 package org.amirov.mctelegramchat.listeners;
 
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.amirov.mctelegramchat.enchantments.GlowEnchantment;
 import org.amirov.mctelegramchat.enchantments.HemorrhageEnchantment;
-import org.amirov.mctelegramchat.properties.ChatMessage;
 import org.amirov.mctelegramchat.tasks.BleedOutTask;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -23,10 +23,18 @@ import org.jetbrains.annotations.NotNull;
  */
 public record EntityHitListener(Plugin plugin) implements Listener {
 
+//<editor-fold default-state="collapsed" desc="Private Static Constants">
+    private static final TextComponent ENTITY_HIT = Component.text(
+            "Made Your Victim Glow And bleed", NamedTextColor.RED);
+//</editor-fold>
+
     /**
      * After a player hits an entity, this entity stars glowing and bleeding out.
      *
      * @param event Event of an entity getting damaged by another entity.
+     *              
+     * @see #performGlowing(Player, Entity) 
+     * @see #performBleeding(Player, Entity) 
      */
     @EventHandler
     public void onEntityHit(@NotNull EntityDamageByEntityEvent event) {
@@ -60,8 +68,7 @@ public record EntityHitListener(Plugin plugin) implements Listener {
         if (HemorrhageEnchantment.entityHasBleedingEnchantment(item)) {
             final LivingEntity victim = (LivingEntity) entityWhoWasHit;
             new BleedOutTask(victim).runTaskTimer(plugin, BleedOutTask.TASK_DELAY, BleedOutTask.TASK_PERIOD);
-            playerWhoHit.sendMessage(Component.text(
-                    ChatMessage.ON_ENTITY_HIT.getMessage(), NamedTextColor.DARK_RED));
+            playerWhoHit.sendMessage(ENTITY_HIT);
         }
     }
 }

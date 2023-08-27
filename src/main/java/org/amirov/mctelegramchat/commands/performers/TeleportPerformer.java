@@ -1,6 +1,6 @@
 package org.amirov.mctelegramchat.commands.performers;
 
-import org.amirov.mctelegramchat.properties.ConfigProperty;
+import org.amirov.mctelegramchat.strings.ConfigProperty;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;

@@ -19,7 +19,7 @@ public final class BleedOutTask extends BukkitRunnable {
 //</editor-fold>
 
 //<editor-fold default-state="collapsed" desc="Instance Variables">
-    final LivingEntity victim;
+    private final LivingEntity victim;
 //</editor-fold>
 
 //<editor-fold default-state="collapsed" desc="Constructor">

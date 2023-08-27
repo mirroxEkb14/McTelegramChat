@@ -3,7 +3,7 @@ package org.amirov.mctelegramchat.utility.buttons;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
-import org.amirov.mctelegramchat.commands.nonsubcommands.BanCommand;
+import org.amirov.mctelegramchat.commands.subcommands.admin.BanCommand;
 import org.amirov.mctelegramchat.utility.CustomItemConstants;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -33,6 +33,8 @@ public final class BanBarrierButton {
      * Works as a getter. Sets up the custom barrier as a back button and returns it.
      *
      * @return Custom barrier item.
+     *
+     * @see #getBanBarrierMeta(ItemStack)
      */
     public static @NotNull ItemStack getBanBarrier() {
         final ItemStack item = new ItemStack(

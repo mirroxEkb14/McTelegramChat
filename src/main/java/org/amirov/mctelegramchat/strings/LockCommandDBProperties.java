@@ -1,4 +1,4 @@
-package org.amirov.mctelegramchat.properties;
+package org.amirov.mctelegramchat.strings;
 
 /**
  * This enumeration contains the keys for MongoDB collections.

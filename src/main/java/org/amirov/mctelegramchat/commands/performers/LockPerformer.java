@@ -1,7 +1,7 @@
 package org.amirov.mctelegramchat.commands.performers;
 
 import org.amirov.mctelegramchat.McTelegramChat;
-import org.amirov.mctelegramchat.properties.LockCommandDBProperties;
+import org.amirov.mctelegramchat.strings.LockCommandDBProperties;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.bukkit.Bukkit;

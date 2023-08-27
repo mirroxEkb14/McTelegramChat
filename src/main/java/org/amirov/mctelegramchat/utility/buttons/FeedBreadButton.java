@@ -33,6 +33,8 @@ public final class FeedBreadButton {
      * Works as a getter. Sets up custom bread that restores player's hunger points.
      *
      * @return Custom bread item.
+     *
+     * @see #getHungerBreadMeta(ItemStack)
      */
     public static @NotNull ItemStack getFeedBread() {
         final ItemStack item = new ItemStack(

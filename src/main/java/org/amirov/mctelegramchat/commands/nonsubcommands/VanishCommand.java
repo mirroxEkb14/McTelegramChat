@@ -1,7 +1,6 @@
 package org.amirov.mctelegramchat.commands.nonsubcommands;
 
 import org.amirov.mctelegramchat.McTelegramChat;
-import org.amirov.mctelegramchat.properties.ChatMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -13,6 +12,11 @@ import org.jetbrains.annotations.NotNull;
  * A player who triggers the command becomes invisible to other players on the server.
  */
 public record VanishCommand(McTelegramChat plugin) implements CommandExecutor {
+
+//<editor-fold default-state="collapsed" desc="Private Static Constants">
+    private static final String ON_VANISH_REMOVE = "Now Visible to Others";
+    private static final String ON_VANISH_ADD = "Now Invisible to Others";
+//</editor-fold>
 
     /**
      * Makes the player invisible to the others.
@@ -49,7 +53,7 @@ public record VanishCommand(McTelegramChat plugin) implements CommandExecutor {
             onlinePlayers.showPlayer(plugin, player);
         }
         plugin.getInvisibleList().remove(player);
-        player.sendMessage(ChatMessage.ON_COMMAND_VANISH_REMOVE.getMessage());
+        player.sendMessage(ON_VANISH_REMOVE);
     }
 
     /**
@@ -62,6 +66,6 @@ public record VanishCommand(McTelegramChat plugin) implements CommandExecutor {
             onlinePlayers.showPlayer(plugin, player);
         }
         plugin.getInvisibleList().add(player);
-        player.sendMessage(ChatMessage.ON_COMMAND_VANISH_ADD.getMessage());
+        player.sendMessage(ON_VANISH_ADD);
     }
 }

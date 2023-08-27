@@ -65,7 +65,7 @@ public final class QuartermasterManager implements CommandExecutor {
                 CommandUtils.askPerformerForArgs(performer);
             } else if (CommandUtils.cmdArgumentsOne(args)) {
                 CommandUtils.performSubcommand(QUARTERMASTER_COMMAND_TITLE, qmSubcommands, performer, args);
-            } else if (CommandUtils.cmdArgumentsTwo(args)) {
+            } else {
                 CommandUtils.sendMessageTooManyArguments(performer);
             }
         }

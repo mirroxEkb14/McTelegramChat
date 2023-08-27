@@ -57,6 +57,10 @@ public final class LockAccessManagerGUI {
      * Creates and opens an inventory of the "lock access manager" gui.
      *
      * @param player Player for whom the inventory will be opened.
+     *
+     * @see #getRemovePlayerBtn()
+     * @see #getViewPlayerBtn()
+     * @see #getAddPlayerBtn()
      */
     public static void openLockAccessManagerGUI(@NotNull Player player) {
         final Inventory lockAccessManagerGUI = Bukkit.createInventory(player, INVENTORY_SIZE, INVENTORY_NAME);

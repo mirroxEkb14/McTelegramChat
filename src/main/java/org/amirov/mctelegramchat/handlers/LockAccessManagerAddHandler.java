@@ -6,7 +6,6 @@ import org.amirov.mctelegramchat.commands.performers.LockPerformer;
 import org.amirov.mctelegramchat.gui.enums.ConfirmationGUIConstants;
 import org.amirov.mctelegramchat.gui.LockAccessManagerGUI;
 import org.amirov.mctelegramchat.gui.LockManagerGUI;
-import org.amirov.mctelegramchat.properties.ChatMessage;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import net.kyori.adventure.text.TextComponent;
@@ -18,6 +17,13 @@ import org.jetbrains.annotations.NotNull;
  */
 public final class LockAccessManagerAddHandler {
 
+//<editor-fold default-state="collapsed" desc="Private Static Constants">
+    private static final TextComponent PLAYER_WAS_ADDED = Component.text(
+            " Granted You Access to the Lock", NamedTextColor.GREEN);
+    private static final TextComponent YOU_WERE_ADDED = Component.text(
+            " Was Added to the Lock", NamedTextColor.GREEN);
+//</editor-fold>
+
     /**
      * If-else blocks explained:
      * <ol>
@@ -28,6 +34,9 @@ public final class LockAccessManagerAddHandler {
      * @param event Event of a player clicking in an inventory.
      * @param player Player who performed the click.
      * @param currentItem Item that was clicked on.
+     *                    
+     * @see #sendNotificationToOwner(Player, String) 
+     * @see #sendNotificationToPlayerToAdd(Player, String) 
      */
     public static void performLockAccessManagerAddClick(@NotNull InventoryClickEvent event,
                                                         @NotNull Player player,
@@ -53,9 +62,8 @@ public final class LockAccessManagerAddHandler {
      * @param ownerName Name of the owner of this lock.
      */
     private static void sendNotificationToPlayerToAdd(@NotNull Player playerToAdd, String ownerName) {
-        final TextComponent ownerNameComponent = Component.text(ownerName, NamedTextColor.YELLOW);
-        final TextComponent fullMessage = ownerNameComponent.append(
-                Component.text(ChatMessage.ON_LOCK_ADD_PLAYER_YOU_WERE_ADDED_TO_LOCK.getMessage(), NamedTextColor.GREEN));
+        final TextComponent ownerNameComponent = Component.text(ownerName, NamedTextColor.WHITE);
+        final TextComponent fullMessage = ownerNameComponent.append(PLAYER_WAS_ADDED);
         playerToAdd.sendMessage(fullMessage);
     }
 
@@ -66,9 +74,8 @@ public final class LockAccessManagerAddHandler {
      * @param playerToAddName Name of a player who was granted the access.
      */
     private static void sendNotificationToOwner(@NotNull Player owner, String playerToAddName) {
-        final TextComponent playerToAddNameComponent = Component.text(playerToAddName, NamedTextColor.YELLOW);
-        final TextComponent fullMessage = playerToAddNameComponent.append(
-                Component.text(ChatMessage.ON_LOCK_ADD_PLAYER_YOU_ADDED_TO_LOCK.getMessage(), NamedTextColor.GREEN));
+        final TextComponent playerToAddNameComponent = Component.text(playerToAddName, NamedTextColor.WHITE);
+        final TextComponent fullMessage = playerToAddNameComponent.append(YOU_WERE_ADDED);
         owner.sendMessage(fullMessage);
     }
 }

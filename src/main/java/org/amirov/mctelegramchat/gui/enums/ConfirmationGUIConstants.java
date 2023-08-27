@@ -124,7 +124,7 @@ public enum ConfirmationGUIConstants {
         return item.getType().equals(Material.BARRIER);
     }
 
-//<editor-fold default-state="collapsed" desc="Private Static Constants">
+//<editor-fold default-state="collapsed" desc="Getters">
     public int getValue() { return value; }
 //</editor-fold>
 }

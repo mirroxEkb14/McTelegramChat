@@ -84,6 +84,11 @@ public final class LockManagerGUI {
      * Creates an inventory with the items representing actions that can be made with the locks.
      *
      * @param player Player for whom the gui will be opened.
+     *
+     * @see #getManageAccessButton()
+     * @see #getDeleteButton()
+     * @see #getInfoButton()
+     * @see #getCloseButton()
      */
     public static void openLockManagerGUI(@NotNull Player player) {
         final Inventory lockManagerGUI = Bukkit.createInventory(player, INVENTORY_SIZE, INVENTORY_NAME);

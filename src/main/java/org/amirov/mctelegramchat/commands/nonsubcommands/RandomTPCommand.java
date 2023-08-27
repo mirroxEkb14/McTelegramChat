@@ -2,7 +2,6 @@ package org.amirov.mctelegramchat.commands.nonsubcommands;
 
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.amirov.mctelegramchat.commands.performers.TeleportPerformer;
-import org.amirov.mctelegramchat.properties.ChatMessage;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -16,6 +15,8 @@ import net.kyori.adventure.text.TextComponent;
  * Teleports a player to a random location.
  */
 public record RandomTPCommand(Plugin plugin) implements CommandExecutor {
+
+    private static final String TELEPORTED = "Teleported to: ";
 
     /**
      * Performs the teleportation of a player and sends a notification message.
@@ -50,7 +51,7 @@ public record RandomTPCommand(Plugin plugin) implements CommandExecutor {
         final int z = player.getLocation().getBlockZ();
 
         final TextComponent coordinates = Component.text(x + " " + y + " " + z, NamedTextColor.LIGHT_PURPLE);
-        final TextComponent fullMessage = Component.text(ChatMessage.ON_COMMAND_RTP.getMessage()).append(coordinates);
+        final TextComponent fullMessage = Component.text(TELEPORTED).append(coordinates);
         player.sendMessage(fullMessage);
     }
 }

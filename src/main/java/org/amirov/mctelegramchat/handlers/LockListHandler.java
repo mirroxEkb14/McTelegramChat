@@ -20,6 +20,8 @@ public final class LockListHandler {
      * @param event Event of a player clicking on some item in the menu.
      * @param player Player who triggered the event.
      * @param currentItem Item was this player clicked on.
+     *
+     * @see #isLockableBlock(ItemStack)
      */
     public static void performLockListClick(@NotNull InventoryClickEvent event,
                                             @NotNull Player player,

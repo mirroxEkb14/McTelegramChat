@@ -5,8 +5,7 @@ import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.amirov.mctelegramchat.commands.performers.LockPerformer;
 import org.amirov.mctelegramchat.gui.enums.ConfirmationGUIConstants;
-import org.amirov.mctelegramchat.properties.ChatMessage;
-import org.amirov.mctelegramchat.properties.LockCommandDBProperties;
+import org.amirov.mctelegramchat.strings.LockCommandDBProperties;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -28,6 +27,8 @@ public final class ApprovedPlayerListGUI {
     private static final int INVENTORY_SIZE = 45;
     private static final TextComponent INVENTORY_NAME = Component.text(
             "View Players", NamedTextColor.AQUA);
+    private static final TextComponent NO_PLAYERS_TO_VIEW = Component.text(
+            "You Didn't Add Players", NamedTextColor.RED);
 
     private static final int CLOSE_BUTTON_INDEX = 44;
 //</editor-fold>
@@ -38,6 +39,8 @@ public final class ApprovedPlayerListGUI {
      *
      * @param player Player who triggered the event.
      * @param lockId Id of the lock in the DB.
+     *
+     * @see #getPlayerHead(Player)
      */
     public static void openApprovedPlayerListGUI(@NotNull Player player, String lockId) {
         final Inventory approvedPlayerListGUI = Bukkit.createInventory(player, INVENTORY_SIZE, INVENTORY_NAME);
@@ -46,8 +49,7 @@ public final class ApprovedPlayerListGUI {
                 LockPerformer.getLockById(lockId).get(LockCommandDBProperties.ACCESS_KEY_NAME.getKey());
 
         if (accessList.isEmpty()) {
-            player.sendMessage(Component.text(
-                    ChatMessage.ON_LOCK_VIEW_PLAYERS_NO_PLAYERS.getMessage(), NamedTextColor.GRAY));
+            player.sendMessage(NO_PLAYERS_TO_VIEW);
         } else {
             for (String s : accessList) {
                 final UUID uuid = UUID.fromString(s);

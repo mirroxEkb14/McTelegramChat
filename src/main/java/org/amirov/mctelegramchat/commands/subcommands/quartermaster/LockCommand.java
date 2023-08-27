@@ -7,8 +7,7 @@ import org.amirov.mctelegramchat.McTelegramChat;
 import org.amirov.mctelegramchat.commands.SubCommand;
 import org.amirov.mctelegramchat.gui.LockConfirmationGUI;
 import org.amirov.mctelegramchat.commands.performers.LockPerformer;
-import org.amirov.mctelegramchat.properties.ChatMessage;
-import org.amirov.mctelegramchat.properties.ConfigProperty;
+import org.amirov.mctelegramchat.strings.ConfigProperty;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -29,6 +28,15 @@ public final class LockCommand extends SubCommand {
     private static final String LOCK_COMMAND_SYNTAX = "/qm lock";
 
     private static final int MAX_VIEW_RANGE = 5;
+
+    private static final TextComponent LOCK_WRONG_DISTANCE_MESSAGE = Component.text(
+            "Lock at Something Nearby", NamedTextColor.RED);
+    private static final TextComponent LOCK_WRONG_BLOCK = Component.text(
+            "Block Cannot Be Locked", NamedTextColor.RED);
+    private static final TextComponent THIEF_BLOCK_ALREADY_LOCKED = Component.text(
+            "Chest is locked by ", NamedTextColor.WHITE);
+    private static final TextComponent OWNER_BLOCK_ALREADY_LOCKED = Component.text(
+            "You already Own Chest", NamedTextColor.WHITE);
 //</editor-fold>
 
     @Override
@@ -43,8 +51,7 @@ public final class LockCommand extends SubCommand {
     @Override
     public void perform(@NotNull Player performer, String[] args) {
         if (isBlockAtCertainRangeNull(performer)) {
-            performer.sendMessage(Component.text(
-                    ChatMessage.ON_COMMAND_LOCK_WRONG_DISTANCE.getMessage(), NamedTextColor.GRAY));
+            performer.sendMessage(LOCK_WRONG_DISTANCE_MESSAGE);
             return;
         }
         final Block target = performer.getTargetBlockExact(MAX_VIEW_RANGE);
@@ -65,8 +72,7 @@ public final class LockCommand extends SubCommand {
                     McTelegramChat.getCreatedLocks().put(performer, target);
                 }
             } else {
-                performer.sendMessage(Component.text(
-                        ChatMessage.ON_COMMAND_LOCK_WRONG_BLOCK.getMessage(), NamedTextColor.GRAY));
+                performer.sendMessage(LOCK_WRONG_BLOCK);
             }
         }
     }
@@ -78,9 +84,7 @@ public final class LockCommand extends SubCommand {
      * @param ownerName Name of the chest owner.
      */
     private void notifyThiefAboutLock(@NotNull Player thief, String ownerName) {
-        final TextComponent thiefWarning = Component.text(
-                ChatMessage.ON_COMMAND_LOCK_THIEF_ALREADY_LOCKED.getMessage(), NamedTextColor.DARK_RED);
-        final TextComponent fullMessage = thiefWarning
+        final TextComponent fullMessage = THIEF_BLOCK_ALREADY_LOCKED
                 .append(Component.text(ownerName, NamedTextColor.GRAY));
         thief.sendMessage(fullMessage);
     }
@@ -91,8 +95,7 @@ public final class LockCommand extends SubCommand {
      * @param owner Owner of this chest.
      */
     private void notifyOwnerAboutLock(@NotNull Player owner) {
-        owner.sendMessage(Component.text(
-                ChatMessage.ON_COMMAND_LOCK_OWNER_ALREADY_LOCKED.getMessage(), NamedTextColor.BLUE));
+        owner.sendMessage(OWNER_BLOCK_ALREADY_LOCKED);
     }
 
     /**

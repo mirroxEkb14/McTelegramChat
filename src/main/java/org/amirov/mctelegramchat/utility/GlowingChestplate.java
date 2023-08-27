@@ -32,6 +32,8 @@ public final class GlowingChestplate {
      * Provides a getter. Sets up and returns the item.
      *
      * @return Created chestplate with a custom enchantment of glowing.
+     *
+     * @see #getGlowingChestplateMeta(ItemStack)
      */
     public static @NotNull ItemStack getGlowingChestplate() {
         final ItemStack glowingChestplate = new ItemStack(

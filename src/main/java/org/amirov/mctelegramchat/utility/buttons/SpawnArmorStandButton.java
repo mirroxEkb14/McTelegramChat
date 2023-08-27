@@ -33,6 +33,8 @@ public final class SpawnArmorStandButton {
      * Getter. Sets up an armor stand and returns it as an {@link ItemStack} object.
      *
      * @return Custom armor stand item.
+     *
+     * @see #getCustomArmorStandMeta(ItemStack)
      */
     public static @NotNull ItemStack getSpawnArmorStand() {
         final ItemStack item = new ItemStack(

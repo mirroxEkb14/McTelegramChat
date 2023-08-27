@@ -1,9 +1,7 @@
 package org.amirov.mctelegramchat.listeners;
 
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.NamedTextColor;
 import org.amirov.mctelegramchat.McTelegramChat;
-import org.amirov.mctelegramchat.properties.ChatMessage;
 import org.amirov.mctelegramchat.utility.LightningCrossbowUtils;
 import org.amirov.mctelegramchat.utility.TeleportBowUtils;
 import org.bukkit.Location;
@@ -28,12 +26,20 @@ public record ArrowListener(McTelegramChat plugin) implements Listener {
 //<editor-fold default-state="collapsed" desc="Private Static Constants">
     private static final float soundVolume = 1.0f;
     private static final float soundPitch = 1.0f;
+
+    private static final String ARROW_LANDING_TELEPORTED = "Teleported to Arrow Point";
+    private static final String ARROW_LANDING_LIGHTNING = "Lighting Hit";
 //</editor-fold>
 
     /**
      * Teleports a player to the point where the arrow landed.
      *
      * @param event Event of a projectile hitting an object.
+     *
+     * @see #isArrow(ProjectileHitEvent)
+     * @see #shotByPlayer(ProjectileHitEvent)
+     * @see #teleportToArrowLocation(ProjectileHitEvent, Player)
+     * @see #hitLightningAtArrowLocation(ProjectileHitEvent, Player)
      */
     @EventHandler
     public void onArrowLand(ProjectileHitEvent event) {
@@ -59,7 +65,7 @@ public record ArrowListener(McTelegramChat plugin) implements Listener {
         final Location location = event.getEntity().getLocation();
         player.teleport(location);
         event.getEntity().remove();
-        player.sendMessage(Component.text(ChatMessage.ON_ARROW_LANDING_TELEPORT.getMessage()));
+        player.sendMessage(ARROW_LANDING_TELEPORTED);
         player.playSound(player, Sound.ENTITY_ARROW_HIT, soundVolume, soundPitch);
     }
 
@@ -73,7 +79,7 @@ public record ArrowListener(McTelegramChat plugin) implements Listener {
         final Location arrowLocation = event.getEntity().getLocation();
         player.getWorld().spawnEntity(arrowLocation, EntityType.LIGHTNING);
 
-        player.sendMessage(Component.text(ChatMessage.ON_ARROW_LANDING_LIGHTNING.getMessage(), NamedTextColor.BLUE));
+        player.sendMessage(ARROW_LANDING_LIGHTNING);
     }
 
     /**

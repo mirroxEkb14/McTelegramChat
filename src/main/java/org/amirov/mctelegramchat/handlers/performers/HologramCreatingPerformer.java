@@ -27,6 +27,9 @@ public final class HologramCreatingPerformer {
      * Sets the text for the hologram.
      *
      * @param player Player who clicked on the armor stand in the main inventory.
+     *
+     * @see #createFirstLineHologram(Player)
+     * @see #createSecondLineHologram(Player)
      */
     public static void performHologramCreating(@NotNull Player player) {
         createFirstLineHologram(player);

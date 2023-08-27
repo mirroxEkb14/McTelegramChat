@@ -4,7 +4,6 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.amirov.mctelegramchat.commands.performers.LockPerformer;
-import org.amirov.mctelegramchat.properties.ChatMessage;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -22,10 +21,26 @@ import java.util.Objects;
  */
 public final class ChestListener implements Listener {
 
+//<editor-fold default-state="collapsed" desc="Private Static Constants">
+    private static final TextComponent LOCK_DELETED = Component.text(
+            "Lock Been Deleted", NamedTextColor.GREEN);
+    private static final TextComponent TRIED_TO_BREAK_THIEF = Component.text(
+            "Cannot be Broken Due to Locking", NamedTextColor.RED);
+    private static final TextComponent TRIED_TO_OPEN_THIEF = Component.text(
+            "Chest Locked by ", NamedTextColor.RED);
+    private static final TextComponent TRIED_TO_OPEN_OWNER = Component.text(
+            "You Own Chest", NamedTextColor.WHITE);
+//</editor-fold>
+
     /**
      * Checks either a player tried to open a chest that is already locked or not.
      *
      * @param event Event of a player interacting with some block.
+     *
+     * @see #playerRightClicked(PlayerInteractEvent)
+     * @see #isBlockChest(Block)
+     * @see #sendMessageToOwner(Player)
+     * @see #sendMessageToThief(Player, String)
      */
     @EventHandler
     public void onChestOpen(@NotNull PlayerInteractEvent event) {
@@ -52,6 +67,8 @@ public final class ChestListener implements Listener {
      * not an owner of this chest tried to break it, then he's not allowed to do such thing.
      *
      * @param event Event of breaking a block.
+     *
+     * @see #isBlockChest(Block)
      */
     @EventHandler
     public void onChestBreak(@NotNull BlockBreakEvent event) {
@@ -61,12 +78,10 @@ public final class ChestListener implements Listener {
             final Player triedToOpenPlayer = event.getPlayer();
             if (chestOwnerPlayer.equals(triedToOpenPlayer)) {
                 LockPerformer.deleteLock(target);
-                chestOwnerPlayer.sendMessage(Component.text(
-                        ChatMessage.ON_COMMAND_LOCK_DELETE.getMessage(), NamedTextColor.AQUA));
+                chestOwnerPlayer.sendMessage(LOCK_DELETED);
             } else {
                 event.setCancelled(true);
-                triedToOpenPlayer.sendMessage(Component.text(
-                        ChatMessage.TRIED_TO_BREAK_LOCKED_CHEST_THIEF.getMessage(), NamedTextColor.DARK_RED));
+                triedToOpenPlayer.sendMessage(TRIED_TO_BREAK_THIEF);
             }
         }
     }
@@ -78,9 +93,7 @@ public final class ChestListener implements Listener {
      * @param ownerName Name of the owner of this chest.
      */
     private void sendMessageToThief(@NotNull Player thief, String ownerName) {
-        final TextComponent thiefWarning = Component.text(
-                ChatMessage.TRIED_TO_OPEN_LOCKED_CHEST_THIEF.getMessage(), NamedTextColor.DARK_RED);
-        final TextComponent fullMessage = thiefWarning
+        final TextComponent fullMessage = TRIED_TO_OPEN_THIEF
                 .append(Component.text(ownerName, NamedTextColor.GRAY));
         thief.sendMessage(fullMessage);
     }
@@ -91,8 +104,7 @@ public final class ChestListener implements Listener {
      * @param owner Owner of this chest.
      */
     private void sendMessageToOwner(@NotNull Player owner) {
-        owner.sendMessage(Component.text(
-                ChatMessage.TRIED_TO_OPEN_LOCKED_CHEST_OWNER.getMessage(), NamedTextColor.BLUE));
+        owner.sendMessage(TRIED_TO_OPEN_OWNER);
     }
 
     /**

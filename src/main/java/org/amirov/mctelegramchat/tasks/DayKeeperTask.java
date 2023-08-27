@@ -1,6 +1,6 @@
 package org.amirov.mctelegramchat.tasks;
 
-import org.amirov.mctelegramchat.properties.ConfigProperty;
+import org.amirov.mctelegramchat.strings.ConfigProperty;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.plugin.Plugin;

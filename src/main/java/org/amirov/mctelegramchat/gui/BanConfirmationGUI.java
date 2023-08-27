@@ -40,6 +40,9 @@ public final class BanConfirmationGUI {
      * @param event Event of the item click in the inventory.
      * @param player Player who made the click.
      * @param currentItem Item the player clicked on.
+     *
+     * @see #getPlayerToBan(InventoryClickEvent, Player)
+     * @see #getConfirmBanMenu(Inventory, Player)
      */
     public static void openBanConfirmationGUI(@NotNull InventoryClickEvent event,
                                               @NotNull Player player,

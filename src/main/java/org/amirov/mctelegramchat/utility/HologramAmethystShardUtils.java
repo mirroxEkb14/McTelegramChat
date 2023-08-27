@@ -31,6 +31,8 @@ public final class HologramAmethystShardUtils {
      * Getter. Sets up an amethyst shard stand of the type of {@link ItemStack}.
      *
      * @return Custom amethyst shard item.
+     *
+     * @see #getHologramAmethystShardMeta(ItemStack)
      */
     public static @NotNull ItemStack getHologramAmethystShard() {
         final ItemStack item = new ItemStack(

@@ -7,7 +7,6 @@ import org.amirov.mctelegramchat.commands.performers.LockPerformer;
 import org.amirov.mctelegramchat.gui.enums.ConfirmationGUIConstants;
 import org.amirov.mctelegramchat.gui.LockAccessManagerGUI;
 import org.amirov.mctelegramchat.gui.LockManagerGUI;
-import org.amirov.mctelegramchat.properties.ChatMessage;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
@@ -17,6 +16,13 @@ import org.jetbrains.annotations.NotNull;
  * Processes clicks on items inside the "delete players" inventory menu.
  */
 public class LockAccessManagerDeleteHandler {
+
+//<editor-fold default-state="collapsed" desc="Private Static Constants">
+    private static final TextComponent YOU_WERE_DELETED = Component.text(
+            " Deleted You from the Lock", NamedTextColor.GREEN);
+    private static final TextComponent YOU_DELETED = Component.text(
+            " Was Deleted from the Lock", NamedTextColor.GREEN);
+//</editor-fold>
 
     /**
      * if-else blocks explained:
@@ -29,6 +35,9 @@ public class LockAccessManagerDeleteHandler {
      * @param event Event of an inventory click.
      * @param player Player who clicked.
      * @param currentItem Item a player clicked on.
+     *
+     * @see #sendNotificationToOwner(Player, String)
+     * @see #sendNotificationToPlayerToDelete(Player, String)
      */
     public static void performLockAccessManagerDeleteClick(@NotNull InventoryClickEvent event,
                                                            @NotNull Player player,
@@ -55,8 +64,7 @@ public class LockAccessManagerDeleteHandler {
      */
     private static void sendNotificationToPlayerToDelete(@NotNull Player playerToDelete, String ownerName) {
         final TextComponent ownerNameComponent = Component.text(ownerName, NamedTextColor.YELLOW);
-        final TextComponent fullMessage = ownerNameComponent.append(
-                Component.text(ChatMessage.ON_LOCK_ADD_PLAYER_YOU_WERE_DELETED_FROM_LOCK.getMessage(), NamedTextColor.GREEN));
+        final TextComponent fullMessage = ownerNameComponent.append(YOU_WERE_DELETED);
         playerToDelete.sendMessage(fullMessage);
     }
 
@@ -69,8 +77,7 @@ public class LockAccessManagerDeleteHandler {
      */
     private static void sendNotificationToOwner(@NotNull Player owner, String playerToDeleteName) {
         final TextComponent playerToAddNameComponent = Component.text(playerToDeleteName, NamedTextColor.YELLOW);
-        final TextComponent fullMessage = playerToAddNameComponent.append(
-                Component.text(ChatMessage.ON_LOCK_ADD_PLAYER_YOU_DELETED_FROM_LOCK.getMessage(), NamedTextColor.GREEN));
+        final TextComponent fullMessage = playerToAddNameComponent.append(YOU_DELETED);
         owner.sendMessage(fullMessage);
     }
 }

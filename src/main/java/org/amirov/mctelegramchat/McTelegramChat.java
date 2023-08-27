@@ -4,17 +4,20 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import org.amirov.mctelegramchat.commands.subcommands.admin.AdminManager;
+import org.amirov.mctelegramchat.commands.subcommands.admin.BanCommand;
 import org.amirov.mctelegramchat.commands.subcommands.quartermaster.QuartermasterManager;
 import org.amirov.mctelegramchat.commands.files.ConfigManager;
 import org.amirov.mctelegramchat.commands.nonsubcommands.*;
-import org.amirov.mctelegramchat.commands.properties.CommandName;
+import org.amirov.mctelegramchat.commands.CommandName;
 import org.amirov.mctelegramchat.commands.subcommands.prank.PrankManager;
+import org.amirov.mctelegramchat.commands.subcommands.spawn.SpawnManager;
 import org.amirov.mctelegramchat.enchantments.GlowEnchantment;
 import org.amirov.mctelegramchat.enchantments.HemorrhageEnchantment;
 import org.amirov.mctelegramchat.listeners.*;
 import org.amirov.mctelegramchat.logging.Loggers;
 import org.amirov.mctelegramchat.logging.LoggingMessage;
-import org.amirov.mctelegramchat.properties.ConfigProperty;
+import org.amirov.mctelegramchat.strings.ConfigProperty;
 import org.amirov.mctelegramchat.tasks.DayKeeperTask;
 import org.amirov.mctelegramchat.telegrambot.SPWBot;
 import org.bson.Document;
@@ -102,16 +105,8 @@ public final class McTelegramChat extends JavaPlugin {
     private void initCommands() {
         final PluginCommand mainMenuCommand = getCommand(CommandName.MAIN_MENU_COMMAND.getName());
         Objects.requireNonNull(mainMenuCommand).setExecutor(new MainMenuCommand());
-        final PluginCommand setSpawnCommand = getCommand(CommandName.SET_SPAWN_COMMAND.getName());
-        Objects.requireNonNull(setSpawnCommand).setExecutor(new SetSpawnCommand(this));
-        final PluginCommand spawnCommand = getCommand(CommandName.SPAWN_COMMAND.getName());
-        Objects.requireNonNull(spawnCommand).setExecutor(new SpawnCommand(this));
         final PluginCommand saveLocCommand = getCommand(CommandName.SAVE_LOCATION_COMMAND.getName());
         Objects.requireNonNull(saveLocCommand).setExecutor(new SaveLocationCommand());
-        final PluginCommand spawnSignCommand = getCommand(CommandName.SPAWN_SIGN_COMMAND.getName());
-        Objects.requireNonNull(spawnSignCommand).setExecutor(new SpawnSignCommand());
-        final PluginCommand banCommand = getCommand(CommandName.BAN_COMMAND.getName());
-        Objects.requireNonNull(banCommand).setExecutor(new BanCommand());
         final PluginCommand randomTPCommand = getCommand(CommandName.RANDOM_TP_COMMAND.getName());
         Objects.requireNonNull(randomTPCommand).setExecutor(new RandomTPCommand(this));
         final PluginCommand vanishCommand = getCommand(CommandName.VANISH_COMMAND.getName());
@@ -124,6 +119,10 @@ public final class McTelegramChat extends JavaPlugin {
         Objects.requireNonNull(prankCommand).setExecutor(new PrankManager(this));
         final PluginCommand quartermasterCommand = getCommand(CommandName.QUARTERMASTER_COMMAND.getName());
         Objects.requireNonNull(quartermasterCommand).setExecutor(new QuartermasterManager());
+        final PluginCommand spawnCommand = getCommand(CommandName.SPAWN_COMMAND.getName());
+        Objects.requireNonNull(spawnCommand).setExecutor(new SpawnManager(this));
+        final PluginCommand adminCommand = getCommand(CommandName.ADMIN_COMMAND.getName());
+        Objects.requireNonNull(adminCommand).setExecutor(new AdminManager());
     }
 
     /**

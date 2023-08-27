@@ -1,4 +1,4 @@
-package org.amirov.mctelegramchat.properties;
+package org.amirov.mctelegramchat.strings;
 
 import org.amirov.mctelegramchat.telegrambot.SPWBot;
 

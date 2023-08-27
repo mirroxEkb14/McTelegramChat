@@ -3,8 +3,8 @@ package org.amirov.mctelegramchat.telegrambot;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
-import org.amirov.mctelegramchat.properties.ConfigProperty;
-import org.amirov.mctelegramchat.properties.Symbol;
+import org.amirov.mctelegramchat.strings.ConfigProperty;
+import org.amirov.mctelegramchat.strings.Symbol;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
@@ -50,6 +50,7 @@ public final class SPWBot extends TelegramLongPollingBot {
      * @param update An update that comes from the bot's chat.
      *
      * @see <a href="https://core.telegram.org/bots/api#update">Getting updates</a>
+     * @see #sendFromTelegramToServer(Message)
      */
     @Override
     public void onUpdateReceived(@NotNull Update update) {
@@ -61,6 +62,8 @@ public final class SPWBot extends TelegramLongPollingBot {
      * Sends a message from a telegram chat to the Minecraft server.
      *
      * @param msg An incoming message from a telegram chat.
+     *
+     * @see #getUserNameForServer(User)
      */
     private void sendFromTelegramToServer(Message msg) {
         if (msg != null && isAdminChat(msg) && msg.hasText()) {
@@ -76,7 +79,10 @@ public final class SPWBot extends TelegramLongPollingBot {
      * Gets user's full name, wraps it in angle brackets and changes its color.
      *
      * @param msgSender An instance of the user who sent a message.
+     *
      * @return User's full name in angle brackets with the color changed.
+     *
+     * @see #getUserTelegramFullName(User)
      */
     private @NotNull TextComponent getUserNameForServer(User msgSender) {
         final String senderFullName = getUserTelegramFullName(msgSender);
@@ -107,7 +113,7 @@ public final class SPWBot extends TelegramLongPollingBot {
      * @return User's first name or user's first name + his last name if it presents.
      */
     private @NotNull String getUserTelegramFullName(@NotNull User user) {
-        return user.getFirstName() + (user.getLastName() != null ? " " + user.getLastName() : "");
+        return user.getFirstName() + (user.getLastName() != null ? Symbol.SPACE + user.getLastName() : Symbol.QUOTATION_MARKS);
     }
 
     /**
